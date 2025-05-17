@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_bank: MyString
+  nomor_rekening: MyString
+  nama_pemilik_rekening: MyString
+
+two:
+  nama_bank: MyString
+  nomor_rekening: MyString
+  nama_pemilik_rekening: MyString

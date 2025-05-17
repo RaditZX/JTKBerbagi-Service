@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_pengajuan: 1
+  total_nominal_terkumpul: 1
+  donasi: one
+  pengaju_bantuan: one
+
+two:
+  total_pengajuan: 1
+  total_nominal_terkumpul: 1
+  donasi: two
+  pengaju_bantuan: two

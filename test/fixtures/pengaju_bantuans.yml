@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama: MyString
+  no_identitas_pengaju: MyString
+  no_telepon: MyString
+  waktu_galang_dana: MyString
+  judul_galang_dana: MyString
+  deskripsi: MyString
+  dana_yang_dibutuhkan: MyString
+  jenis: MyString
+  status_pengajuan: 1
+  status_penyaluran: 1
+  beasiswa: one
+  non_beasiswa: one
+  rekening: one
+
+two:
+  nama: MyString
+  no_identitas_pengaju: MyString
+  no_telepon: MyString
+  waktu_galang_dana: MyString
+  judul_galang_dana: MyString
+  deskripsi: MyString
+  dana_yang_dibutuhkan: MyString
+  jenis: MyString
+  status_pengajuan: 1
+  status_penyaluran: 1
+  beasiswa: two
+  non_beasiswa: two
+  rekening: two

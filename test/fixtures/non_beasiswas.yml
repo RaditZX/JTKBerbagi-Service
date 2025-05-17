@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_penerima: MyString
+  no_identitas_penerima: MyString
+  no_telepon_penerima: MyString
+  bukti_butuh_bantuan: MyString
+  kategori: MyString
+
+two:
+  nama_penerima: MyString
+  no_identitas_penerima: MyString
+  no_telepon_penerima: MyString
+  bukti_butuh_bantuan: MyString
+  kategori: MyString

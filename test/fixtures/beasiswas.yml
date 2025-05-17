@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  golongan_ukt: 1
+  kuitansi_pembayaran_ukt: MyString
+  gaji_orang_tua: 1
+  bukti_slip_gaji_orang_tua: MyString
+  esai: MyString
+  jumlah_tanggungan_keluarga: 1
+  biaya_transportasi: MyString
+  biaya_konsumsi: MyString
+  biaya_internet: MyString
+  biaya_kost: MyString
+  total_pengeluaran_keluarga: 1
+  penilaian_esai: 1
+  nominal_penyaluran: 1
+  bulan_penyaluran: 
+
+two:
+  golongan_ukt: 1
+  kuitansi_pembayaran_ukt: MyString
+  gaji_orang_tua: 1
+  bukti_slip_gaji_orang_tua: MyString
+  esai: MyString
+  jumlah_tanggungan_keluarga: 1
+  biaya_transportasi: MyString
+  biaya_konsumsi: MyString
+  biaya_internet: MyString
+  biaya_kost: MyString
+  total_pengeluaran_keluarga: 1
+  penilaian_esai: 1
+  nominal_penyaluran: 1
+  bulan_penyaluran: 
