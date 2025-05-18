@@ -10,11 +10,19 @@ Rails.application.routes.draw do
       post '/loginDonatur', to: 'authentication#loginDonatur'
     end
     
+<<<<<<< HEAD
     resource :civitas_akademika do
       post '/importExcelCivitasAkademika' => "civitas_akademika#importExcelCivitasAkademika"
       get '/getAllCivitasAkademika' => "civitas_akademika#getAllCivitasAkademika"
       post '/search' => "civitas_akademika#search"
     end
+=======
+      resource :civitas_akademika do
+        post '/importExcelCivitasAkademika' => "civitas_akademika#importExcelCivitasAkademika"
+        get '/getAllCivitasAkademika' => "civitas_akademika#getAllCivitasAkademika"
+        post '/search' => "civitas_akademika#search"
+      end
+>>>>>>> 1e5b8db (Maintenance corective)
 
     resource :rekapitulasi do
       post "/getRekapitulasiBeasiswa" => "rekapitulasi#getRekapitulasiBeasiswa"
@@ -52,7 +60,7 @@ Rails.application.routes.draw do
         post "/createKehadiranPerkuliahan" => "pengajuan_bantuan#createKehadiranPerkuliahan"
         get "/getTotalPenerimaBantuan" => "pengajuan_bantuan#getTotalPenerimaBantuan"
         get "/getKuotaBeasiswa" => "pengajuan_bantuan#getKuotaBeasiswa"
-
+        get "/getPenerimaBeasiswa" => "pengajuan_bantuan#getPenerimaBeasiswa"
       end
     end
     namespace :penggalangan do

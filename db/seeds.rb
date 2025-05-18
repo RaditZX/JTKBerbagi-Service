@@ -65,13 +65,13 @@ PenggalanganDanaBeasiswa.create!(
   penanggung_jawab_id: 1,
   deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
   judul: "Beasiswa Peduli Pendidikan 2025",
-  waktu_dimulai: Date.new(2025, 5, 1),
+  waktu_dimulai: Date.new(2024, 11, 1),
   waktu_berakhir: Date.new(2025, 8, 31),
   kuota_beasiswa: 100,
   target_dana: 200_000_000,
   target_penerima: 100,
   total_nominal_terkumpul: 75_000_000,
-  status: 1
+  status: 0
 )
 
 BantuanDanaBeasiswa.create!(
@@ -90,10 +90,10 @@ BantuanDanaBeasiswa.create!(
   biaya_kos: "700000",
   biaya_konsumsi: "1000000",
   total_pengeluaran_keluarga: 4500000,
-  penilaian_esai: 85,
+  penilaian_esai: 4,
   nominal_penyaluran: { tahap_1: 1000000, tahap_2: 1000000 },
   dokumen_kehadiran_perkuliahan: "kehadiran_mhs001.pdf",
-  status_pengajuan: 1,
+  status_pengajuan: 0,
   status_penyaluran: { tahap_1: "disalurkan", tahap_2: "belum" },
   status_kehadiran_perkuliahan: 1
 )
