@@ -707,11 +707,6 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     )
   end
 
-  def getPenerimaBeasiswa
-    bantuan_dana_beasiswa_approved = BantuanDanaBeasiswa.pengajuan_approved
-    render_success_response(Constants::RESPONSE_SUCCESS, bantuan_dana_beasiswa_approved, Constants::STATUS_OK)
-  end
-
   private
   #form pengaju
   def rekening_bank_params
