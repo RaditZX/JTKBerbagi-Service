@@ -143,7 +143,6 @@ BantuanDanaBeasiswa.create!(
     },
 
   ]
-  
 )
 
 BantuanDanaNonBeasiswa.create!(
