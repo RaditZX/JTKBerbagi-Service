@@ -22,6 +22,7 @@ Bundler.require(*Rails.groups)
 module Backend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.autoload_paths += %W(#{config.root}/app/lib)
     config.load_defaults 6.1
     config.autoload_paths << "#{Rails.root}/lib" 
     # Configuration for the application, engines, and railties goes here.
