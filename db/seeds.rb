@@ -22,30 +22,42 @@ BantuanDanaNonBeasiswa.destroy_all
 PenanggungJawabNonBeasiswa.destroy_all
 
 CivitasAkademika.create!([
+  # Mahasiswa
   { nomor_induk: "MHS001", nama: "Agus Santoso" },
   { nomor_induk: "MHS002", nama: "Siti Aminah" },
-  { nomor_induk: "MHS003", nama: "Rudy Tabootie"},
+  { nomor_induk: "MHS003", nama: "Rudy Tabootie" },
+  { nomor_induk: "MHS004", nama: "Dewi Lestari" },
+  { nomor_induk: "MHS005", nama: "Budi Hartono" },
+  { nomor_induk: "MHS006", nama: "Nur Aini" },
+  { nomor_induk: "MHS007", nama: "Ali Fikri" },
+  { nomor_induk: "MHS008", nama: "Maya Sari" },
+  { nomor_induk: "MHS009", nama: "Joko Prasetyo" },
+  { nomor_induk: "MHS010", nama: "Fitriani Zahra" },
+
+  # Dosen
   { nomor_induk: "DSN001", nama: "Rina Marlina" },
   { nomor_induk: "DSN002", nama: "Bagyo Sutoyo" },
+  { nomor_induk: "DSN003", nama: "Intan Permata" },
+  { nomor_induk: "DSN004", nama: "Rahmat Hidayat" },
+  { nomor_induk: "DSN005", nama: "Lestari Wulandari" },
+  { nomor_induk: "DSN006", nama: "Hendra Gunawan" },
+  { nomor_induk: "DSN007", nama: "Dian Anggraini" },
+  { nomor_induk: "DSN008", nama: "Samsul Bahri" },
+  { nomor_induk: "DSN009", nama: "Yuniarti Saputra" },
+  { nomor_induk: "DSN010", nama: "Teguh Santoso" }
 ])
 
-# Seeder untuk Donatur
-Donatur.create!([
-  { nomor_telepon: "081234567890", nama: "Donatur A", password: "password123", status: 1 },
-  { nomor_telepon: "082345678901", nama: "Donatur B", password: "password123", status: 0 }
-])
-
-# Seeder untuk Mahasiswa
 Mahasiswa.create!([
   { nim: "MHS001", nama: "Agus Santoso", nomor_telepon: "089876543210" },
   { nim: "MHS002", nama: "Siti Aminah", nomor_telepon: "088765432109" },
   { nim: "MHS003", nama: "Rudy Tabootie", nomor_telepon: "089876545555" },
-])
-
-# Seeder untuk Penanggung Jawab
-PenanggungJawab.create!([
-  { role: 1, nama: "Admin Beasiswa", username: "admin_b", password: "password123", nomor_telepon: "081122334455" },
-  { role: 2, nama: "Admin Non Beasiswa", username: "admin_nb", password: "password123", nomor_telepon: "082233445566" }
+  { nim: "MHS004", nama: "Dewi Lestari", nomor_telepon: "082134567891" },
+  { nim: "MHS005", nama: "Budi Hartono", nomor_telepon: "087812345678" },
+  { nim: "MHS006", nama: "Nur Aini", nomor_telepon: "083867845612" },
+  { nim: "MHS007", nama: "Ali Fikri", nomor_telepon: "085715367892" },
+  { nim: "MHS008", nama: "Maya Sari", nomor_telepon: "081234567899" },
+  { nim: "MHS009", nama: "Joko Prasetyo", nomor_telepon: "089998877665" },
+  { nim: "MHS010", nama: "Fitriani Zahra", nomor_telepon: "082112345678" }
 ])
 
 # Seeder untuk Penanggung Jawab Non Beasiswa
@@ -53,6 +65,19 @@ PenanggungJawabNonBeasiswa.create!([
   { nomor_induk: "DSN001", nama: "Rina Marlina", nomor_telepon: "081998877665" },
   { nomor_induk: "DSN002", nama: "Bagyo Sutoyo", nomor_telepon: "082287654321" }
 ])
+# Seeder untuk Donatur
+Donatur.create!([
+  { nomor_telepon: "081234567890", nama: "Donatur A", password: "password123", status: 1 },
+  { nomor_telepon: "082345678901", nama: "Donatur B", password: "password123", status: 0 }
+])
+
+
+# Seeder untuk Penanggung Jawab
+PenanggungJawab.create!([
+  { role: 0, nama: "Penanggung Jawab JTK Berbagi", username: "admin_b", password: "password123", nomor_telepon: "081122334455" },
+  { role: 1, nama: "Penanggung Jawab Jurusan", username: "admin_nb", password: "password123", nomor_telepon: "082233445566" }
+])
+
 
 # Seeder untuk Penerima Non Beasiswa
 PenerimaNonBeasiswa.create!([
@@ -61,41 +86,64 @@ PenerimaNonBeasiswa.create!([
 ])
 
 PenggalanganDanaBeasiswa.create!(
-  penggalangan_dana_beasiswa_id: 1,
-  penanggung_jawab_id: 1,
-  deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
-  judul: "Beasiswa Peduli Pendidikan 2025",
-  waktu_dimulai: Date.new(2025, 5, 1),
-  waktu_berakhir: Date.new(2025, 8, 31),
-  kuota_beasiswa: 100,
-  target_dana: 200_000_000,
-  target_penerima: 100,
-  total_nominal_terkumpul: 75_000_000,
-  status: 1
+  [
+    {
+      penggalangan_dana_beasiswa_id: 1,
+      penanggung_jawab_id: 1,
+      deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
+      judul: "Beasiswa Peduli Pendidikan 2025",
+      waktu_dimulai: Date.new(2025, 5, 1),
+      waktu_berakhir: Date.new(2025, 8, 31),
+      kuota_beasiswa: 100,
+      target_dana: 200_000_000,
+      target_penerima: 100,
+      total_nominal_terkumpul: 75_000_000,
+      status: 1
+    },
+    {
+      penggalangan_dana_beasiswa_id: 2,
+      penanggung_jawab_id: 1,
+      deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
+      judul: "Beasiswa Peduli Pendidikan 2025",
+      waktu_dimulai: Date.new(2024, 5, 1),
+      waktu_berakhir: Date.new(2024, 8, 31),
+      kuota_beasiswa: 100,
+      target_dana: 200_000_000,
+      target_penerima: 100,
+      total_nominal_terkumpul: 75_000_000,
+      status: 1
+    }
+  ]
 )
 
 BantuanDanaBeasiswa.create!(
-  bantuan_dana_beasiswa_id: 1,
-  mahasiswa_id: "MHS001",
-  penggalangan_dana_beasiswa_id: 1,
-  alasan_butuh_bantuan: "Kesulitan finansial karena orang tua terkena PHK",
-  golongan_ukt: 3,
-  kuitansi_pembayaran_ukt: "kuitansi_ukt_mhs001.pdf",
-  gaji_orang_tua: 2500000,
-  bukti_slip_gaji_orang_tua: "slip_gaji_ayah_mhs001.pdf",
-  esai: "Saya sangat membutuhkan bantuan ini untuk melanjutkan kuliah.",
-  jumlah_tanggungan_keluarga: 4,
-  biaya_transportasi: "500000",
-  biaya_internet: "300000",
-  biaya_kos: "700000",
-  biaya_konsumsi: "1000000",
-  total_pengeluaran_keluarga: 4500000,
-  penilaian_esai: 85,
-  nominal_penyaluran: { tahap_1: 1000000, tahap_2: 1000000 },
-  dokumen_kehadiran_perkuliahan: "kehadiran_mhs001.pdf",
-  status_pengajuan: 1,
-  status_penyaluran: { tahap_1: "disalurkan", tahap_2: "belum" },
-  status_kehadiran_perkuliahan: 1
+  [
+    {
+      bantuan_dana_beasiswa_id: 1,
+      mahasiswa_id: "MHS001",
+      penggalangan_dana_beasiswa_id: 1,
+      alasan_butuh_bantuan: "Kesulitan finansial karena orang tua terkena PHK",
+      golongan_ukt: 3,
+      kuitansi_pembayaran_ukt: "kuitansi_ukt_mhs001.pdf",
+      gaji_orang_tua: 2500000,
+      bukti_slip_gaji_orang_tua: "slip_gaji_ayah_mhs001.pdf",
+      esai: "Saya sangat membutuhkan bantuan ini untuk melanjutkan kuliah.",
+      jumlah_tanggungan_keluarga: 4,
+      biaya_transportasi: "500000",
+      biaya_internet: "300000",
+      biaya_kos: "700000",
+      biaya_konsumsi: "1000000",
+      total_pengeluaran_keluarga: 4500000,
+      penilaian_esai: 85,
+      nominal_penyaluran: { tahap_1: 1000000, tahap_2: 1000000 },
+      dokumen_kehadiran_perkuliahan: "kehadiran_mhs001.pdf",
+      status_pengajuan: 1,
+      status_penyaluran: { tahap_1: "disalurkan", tahap_2: "belum" },
+      status_kehadiran_perkuliahan: 1
+    },
+
+  ]
+  
 )
 
 BantuanDanaNonBeasiswa.create!(
@@ -119,16 +167,32 @@ DokumenSertifikat.create!(
 
 # Membuat donasi
 Donasi.create!(
-  nomor_referensi: "REF123456",
-  nominal_donasi: 500000,
-  struk_pembayaran: "struk_pembayaran_url",
-  waktu_berakhir: Time.now + 1.month,
-  tanggal_approve: Date.today,
-  status: 1,
-  bantuan_dana_non_beasiswa_id: 1,
-  penggalangan_dana_beasiswa_id: 1,
-  donatur_id: "081234567890",
-  dokumen_sertifikat_id: 1
+  [
+    {
+      nomor_referensi: "REF1234561",
+      nominal_donasi: 500000,
+      struk_pembayaran: "struk_pembayaran_url",
+      waktu_berakhir: Time.now + 1.month,
+      tanggal_approve: Date.today,
+      status: 0,
+      bantuan_dana_non_beasiswa_id: 1,
+      penggalangan_dana_beasiswa_id: 1,
+      donatur_id: "081234567890",
+      dokumen_sertifikat_id: 1
+    },
+    {
+      nomor_referensi: "REF1234562",
+      nominal_donasi: 500000,
+      struk_pembayaran: "struk_pembayaran_url",
+      waktu_berakhir: Time.now + 1.month,
+      tanggal_approve: Date.today,
+      status: 1,
+      bantuan_dana_non_beasiswa_id: 1,
+      penggalangan_dana_beasiswa_id: 1,
+      donatur_id: "081234567890",
+      dokumen_sertifikat_id: 1
+    },
+  ]
 )
 
 PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.create!(

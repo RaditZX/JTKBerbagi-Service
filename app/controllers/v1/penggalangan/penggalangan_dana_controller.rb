@@ -22,7 +22,7 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
     waktu_berakhir = next_month - 1
     penanggung_jawab = PenanggungJawab.penanggung_jawab_jtk_berbagi
     if status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::NULL
-      if date_now.day.to_i > 7
+      if date_now.day.to_i > 32
         return render_error_response("Gagal membuat penggalangan dana Beasiswa karena sudah minggu ke #{week_number} di Bulan #{date_now.strftime("%B")}!")
       else
         penggalangan_dana_beasiswa_new = PenggalanganDanaBeasiswa.new(
@@ -100,7 +100,7 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
       puts "B"
       return render_error_response("Penggalangan Dana Sedang Berlangsung!")
     end
-    if is_civitas_pengaju.present? && is_civitas_penerima.present?
+    if !is_civitas_pengaju.present? && !is_civitas_penerima.present?
       puts "BB"
       return render_error_response("NIM/NIP Penanggung Jawab dan Penerima Tidak terdaftar di dalam sistem!")
     elsif params[:nomor_induk_penanggung_jawab] == params[:nomor_induk_penerima]
@@ -139,8 +139,17 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
     end
     
     puts "AAAAA"
-    penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered = PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.where(penanggung_jawab_non_beasiswa_id: params[:nomor_induk_penanggung_jawab]).first
-    penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered = PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.where(penerima_non_beasiswa_id: params[:nomor_induk_penerima]).first
+    penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered =
+      PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa
+        .where(penanggung_jawab_non_beasiswa_id: params[:nomor_induk_penanggung_jawab])
+        .order(:penanggung_jawab_non_beasiswa_id, :penerima_non_beasiswa_id)
+        .first
+
+    penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered = 
+      PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa
+        .where(penerima_non_beasiswa_id: params[:nomor_induk_penerima])
+        .order(:penerima_non_beasiswa_id, :penerima_non_beasiswa_id)
+        .first
     if !penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered.present? and penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered.present?
       if penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered.penanggung_jawab_non_beasiswa_id != params[:nomor_induk_penanggung_jawab]
         penerima_non_beasiswa.penanggung_jawab_non_beasiswa << penanggung_jawab_non_beasiswa
