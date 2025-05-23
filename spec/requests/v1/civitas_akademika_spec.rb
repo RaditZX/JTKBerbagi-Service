@@ -1,181 +1,223 @@
 require 'rails_helper'
 
 RSpec.describe V1::CivitasAkademikaController, type: :request do
-  let(:valid_headers) { { "ACCEPT" => "application/json" } }
+  let(:valid_headers) { { 'ACCEPT' => 'application/json' } }
+  let(:valid_excel_path) { Rails.root.join('spec/fixtures/files/valid_civitas.xlsx') }
+  let(:invalid_excel_path) { Rails.root.join('spec/fixtures/files/invalid_civitas.xlsx') }
+  let(:invalid_format_path) { Rails.root.join('spec/fixtures/files/sampletext.txt') }
+  let(:controller_instance) { described_class.new }
 
-  describe "POST /v1/civitas_akademika/importExcelCivitasAkademika" do
-    context "when file is not provided" do
-      it "returns error for missing file" do
-        post "/v1/civitas_akademika/importExcelCivitasAkademika", headers: valid_headers
-
+  describe 'POST /v1/civitas_akademika/importExcelCivitasAkademika' do
+    context 'when no file is uploaded' do
+      it 'returns a validation error' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', headers: valid_headers
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-        expect(json["response_message"]).to eq("No file uploaded!")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to eq('Tidak ada file yang diunggah!')
       end
     end
 
-    context "when uploaded file is not .xlsx" do
-      let(:non_excel_file) do
-        fixture_file_upload(Rails.root.join("spec/fixtures/files/sampletext.txt"), "text/plain")
-      end
+    context 'when file is not .xlsx' do
+      let(:invalid_file) { fixture_file_upload(invalid_format_path, 'text/plain') }
 
-      it "returns error for wrong file type" do
-        post "/v1/civitas_akademika/importExcelCivitasAkademika",
-             params: { file: non_excel_file },
-             headers: valid_headers
-
+      it 'returns a validation error' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', params: { file: invalid_file }, headers: valid_headers
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-        expect(json["response_message"]).to eq("File must be an Excel file (.xlsx)!")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to eq('File harus berupa file Excel (.xlsx)!')
       end
     end
 
-    context "when valid Excel file is uploaded with correct format" do
-      let(:excel_file) do
-        fixture_file_upload(Rails.root.join("spec/fixtures/files/valid_civitas.xlsx"), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-      end
+    context 'when valid Excel file is uploaded' do
+      let(:valid_file) { fixture_file_upload(valid_excel_path, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') }
 
-      it "returns success message" do
-        post "/v1/civitas_akademika/importExcelCivitasAkademika",
-             params: { file: excel_file },
-             headers: valid_headers
-
+      it 'imports successfully' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', params: { file: valid_file }, headers: valid_headers
         expect(response).to have_http_status(:created)
         json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("RESPONSE_CREATED")
-        expect(json["response_message"]).to eq("Data imported successfully!")
+        expect(json['response_code']).to eq(201)
+        expect(json['response_message']).to eq('Data berhasil diimpor!')
       end
     end
 
-    context "when Excel contains invalid data" do
-      let(:invalid_excel_file) do
-        fixture_file_upload(Rails.root.join("spec/fixtures/files/invalid_civitas.xlsx"), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-      end
+    context 'when Excel file has invalid data' do
+      let(:invalid_file) { fixture_file_upload(invalid_excel_path, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') }
 
-      it "returns validation errors" do
-        post "/v1/civitas_akademika/importExcelCivitasAkademika",
-             params: { file: invalid_excel_file },
-             headers: valid_headers
-
+      it 'returns formatted errors' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', params: { file: invalid_file }, headers: valid_headers
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-        expect(json["response_message"]).to include("Import failed with errors")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to include('Impor gagal dengan kesalahan')
+        expect(json['response_message']).to include('nomor_induk harus berupa angka')
       end
     end
 
-    context "when internal server error occurs" do
+    context 'when table does not exist' do
+      let(:valid_file) { fixture_file_upload(valid_excel_path, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') }
+
+      before do
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).with('civitasakademika').and_return(false)
+      end
+
+      it 'returns table not found error' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', params: { file: valid_file }, headers: valid_headers
+        expect(response).to have_http_status(:unprocessable_entity)
+        json = JSON.parse(response.body)
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to include("Tabel database 'civitasakademika' tidak ada")
+      end
+    end
+
+    context 'when internal server error occurs' do
+      let(:valid_file) { fixture_file_upload(valid_excel_path, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') }
+
       before do
         allow_any_instance_of(V1::CivitasAkademikaController)
-          .to receive(:import_data).and_raise(StandardError.new("Something went wrong"))
+          .to receive(:import_data).and_raise(StandardError.new('Terjadi kesalahan'))
       end
 
-      let(:excel_file) do
-        fixture_file_upload(Rails.root.join("spec/fixtures/files/valid_civitas.xlsx"), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-      end
-
-      it "returns server error" do
-        post "/v1/civitas_akademika/importExcelCivitasAkademika",
-             params: { file: excel_file },
-             headers: valid_headers
-
+      it 'returns server error' do
+        post '/v1/civitas_akademika/importExcelCivitasAkademika', params: { file: valid_file }, headers: valid_headers
         expect(response).to have_http_status(:internal_server_error)
         json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_SERVER")
-        expect(json["response_message"]).to include("Server error: Something went wrong")
+        expect(json['response_code']).to eq(500)
+        expect(json['response_message']).to include('Kesalahan server: Terjadi kesalahan')
       end
     end
   end
 
-  describe "GET /v1/civitas_akademika/getAllCivitasAkademika" do
-    context "when no civitas akademika data exists" do
-      it "returns error for no data found" do
-        get "/v1/civitas_akademika/getAllCivitasAkademika", headers: valid_headers
+  describe '#getAllCivitasAkademika (private method)' do
+    let(:render_args) { [] }
 
-        expect(response).to have_http_status(:unprocessable_entity)
-        json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-        expect(json["response_message"]).to eq("No Civitas Akademika data found!")
+    before do
+      allow(controller_instance).to receive(:render) { |args| render_args << args }
+    end
+
+    context 'when no data exists' do
+      it 'renders no data found message' do
+        controller_instance.send(:getAllCivitasAkademika)
+        expect(render_args).to include(
+          hash_including(
+            json: {
+              response_code: 422,
+              response_message: 'Data Civitas Akademika tidak ditemukan!'
+            },
+            status: :unprocessable_entity
+          )
+        )
       end
     end
 
-    context "when civitas akademika data exists" do
+    context 'when data exists' do
       before do
-        CivitasAkademika.create!(nomor_induk: "12345678", nama: "Daffa Al Ghifari")
-        CivitasAkademika.create!(nomor_induk: "87654321", nama: "Budi Santoso")
+        CivitasAkademika.create!(nomor_induk: '231511038', nama: 'Daffa Al Ghifari')
+        CivitasAkademika.create!(nomor_induk: '231511039', nama: 'Daiva Raditya Pradipa')
       end
 
-      it "returns all civitas akademika data" do
-        get "/v1/civitas_akademika/getAllCivitasAkademika", headers: valid_headers
-
-        expect(response).to have_http_status(:ok)
-        json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("RESPONSE_SUCCESS")
-        expect(json["response_message"]).to eq("Success")
-        expect(json["data"]).to be_an(Array)
-        expect(json["data"].size).to eq(2)
-        expect(json["data"].map { |d| d["nomor_induk"] }).to contain_exactly("12345678", "87654321")
-        expect(json["data"].map { |d| d["nama"] }).to contain_exactly("Daffa Al Ghifari", "Budi Santoso")
+      it 'renders success with data' do
+        controller_instance.send(:getAllCivitasAkademika)
+        expect(render_args).to include(
+          hash_including(
+            json: {
+              response_code: 200,
+              response_message: 'Berhasil',
+              data: an_instance_of(Array)
+            },
+            status: :ok
+          )
+        )
+        json = render_args.find { |args| args[:json][:response_message] == 'Berhasil' }[:json]
+        expect(json[:data].size).to eq(2)
+        expect(json[:data].map { |d| d['nomor_induk'] }).to include('231511038', '231511039')
       end
     end
   end
 
-  describe "GET /v1/civitas_akademika/search" do
-    context "when no civitas akademika data exists" do
-      it "returns error for no data found" do
-        get "/v1/civitas_akademika/search", params: { keyword: "Daffa" }, headers: valid_headers
+  describe '#search (private method)' do
+    let(:render_args) { [] }
 
-        expect(response).to have_http_status(:unprocessable_entity)
-        json = JSON.parse(response.body)
-        expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-        expect(json["response_message"]).to eq("No Civitas Akademika data found!")
+    before do
+      allow(controller_instance).to receive(:render) { |args| render_args << args }
+    end
+
+    context 'when no data exists' do
+      it 'renders no data found message' do
+        controller_instance.params = { keyword: 'Daffa' }
+        controller_instance.send(:search)
+        expect(render_args).to include(
+          hash_including(
+            json: {
+              response_code: 422,
+              response_message: 'Data Civitas Akademika tidak ditemukan!'
+            },
+            status: :unprocessable_entity
+          )
+        )
       end
     end
 
-    context "when civitas akademika data exists" do
+    context 'when data exists' do
       before do
-        CivitasAkademika.create!(nomor_induk: "12345678", nama: "Daffa Al Ghifari")
-        CivitasAkademika.create!(nomor_induk: "87654321", nama: "Budi Santoso")
+        CivitasAkademika.create!(nomor_induk: '231511038', nama: 'Daffa Al Ghifari')
+        CivitasAkademika.create!(nomor_induk: '231511039', nama: 'Daiva Raditya Pradipa')
       end
 
-      context "when keyword matches data" do
-        it "returns matching civitas akademika data" do
-          get "/v1/civitas_akademika/search", params: { keyword: "Daffa" }, headers: valid_headers
-
-          expect(response).to have_http_status(:ok)
-          json = JSON.parse(response.body)
-          expect(json["response_code"]).to eq("RESPONSE_SUCCESS")
-          expect(json["response_message"]).to eq("Success")
-          expect(json["data"]).to be_an(Array)
-          expect(json["data"].size).to eq(1)
-          expect(json["data"].first["nama"]).to eq("Daffa Al Ghifari")
+      context 'when keyword matches data' do
+        it 'renders matching records' do
+          controller_instance.params = { keyword: 'Daffa' }
+          controller_instance.send(:search)
+          expect(render_args).to include(
+            hash_including(
+              json: {
+                response_code: 200,
+                response_message: 'Berhasil',
+                data: an_instance_of(Array)
+              },
+              status: :ok
+            )
+          )
+          json = render_args.find { |args| args[:json][:response_message] == 'Berhasil' }[:json]
+          expect(json[:data].size).to eq(1)
+          expect(json[:data].first['nama']).to eq('Daffa Al Ghifari')
         end
       end
 
-      context "when keyword does not match any data" do
-        it "returns error for no matching data" do
-          get "/v1/civitas_akademika/search", params: { keyword: "Zulkarnain" }, headers: valid_headers
-
-          expect(response).to have_http_status(:unprocessable_entity)
-          json = JSON.parse(response.body)
-          expect(json["response_code"]).to eq("ERROR_CODE_VALIDATION")
-          expect(json["response_message"]).to eq("No Civitas Akademika found for keyword: Zulkarnain!")
+      context 'when keyword does not match any record' do
+        it 'renders not found message' do
+          controller_instance.params = { keyword: 'Zzz' }
+          controller_instance.send(:search)
+          expect(render_args).to include(
+            hash_including(
+              json: {
+                response_code: 422,
+                response_message: 'Tidak ada Civitas Akademika yang ditemukan untuk kata kunci: Zzz!'
+              },
+              status: :unprocessable_entity
+            )
+          )
         end
       end
 
-      context "when keyword param is missing" do
-        it "returns all civitas akademika data" do
-          get "/v1/civitas_akademika/search", headers: valid_headers
-
-          expect(response).to have_http_status(:ok)
-          json = JSON.parse(response.body)
-          expect(json["response_code"]).to eq("RESPONSE_SUCCESS")
-          expect(json["response_message"]).to eq("Success")
-          expect(json["data"]).to be_an(Array)
-          expect(json["data"].size).to eq(2)
-          expect(json["data"].map { |d| d["nomor_induk"] }).to contain_exactly("12345678", "87654321")
+      context 'when keyword is missing' do
+        it 'renders all records' do
+          controller_instance.params = {}
+          controller_instance.send(:search)
+          expect(render_args).to include(
+            hash_including(
+              json: {
+                response_code: 200,
+                response_message: 'Berhasil',
+                data: an_instance_of(Array)
+              },
+              status: :ok
+            )
+          )
+          json = render_args.find { |args| args[:json][:response_message] == 'Berhasil' }[:json]
+          expect(json[:data].size).to eq(2)
+          expect(json[:data].map { |d| d['nomor_induk'] }).to include('231511038', '231511039')
         end
       end
     end
