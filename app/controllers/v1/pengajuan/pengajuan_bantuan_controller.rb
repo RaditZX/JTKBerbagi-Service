@@ -23,12 +23,12 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
             duration_pengajuan = last_day_of_month_submition.day - DateTime.now.day + 1
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD
           elsif month_approval.month == DateTime.now.month and month_approval.year == DateTime.now.year
-            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!"
+            # error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!1"
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD
           elsif month_continue_batch.month == DateTime.now.month and month_continue_batch.year == DateTime.now.year
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::CONTINUE_BATCH
           elsif month_approval.month > DateTime.now.month and month_approval.year == DateTime.now.year
-            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!"
+            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!2"
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD
           end
         else
@@ -44,12 +44,12 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
             duration_pengajuan = last_day_of_month_submition.day - DateTime.now.day + 1
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD
           elsif month_approval.month == DateTime.now.month and month_approval.year == DateTime.now.year
-            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!"
+            # error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!4"
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD
           elsif month_continue_batch.month == DateTime.now.month and month_continue_batch.year == DateTime.now.year
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::CONTINUE_BATCH
           elsif month_approval.month > DateTime.now.month and month_approval.year == DateTime.now.year
-            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!"
+            error_message = "Pendaftaran Pengajuan Bantuan Dana Beasiswa telah ditutup!5"
             status_penggalangan_dana_beasiswa = Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD
           end
         end
@@ -477,23 +477,23 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     else 
       penggalangan_dana_beasiswa_on_going.each do |data_penggalangan_dana|
         bantuan_dana_beasiswa = data_penggalangan_dana.bantuan_dana_beasiswa
-        puts "cikan #{bantuan_dana_beasiswa}"
+        puts "kondisi 1 #{bantuan_dana_beasiswa}"
         if bantuan_dana_beasiswa.present?
           if (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD) and status_pengajuan == Enums::StatusPengajuan::NEW
-            puts "cikan"
+            puts "kondisi 2"
             bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
               array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
                 mahasiswa: data_bantuan_dana_beasiswa.mahasiswa
               })
             end
-          elsif (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) and  status_pengajuan == Enums::StatusPengajuan::APPROVED
+          elsif (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) and status_pengajuan == Enums::StatusPengajuan::NEW
+            puts "kondisi 3"
             bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
               array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
                 mahasiswa: data_bantuan_dana_beasiswa.mahasiswa,
                 rekening_bank: data_bantuan_dana_beasiswa.mahasiswa.rekening_bank
               })
             end
-            puts "cikan"
           end
         end
       end
