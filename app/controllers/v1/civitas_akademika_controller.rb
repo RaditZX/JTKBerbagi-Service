@@ -1,3 +1,4 @@
+
 class V1::CivitasAkademikaController < ApplicationController
   def importExcelCivitasAkademika
     if params[:file].present? && File.extname(params[:file].original_filename) == '.xlsx'
@@ -54,6 +55,74 @@ class V1::CivitasAkademikaController < ApplicationController
     end
 
   end
+
+  def universal_autocomplete
+    keyword = params[:term]
+    table = params[:table]&.downcase
+    search_column = params[:column]
+    extra_columns = params[:extra_columns] || []
+
+    if keyword.blank? || keyword.length < 2 || table.blank? || search_column.blank?
+      render json: [], status: :ok
+      return
+    end
+
+    # Whitelist lengkap: nama tabel => { model: ModelClass, id_column: "nama_kolom_id", allowed_columns: ["nama", "telepon", ...] }
+    allowed_tables = {
+      "mahasiswa" => {
+        model: Mahasiswa,
+        id_column: "nim",
+        allowed_columns: ["nim", "nama", "nomor_telepon"]
+      },
+      "civitas_akademika" => {
+        model: CivitasAkademika,
+        id_column: "nomor_induk",
+        allowed_columns: ["nomor_induk", "nama"]
+      },
+      # Tambahkan tabel lain di sini
+    }
+
+    config = allowed_tables[table]
+    unless config
+      render json: { error: "Tabel tidak dikenali" }, status: :unprocessable_entity
+      return
+    end
+
+    model = config[:model]
+    id_column = config[:id_column]
+    allowed_columns = config[:allowed_columns]
+
+    unless allowed_columns.include?(search_column)
+      render json: { error: "Kolom tidak diizinkan" }, status: :unprocessable_entity
+      return
+    end
+
+    valid_extra_columns = extra_columns.select { |col| allowed_columns.include?(col) }
+
+    suggestions = model
+                    .where("#{search_column} LIKE ?", "%#{keyword}%")
+                    .select(id_column, search_column, *valid_extra_columns)
+                    .limit(10)
+
+    results = suggestions.map do |record|
+      result = {
+        id: record.send(id_column),
+        label: record.send(search_column),
+        value: record.send(search_column)
+      }
+      valid_extra_columns.each do |col|
+        result[col.to_sym] = record.send(col)
+      end
+      result
+    end
+
+    render json: results, status: :ok
+  rescue => e
+    Rails.logger.error "Universal Autocomplete error: #{e.message}"
+    render json: { error: "Terjadi kesalahan saat memproses permintaan autocomplete" }, status: :internal_server_error
+  end
+
+
 
   private
 
