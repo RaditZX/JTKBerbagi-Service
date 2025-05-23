@@ -123,6 +123,10 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     })
   
     if bantuan_dana_beasiswa.save && mahasiswa.save && rekening_bank.save
+      SendPengajuanBeasiswaNotification.new(
+        mahasiswa: mahasiswa,
+        bantuan_dana: bantuan_dana_beasiswa
+      ).call
       render_success_response(Constants::RESPONSE_SUCCESS, { mahasiswa: mahasiswa, bantuan_dana_beasiswa: bantuan_dana_beasiswa, rekening_bank: rekening_bank }, Constants::STATUS_CREATED)
     else
       render_error_response({ mahasiswa: mahasiswa.errors.full_messages, bantuan_dana_beasiswa: bantuan_dana_beasiswa.errors.full_messages, rekening_bank: rekening_bank.errors.full_messages })

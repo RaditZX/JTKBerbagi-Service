@@ -1,2 +1,215 @@
   [1m[35m (11.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
   [1m[35m (3.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (9.0ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (10.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$hi6qdKce11efyDXsE7lq8uzMXNQi4ZvRR//ueo2CmVXVQufs/5DzO', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `target_dana`, `target_penerima`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa JTK', 'Beasiswa JTK', 10000000, 30, 0)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (9.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.4ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$JTB6cQOYgDgoq0UCtcg8E.wItJ/flUni6OtWik3GiOMGtq.y2fkPC', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (9.9ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.4ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$uPTUNxsNgvpW.02cfBvmwO2iGpqiyO1A1G.Zv4QLuH.yma9.DpPg2', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.4ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$8Hgo32N6QsF8ggdBEwbnJ.1eeKF2mr7hsMSg0mRTD9YDkAp/IuQni', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (8.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$v/fmMA6ktggg77E1zdXDveDv3TG5nGYHFSRuoZHz0JlGEY7RyGK9e', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$T06.i4RUlqB.Ph79DLlvBuvLtZ.OuQ2b65N2XzyAMrjTKNAzgo7Xe', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$x9lHO1FxoqZvCRey0Mofqe/CFH6u5eSjbRAiOxeI8k5zykB/ThIJW', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (10.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$Iwtnetja25UFMd3HI/sneOJLhno6mSprNkpyNo41KD30j2QbHclH.', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$K/IiumevOT/TTVphMI2MkuptR3Xs.XJ9oU1Q.0yPpfEPgPPVs6SMG', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$OdAu/lTjHsH/xhlQ8O8seek9kcCMA6pzUYVZN0OoATJok7KnGBI86', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mMahasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi Mahasiswa', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawab Create (0.4ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Ketua', 'pak.ketua', '$2a$04$EjDNuIk9zdURYaAAGon/0Or5qhSgZmJqmaPrmjltcem0RhH9xh7hq', '+628123456789')[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (2, 'Test', 'Test Beasiswa', '2025-05-23', '2025-06-23', 10, 10000000, 10, 0, 1, 0)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[31mROLLBACK[0m
