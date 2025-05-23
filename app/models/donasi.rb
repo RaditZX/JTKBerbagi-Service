@@ -57,4 +57,35 @@ class Donasi < ApplicationRecord
       'Donasi'
     end
   end
+
+  # validasi status pembayaran dari Midtrans
+  def validate_payment_status(midtrans_status)
+    case midtrans_status
+    when 'pending'
+      update(payment_status: :pending)
+    when 'settlement'
+      update(
+        payment_status: :success, 
+        status: Enums::StatusDonasi::DONE,
+        tanggal_approve: DateTime.now
+      )
+    when 'deny'
+      update(payment_status: :failed)
+    when 'expire'
+      update(
+        payment_status: :expired, 
+        status: Enums::StatusDonasi::EXPIRED
+      )
+    end
+  end
+
+  private
+
+    #validasi minimal donasi
+  def minimal_nominal_donasi
+    if nominal_donasi.to_i < 10000
+      errors.add(:nominal_donasi, "Mohon maaf, nominal donasi tidak boleh kurang dari Rp10.000!")
+    end
+  end 
+
 end

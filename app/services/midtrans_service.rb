@@ -29,4 +29,13 @@ class MidtransService
   def self.send_expiration_notification(donasi)
     Rails.logger.info "Donation #{donasi.nomor_referensi} has expired"
   end
+
+    def self.update_fundraising_total(donasi)
+    fundraising = donasi.penggalangan_dana_beasiswa || donasi.bantuan_dana_non_beasiswa
+    return unless fundraising
+
+    fundraising.update(
+      total_nominal_terkumpul: fundraising.total_nominal_terkumpul + donasi.nominal_donasi
+    )
+  end
 end
