@@ -76,3 +76,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'composite_primary_keys'
 
+# Midtrans
+gem 'httparty'
+gem 'veritrans'
+
