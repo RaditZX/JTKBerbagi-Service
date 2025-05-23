@@ -48,6 +48,7 @@ class Donasi < ApplicationRecord
 
   private
 
+  # ambil judul donasi dari penggalangan dana beasiswa atau bantuan dana non-beasiswa
   def judul_donation
     if penggalangan_dana_beasiswa.present?
       penggalangan_dana_beasiswa.judul
@@ -81,7 +82,7 @@ class Donasi < ApplicationRecord
 
   private
 
-    #validasi minimal donasi
+  #validasi minimal donasi
   def minimal_nominal_donasi
     if nominal_donasi.to_i < 10000
       errors.add(:nominal_donasi, "Mohon maaf, nominal donasi tidak boleh kurang dari Rp10.000!")
