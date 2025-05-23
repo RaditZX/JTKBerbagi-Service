@@ -45,7 +45,7 @@ end
   private
 
   def getAllCivitasAkademika
-    civitas_akademika = CivitasAkademika.all
+    civitas_akademika = CivitasAkademika.all.to_a
     if civitas_akademika.empty?
       render json: {
         response_code: Constants::ERROR_CODE_VALIDATION,
