@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2023_11_01_160721) do
   create_table "dokumensertifikat", primary_key: ["jenis", "donatur_id"], charset: "utf8mb3", force: :cascade do |t|
     t.integer "jenis", null: false
     t.string "donatur_id", limit: 500, null: false
-    t.index ["donatur_id"], name: "fk_DokumenSertifikat_Donatur1_idx"
+    t.index ["donatur_id"], name: "fk_DokumenSertifikat _Donatur1_idx"
     t.index ["jenis"], name: "jenis_UNIQUE", unique: true
   end
 
