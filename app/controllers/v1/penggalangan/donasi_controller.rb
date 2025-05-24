@@ -1,8 +1,13 @@
 class V1::Penggalangan::DonasiController < ApplicationController
+
   def createDonasi
     # validasi id penggalangan_dana
-    return render_error_response("Id tidak boleh kosong!") if params[:id].blank?
-
+    return render_error_response("ID penggalangan dana tidak boleh kosong!") if params[:id].blank?
+    return render_error_response("Nama donatur tidak boleh kosong!") if params[:nama].blank?
+    return render_error_response("Nomor telepon tidak boleh kosong!") if params[:nomor_telepon].blank?
+    return render_error_response("Nominal donasi tidak boleh kosong!") if params[:nominal_donasi].blank?
+    return render_error_response("Metode pembayaran tidak boleh kosong!") if params[:metode_pembayaran].blank?
+    
     # mencari penggalangan_dana
     penggalangan_dana_beasiswa = PenggalanganDanaBeasiswa.where(penggalangan_dana_beasiswa_id: params[:id]).first
     penggalangan_dana_non_beasiswa = BantuanDanaNonBeasiswa.pengajuan_approved.where(bantuan_dana_non_beasiswa_id: params[:id]).first
@@ -51,6 +56,34 @@ class V1::Penggalangan::DonasiController < ApplicationController
       render_error_response("Gagal membuat token pembayaran: #{e.message}")
     end
   end
+
+  # Endpoint untuk menerima notifikasi dari Midtrans
+  def notification
+    Rails.logger.info "Headers: #{request.headers.select { |k, v| k.start_with?('HTTP_') }.inspect}"
+    Rails.logger.info "Raw Body: #{request.raw_post}"
+    Rails.logger.info "Params: #{params.inspect}"
+    
+    # parse raw body jika parameter kosong
+    notification_data = params.present? ? params : JSON.parse(request.raw_post)
+    
+    # proses notip
+    begin
+      if MidtransService.handle_notification(notification_data)
+        Rails.logger.info "Successfully processed Midtrans notification"
+        render json: { message: 'Notifikasi berhasil diproses' }, status: :ok
+      else
+        Rails.logger.error "Failed to process Midtrans notification"
+        render json: { error: 'Gagal memproses notifikasi' }, status: :unprocessable_entity
+      end
+    rescue => e
+      # log error
+      Rails.logger.error "Exception in notification processing: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+      render json: { error: "Error: #{e.message}" }, status: 500
+    end
+  end
+
+  private
 
   def find_or_create_donatur(params)
     donatur = Donatur.find_or_initialize_by(nomor_telepon: params[:nomor_telepon]) do |new_donatur|
