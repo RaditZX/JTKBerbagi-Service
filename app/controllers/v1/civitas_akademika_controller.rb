@@ -42,6 +42,41 @@ def importExcelCivitasAkademika
   end
 end
 
+def updateRekeningMahasiswa
+    mahasiswa = Mahasiswa.find_by(nim: params[:nim])
+
+    unless mahasiswa
+      render json: { error: "Mahasiswa dengan NIM #{params[:nim]} tidak ditemukan" }, status: :not_found
+      return
+    end
+
+    rekening_bank = RekeningBank.find_by(mahasiswa_id: mahasiswa.id)
+
+    unless rekening_bank
+      render json: { error: "Rekening bank mahasiswa belum terdaftar" }, status: :not_found
+      return
+    end
+
+    # ✅ Tambahkan pengecekan parameter
+    required_params = %i[nama_bank nomor_rekening nama_pemilik_rekening]
+    missing_params = required_params.select { |key| params[key].blank? }
+
+    unless missing_params.empty?
+      render json: { error: "Parameter tidak lengkap: #{missing_params.join(', ')}" }, status: :unprocessable_entity
+      return
+    end
+
+    if rekening_bank.update(
+      nama_bank: params[:nama_bank],
+      nomor_rekening: params[:nomor_rekening],
+      nama_pemilik_rekening: params[:nama_pemilik_rekening]
+    )
+      render json: { message: "Rekening bank berhasil diperbarui", rekening: rekening_bank }, status: :ok
+    else
+      render json: { error: rekening_bank.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def getAllCivitasAkademika
@@ -129,4 +164,8 @@ end
     end
     errors
   end
+
+  
+
+
 end

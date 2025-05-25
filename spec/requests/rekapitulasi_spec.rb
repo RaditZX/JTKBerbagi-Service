@@ -28,6 +28,34 @@ describe 'Rekapitulasi API' do
           end
         end
     end
+
+    path '/v1/rekapitulasi/getRekapitulasiBeasiswaAllPeriod' do
+        get 'Get All Batch Beasiswa' do
+          tags 'Rekapitulasi'
+          consumes 'application/json'
+          produces 'application/json'
+          response '200', 'Success' do
+            schema type: :object
+            run_test!
+          end
+          response '422', 'Unprocessable Entity' do
+            schema type: :object,
+                  properties: {
+                    response_message: {type: :string, example: "Data tidak Ditemukan"},
+                    response_code: {type: :integer, example: 422}
+                  }
+            run_test!
+          end
+          response '401', 'Unauthorized' do
+            schema type: :object,
+                  properties: {
+                    response_message: {type: :string, example: "Tidak memiliki akses!"},
+                    response_code: {type: :integer, example: 401}
+                  }
+            run_test!
+          end
+        end
+    end
     
     path '/v1/rekapitulasi/getRekapitulasiBeasiswa' do
         post 'Get Rekapitulasi Beasiswa' do
