@@ -1,75 +1,97 @@
 class V1::Penggalangan::DonasiController < ApplicationController
-    # before_action :
 
   def createDonasi
-    if params[:id].blank?
-      return render_error_response("Id tidak boleh kosong!")
-    end
+    # validasi id penggalangan_dana
+    return render_error_response("ID penggalangan dana tidak boleh kosong!") if params[:id].blank?
+    return render_error_response("Nama donatur tidak boleh kosong!") if params[:nama].blank?
+    return render_error_response("Nomor telepon tidak boleh kosong!") if params[:nomor_telepon].blank?
+    return render_error_response("Nominal donasi tidak boleh kosong!") if params[:nominal_donasi].blank?
+    return render_error_response("Metode pembayaran tidak boleh kosong!") if params[:metode_pembayaran].blank?
+    
+    # mencari penggalangan_dana
     penggalangan_dana_beasiswa = PenggalanganDanaBeasiswa.where(penggalangan_dana_beasiswa_id: params[:id]).first
     penggalangan_dana_non_beasiswa = BantuanDanaNonBeasiswa.pengajuan_approved.where(bantuan_dana_non_beasiswa_id: params[:id]).first
 
-    if !penggalangan_dana_beasiswa.present? and !penggalangan_dana_non_beasiswa.present?
-      return render_error_response("id Penggalangan Dana tidak dapat ditemukan!")
-    end
+    return render_error_response("id Penggalangan Dana tidak dapat ditemukan!") unless penggalangan_dana_beasiswa || penggalangan_dana_non_beasiswa
 
-    donasi_not_completed = Donasi.new_donation.where(donatur_id: params[:nomor_telepon])
-    is_struk_pembayaran = 1
-    if donasi_not_completed.present?
-      donasi_not_completed each do |data|
-        if data.struk_pembayaran == nil
-          is_struk_pembayaran = 0
-        end
-      end
-    end
-    if is_struk_pembayaran == 0
-      return render_error_response("Lakukan upload struk pembayaran pada donasi sebelumnya!")
-    end
+    # cari/buat donatur
+    donatur = find_or_create_donatur(params)
 
-    donatur_registered = Donatur.where(nomor_telepon: params[:nomor_telepon]).first
-    if donatur_registered.present?
-      donatur = donatur_registered
-    else
-      donatur = Donatur.new({
-        nama: params[:nama],
-        nomor_telepon: params[:nomor_telepon],
-        status: Enums::StatusDonatur::CANDIDATE
-      })
-    end
-
-    rekening_bank_owned = RekeningBank.where(nomor_rekening: params[:nomor_rekening]).first
-    rekening_bank_registered = RekeningBank.where(donatur_id: params[:nomor_telepon]).first
-    if rekening_bank_registered.present?
-      rekening_bank = rekening_bank_registered
-    elsif rekening_bank_owned.present?
-      return render_error_response("Nomor Rekening sudah terdaftar!")
-    else
-      rekening_bank = RekeningBank.new(rekening_bank_params)
-      rekening_bank.assign_attributes({
-        donatur: donatur
-      })
-    end
-    donatur.save(:validate => false)
-
+    # buat donasi
     donasi = Donasi.new(donasi_params)
-    waktu_berakhir = DateTime.now + 1.hour
     donasi.assign_attributes({
       nomor_referensi: generate_unique_nomor_referensi(),
-      waktu_berakhir: waktu_berakhir,
       status: Enums::StatusDonasi::NEW,
-      donatur: donatur
+      payment_status: :pending,
+      donatur: donatur,
+      waktu_berakhir: 24.hours.from_now,
     })
 
+    # assign penggalangan_dana ke donasi
     if penggalangan_dana_beasiswa.present?
-      donasi.assign_attributes(penggalangan_dana_beasiswa_id: penggalangan_dana_beasiswa.penggalangan_dana_beasiswa_id)
+      donasi.penggalangan_dana_beasiswa_id = penggalangan_dana_beasiswa.penggalangan_dana_beasiswa_id
     else
-      donasi.assign_attributes(bantuan_dana_non_beasiswa_id: penggalangan_dana_non_beasiswa.bantuan_dana_non_beasiswa_id)
+      donasi.bantuan_dana_non_beasiswa_id = penggalangan_dana_non_beasiswa.bantuan_dana_non_beasiswa_id
     end
 
-    if donasi.save && rekening_bank.save
-      render_success_response(Constants::RESPONSE_CREATED, {donasi: donasi, donatur: donatur, rekening_bank: rekening_bank}, Constants::STATUS_OK)
-    else
-      render_error_response({donasi: donasi.errors.full_messages, donatur: donatur.errors.full_messages, rekening_bank: rekening_bank.errors.full_messages})
+    # generate midtrans token
+    begin
+      midtrans_response = donasi.generate_midtrans_token
+      
+      # simpan jika berhasil
+      if donasi.save
+        render_success_response(
+          Constants::RESPONSE_CREATED, 
+          {
+            donasi: donasi, 
+            midtrans_token: midtrans_response.token,
+            redirect_url: midtrans_response.redirect_url # Diubah dari midtrans_redirect_url menjadi redirect_url
+          }, 
+          Constants::STATUS_OK
+        )
+      else
+        render_error_response(donasi.errors.full_messages)
+      end
+    rescue StandardError => e
+      render_error_response("Gagal membuat token pembayaran: #{e.message}")
     end
+  end
+
+  # Endpoint untuk menerima notifikasi dari Midtrans
+  def notification
+    Rails.logger.info "Headers: #{request.headers.select { |k, v| k.start_with?('HTTP_') }.inspect}"
+    Rails.logger.info "Raw Body: #{request.raw_post}"
+    Rails.logger.info "Params: #{params.inspect}"
+    
+    # parse raw body jika parameter kosong
+    notification_data = params.present? ? params : JSON.parse(request.raw_post)
+    
+    # proses notip
+    begin
+      if MidtransService.handle_notification(notification_data)
+        Rails.logger.info "Successfully processed Midtrans notification"
+        render json: { message: 'Notifikasi berhasil diproses' }, status: :ok
+      else
+        Rails.logger.error "Failed to process Midtrans notification"
+        render json: { error: 'Gagal memproses notifikasi' }, status: :unprocessable_entity
+      end
+    rescue => e
+      # log error
+      Rails.logger.error "Exception in notification processing: #{e.message}"
+      Rails.logger.error e.backtrace.join("\n")
+      render json: { error: "Error: #{e.message}" }, status: 500
+    end
+  end
+
+  private
+
+  def find_or_create_donatur(params)
+    donatur = Donatur.find_or_initialize_by(nomor_telepon: params[:nomor_telepon]) do |new_donatur|
+      new_donatur.nama = params[:nama]
+      new_donatur.status = Enums::StatusDonatur::CANDIDATE
+    end
+    donatur.save(validate: false)
+    donatur
   end
 
   def getPendingDonasi
@@ -244,6 +266,33 @@ class V1::Penggalangan::DonasiController < ApplicationController
       render_success_response(Constants::RESPONSE_SUCCESS, array_of_donasi, Constants::STATUS_OK)
     else
       render_error_response("Status #{status} tidak ada!, status hanya dapat 0 atau 4!")
+    end
+  end
+
+  def getDonasiByRef
+    nomor_referensi = params[:nomor_referensi]
+    donasi = Donasi.find_by(nomor_referensi: nomor_referensi)
+
+    if donasi.present?
+      donatur = Donatur.find_by(nomor_telepon: donasi.donatur_id)
+      rekening_bank = RekeningBank.find_by(donatur_id: donatur.nomor_telepon) if donatur.present?
+
+      # Mencari judul galang dana, cek pada kedua jenis penggalangan
+      judul_galang_dana = if PenggalanganDanaBeasiswa.on_going.where(penggalangan_dana_beasiswa_id: donasi.penggalangan_dana_beasiswa_id).exists?
+                            PenggalanganDanaBeasiswa.on_going.find_by(penggalangan_dana_beasiswa_id: donasi.penggalangan_dana_beasiswa_id).judul
+                          else
+                            BantuanDanaNonBeasiswa.find_by(bantuan_dana_non_beasiswa_id: donasi.bantuan_dana_non_beasiswa_id)&.judul_galang_dana
+                          end
+
+      result = donasi.attributes.merge({
+        judul_galang_dana: judul_galang_dana,
+        donatur: donatur,
+        rekening_bank: rekening_bank
+      })
+
+      render_success_response(Constants::RESPONSE_SUCCESS, result, Constants::STATUS_OK)
+    else
+      render_error_response("Data donasi dengan nomor referensi #{nomor_referensi} tidak ditemukan!")
     end
   end
 

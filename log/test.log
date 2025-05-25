@@ -4017,3 +4017,553 @@ Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
 Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 1038)
   [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (8.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mRekeningBank Load (2.5ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRekeningBank Destroy (2.4ms)[0m  [1m[31mDELETE FROM `rekeningbank` WHERE `rekeningbank`.`nomor_rekening` = '1234567890123456'[0m
+  [1m[36mTRANSACTION (8.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBantuanDanaBeasiswa Load (3.1ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaBeasiswa Destroy (0.4ms)[0m  [1m[31mDELETE FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+Creating scope :expired. Overwriting existing method Donasi.expired.
+  [1m[36mDonasi Load (1.9ms)[0m  [1m[34mSELECT `donasi`.* FROM `donasi`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonasi Destroy (0.6ms)[0m  [1m[31mDELETE FROM `donasi` WHERE `donasi`.`nomor_referensi` = 'REF123456'[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenggalanganDanaBeasiswa Load (2.4ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenggalanganDanaBeasiswa Destroy (0.4ms)[0m  [1m[31mDELETE FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.* FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` WHERE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = '231511042' AND `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penerima_non_beasiswa_id` = '231511038'[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDokumenSertifikat Load (1.7ms)[0m  [1m[34mSELECT `dokumensertifikat`.* FROM `dokumensertifikat`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDokumenSertifikat Destroy (0.3ms)[0m  [1m[31mDELETE FROM `dokumensertifikat` WHERE `dokumensertifikat`.`jenis` = 1[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCivitasAkademika Load (1.4ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038'[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511039'[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511040'[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511041'[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511042'[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDonatur Load (2.5ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Destroy (0.3ms)[0m  [1m[31mDELETE FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890'[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Destroy (0.2ms)[0m  [1m[31mDELETE FROM `donatur` WHERE `donatur`.`nomor_telepon` = '082345678901'[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMahasiswa Load (1.9ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038'[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511039'[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.2ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511040'[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawab Load (2.0ms)[0m  [1m[34mSELECT `penanggungjawab`.* FROM `penanggungjawab`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 1[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Destroy (0.2ms)[0m  [1m[31mDELETE FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 2[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenerimaNonBeasiswa Load (2.0ms)[0m  [1m[34mSELECT `penerimanonbeasiswa`.* FROM `penerimanonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511038'[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Destroy (0.2ms)[0m  [1m[31mDELETE FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511040'[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (1.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (1.7ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511041'[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Destroy (0.2ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042'[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511038', 'Daffa Al Ghifari')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511039' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511039', 'Daiva Raditya Pradipa')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511040' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.1ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511040', 'Dhea Dria Spralia')[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511041' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511041', 'Dhira Ramadini')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511042', 'Bagyo Sutoyo')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Create (0.2ms)[0m  [1m[32mINSERT INTO `donatur` (`nomor_telepon`, `nama`, `password_digest`, `status`) VALUES ('081234567890', 'Donatur A', '$2a$04$L6bLZQENLqKZFVvT9jdcSetfufb7rGP0dSAKx5lmgdh.NqO1Zlw9K', 1)[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Create (0.2ms)[0m  [1m[32mINSERT INTO `donatur` (`nomor_telepon`, `nama`, `password_digest`, `status`) VALUES ('082345678901', 'Donatur B', '$2a$04$uS1P1fo5rwVzxlolqWby2.y4EeKzwkSqga55utYBf2qRBdNuvuiLS', 0)[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.1ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511038', 'Daffa Al Ghifari', '089876543210')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511039', 'Daiva Raditya Pradipa', '088765432109')[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511040', 'Dhea Dria Spralia', '089876545555')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (1, 'Admin Beasiswa', 'admin_b', '$2a$04$6AMUc00Q0QNrK5/zwQ5x9.z9NZwfGwgtoKlyVfsOJqYPCZWhwE5d6', '081122334455')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (2, 'Admin Non Beasiswa', 'admin_nb', '$2a$04$qe585B0khFCDkgZXxGntIec05trRX7/JGB0z1iNhRyBTKz6Egvayq', '082233445566')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511041', 'Rina Marlina', '081998877665')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511042', 'Bagyo Sutoyo', '082287654321')[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Create (0.1ms)[0m  [1m[32mINSERT INTO `penerimanonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511040', 'Dhea Dria Spralia', '089876545555')[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Create (0.1ms)[0m  [1m[32mINSERT INTO `penerimanonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511038', 'Daffa Al Ghifari', '088765432109')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Load (0.2ms)[0m  [1m[34mSELECT `penanggungjawab`.* FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 1 LIMIT 1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (1, 'Bantuan dana UKT untuk mahasiswa terdampak ekonomi', 'Beasiswa Peduli Pendidikan 2025', '2025-05-01', '2025-08-31', 100, 200000000, 100, 75000000, 1, 1)[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenggalanganDanaBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 LIMIT 1[0m
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_kos`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `penilaian_esai`, `nominal_penyaluran`, `dokumen_kehadiran_perkuliahan`, `status_pengajuan`, `status_penyaluran`, `status_kehadiran_perkuliahan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (1, 'Kesulitan finansial karena orang tua terkena PHK', 3, 'kuitansi_ukt_231511038.pdf', 2500000, 'slip_gaji_ayah_231511038.pdf', 'Saya sangat membutuhkan bantuan ini untuk melanjutkan kuliah.', 4, '500000', '300000', '700000', '1000000', 4500000, 85, '[0,0]', 'kehadiran_231511038.pdf', 1, '[0,0]', 1, '231511038', 1)[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.2ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `total_nominal_terkumpul`, `status_pengajuan`, `status_penyaluran`, `penanggung_jawab_non_beasiswa_id`) VALUES (1, 'Bantuan Darurat untuk Mahasiswa', '2025-05-10', 'Dana ini akan digunakan untuk membantu mahasiswa dalam kondisi darurat.', 10000000, 'bukti_darurat.pdf', 'Bencana', 3000000, 1, 0, '231511042')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Load (0.2ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890' LIMIT 1[0m
+  [1m[36mDokumenSertifikat Create (0.2ms)[0m  [1m[32mINSERT INTO `dokumensertifikat` (`jenis`, `donatur_id`) VALUES (1, '081234567890')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Load (0.2ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890' LIMIT 1[0m
+  [1m[36mDonasi Create (0.3ms)[0m  [1m[32mINSERT INTO `donasi` (`nomor_referensi`, `nominal_donasi`, `struk_pembayaran`, `waktu_berakhir`, `tanggal_approve`, `status`, `bantuan_dana_non_beasiswa_id`, `penggalangan_dana_beasiswa_id`, `donatur_id`, `dokumen_sertifikat_id`) VALUES ('REF123456', 500000, 'struk_pembayaran_url', '11:25:01', '2025-05-25', 1, 1, 1, '081234567890', 1)[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.2ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mPenerimaNonBeasiswa Load (0.2ms)[0m  [1m[34mSELECT `penerimanonbeasiswa`.* FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` (`penanggung_jawab_non_beasiswa_id`, `penerima_non_beasiswa_id`) VALUES ('231511042', '231511038')[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRekeningBank Create (0.3ms)[0m  [1m[32mINSERT INTO `rekeningbank` (`nomor_rekening`, `nama_bank`, `nama_pemilik_rekening`, `penanggung_jawab_id`, `mahasiswa_id`, `penerima_non_beasiswa_id`, `donatur_id`) VALUES ('1234567890123456', 'BRI', 'Daiva Raditya Pradipa', 1, '231511038', '231511038', '081234567890')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 613)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007fbc4fc64270 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3414-oq29u5.txt>, @original_filename="sampletext.txt", @content_type="text/plain", @headers="content-disposition: form-data; name=\"file\"; filename=\"sampletext.txt\"\r\ncontent-type: text/plain\r\ncontent-length: 26\r\n">}
+Completed 422 Unprocessable Entity in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 259)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007fbc4fc4afa0 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3414-bsotb4.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+File Excel dimuat: ["Sheet1"]
+Memproses baris 2: nomor_induk=231511038, nama=Daffa Al Ghifari
+  [1m[36mCivitasAkademika Load (0.4ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' AND `civitasakademika`.`nomor_induk` != '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 8ms (Views: 0.1ms | ActiveRecord: 1.6ms | Allocations: 3333)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007fbc4fc14018 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3414-uvgmwv.xlsx>, @original_filename="invalid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"invalid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 16000\r\n">}
+File Excel dimuat: ["Sheet1"]
+Memproses baris 2: nomor_induk=2315110aa, nama=Daffa Al Ghifari
+Completed 422 Unprocessable Entity in 4ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2154)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007fbc4fbd4af8 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3414-e24mg.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 376)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007fbc4fb834f0 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3414-c7jsj8.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+Completed 500 Internal Server Error in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 709)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Load (0.2ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` LIMIT 1[0m
+  [1m[36mCivitasAkademika Load (0.2ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"000000000"}
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '000000000' LIMIT 1[0m
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 326)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511039", "nama_bank"=>"Bank Baru", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>"Pemilik Baru"}
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511039' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.2ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511039' LIMIT 1[0m
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 631)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511038", "nama_bank"=>"", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>""}
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.3ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511038' LIMIT 1[0m
+Completed 422 Unprocessable Entity in 2ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 442)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:25:01 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511038", "nama_bank"=>"Bank Baru", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>"Pemilik Baru"}
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.3ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRekeningBank Update (0.3ms)[0m  [1m[33mUPDATE `rekeningbank` SET `rekeningbank`.`nomor_rekening` = '999888777', `rekeningbank`.`nama_bank` = 'Bank Baru', `rekeningbank`.`nama_pemilik_rekening` = 'Pemilik Baru' WHERE `rekeningbank`.`nomor_rekening` = '1234567890123456'[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 1037)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mRekeningBank Load (0.4ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRekeningBank Destroy (0.2ms)[0m  [1m[31mDELETE FROM `rekeningbank` WHERE `rekeningbank`.`nomor_rekening` = '1234567890123456'[0m
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBantuanDanaBeasiswa Load (0.4ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaBeasiswa Destroy (0.2ms)[0m  [1m[31mDELETE FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+Creating scope :expired. Overwriting existing method Donasi.expired.
+  [1m[36mDonasi Load (0.4ms)[0m  [1m[34mSELECT `donasi`.* FROM `donasi`[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonasi Destroy (0.3ms)[0m  [1m[31mDELETE FROM `donasi` WHERE `donasi`.`nomor_referensi` = 'REF123456'[0m
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenggalanganDanaBeasiswa Load (0.4ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenggalanganDanaBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.* FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` WHERE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = '231511042' AND `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penerima_non_beasiswa_id` = '231511038'[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDokumenSertifikat Load (0.3ms)[0m  [1m[34mSELECT `dokumensertifikat`.* FROM `dokumensertifikat`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDokumenSertifikat Destroy (0.2ms)[0m  [1m[31mDELETE FROM `dokumensertifikat` WHERE `dokumensertifikat`.`jenis` = 1[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCivitasAkademika Load (0.3ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (1.1ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038'[0m
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.3ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511039'[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.3ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511040'[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.2ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511041'[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Destroy (0.3ms)[0m  [1m[31mDELETE FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511042'[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mDonatur Load (0.4ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Destroy (0.3ms)[0m  [1m[31mDELETE FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890'[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Destroy (0.3ms)[0m  [1m[31mDELETE FROM `donatur` WHERE `donatur`.`nomor_telepon` = '082345678901'[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMahasiswa Load (0.4ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.2ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038'[0m
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511039'[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511040'[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawab Load (0.4ms)[0m  [1m[34mSELECT `penanggungjawab`.* FROM `penanggungjawab`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 1[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Destroy (0.2ms)[0m  [1m[31mDELETE FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 2[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenerimaNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penerimanonbeasiswa`.* FROM `penerimanonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511038'[0m
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511040'[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.4ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` = 1[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.5ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Destroy (0.4ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511041'[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Destroy (0.3ms)[0m  [1m[31mDELETE FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042'[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511038', 'Daffa Al Ghifari')[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511039' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511039', 'Daiva Raditya Pradipa')[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511040' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511040', 'Dhea Dria Spralia')[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511041' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511041', 'Dhira Ramadini')[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mCivitasAkademika Create (0.2ms)[0m  [1m[32mINSERT INTO `civitasakademika` (`nomor_induk`, `nama`) VALUES ('231511042', 'Bagyo Sutoyo')[0m
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Create (0.2ms)[0m  [1m[32mINSERT INTO `donatur` (`nomor_telepon`, `nama`, `password_digest`, `status`) VALUES ('081234567890', 'Donatur A', '$2a$04$5VDXQCzkr3uUN2j78tPNKuKEc6/K4XUDJRcvFi6slY4UN.znjFFTO', 1)[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Create (0.3ms)[0m  [1m[32mINSERT INTO `donatur` (`nomor_telepon`, `nama`, `password_digest`, `status`) VALUES ('082345678901', 'Donatur B', '$2a$04$PS2MBHfXmsjC8uAxC.fCpe02QRc5p5NBLZgagAf4oP7gy0dtiJ5ka', 0)[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511038', 'Daffa Al Ghifari', '089876543210')[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511039', 'Daiva Raditya Pradipa', '088765432109')[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('231511040', 'Dhea Dria Spralia', '089876545555')[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (1, 'Admin Beasiswa', 'admin_b', '$2a$04$H/TQWsMQeuogqPYAzPdnmuqwv1.i/PEg950Z9swY28sRXF2J1/yVO', '081122334455')[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (2, 'Admin Non Beasiswa', 'admin_nb', '$2a$04$yXHkA/rAZibCwb2vuqnJIuQ0mchsbzMxKk.HhWhyhd/b272eEqDZm', '082233445566')[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511041', 'Rina Marlina', '081998877665')[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (0.4ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511042', 'Bagyo Sutoyo', '082287654321')[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penerimanonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511040', 'Dhea Dria Spralia', '089876545555')[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenerimaNonBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penerimanonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('231511038', 'Daffa Al Ghifari', '088765432109')[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawab Load (0.3ms)[0m  [1m[34mSELECT `penanggungjawab`.* FROM `penanggungjawab` WHERE `penanggungjawab`.`role` = 1 LIMIT 1[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `kuota_beasiswa`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (1, 'Bantuan dana UKT untuk mahasiswa terdampak ekonomi', 'Beasiswa Peduli Pendidikan 2025', '2025-05-01', '2025-08-31', 100, 200000000, 100, 75000000, 1, 1)[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenggalanganDanaBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 LIMIT 1[0m
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_kos`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `penilaian_esai`, `nominal_penyaluran`, `dokumen_kehadiran_perkuliahan`, `status_pengajuan`, `status_penyaluran`, `status_kehadiran_perkuliahan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (1, 'Kesulitan finansial karena orang tua terkena PHK', 3, 'kuitansi_ukt_231511038.pdf', 2500000, 'slip_gaji_ayah_231511038.pdf', 'Saya sangat membutuhkan bantuan ini untuk melanjutkan kuliah.', 4, '500000', '300000', '700000', '1000000', 4500000, 85, '[0,0]', 'kehadiran_231511038.pdf', 1, '[0,0]', 1, '231511038', 1)[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `total_nominal_terkumpul`, `status_pengajuan`, `status_penyaluran`, `penanggung_jawab_non_beasiswa_id`) VALUES (1, 'Bantuan Darurat untuk Mahasiswa', '2025-05-10', 'Dana ini akan digunakan untuk membantu mahasiswa dalam kondisi darurat.', 10000000, 'bukti_darurat.pdf', 'Bencana', 3000000, 1, 0, '231511042')[0m
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Load (0.3ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890' LIMIT 1[0m
+  [1m[36mDokumenSertifikat Create (0.3ms)[0m  [1m[32mINSERT INTO `dokumensertifikat` (`jenis`, `donatur_id`) VALUES (1, '081234567890')[0m
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mDonatur Load (0.3ms)[0m  [1m[34mSELECT `donatur`.* FROM `donatur` WHERE `donatur`.`nomor_telepon` = '081234567890' LIMIT 1[0m
+  [1m[36mDonasi Create (0.4ms)[0m  [1m[32mINSERT INTO `donasi` (`nomor_referensi`, `nominal_donasi`, `struk_pembayaran`, `waktu_berakhir`, `tanggal_approve`, `status`, `bantuan_dana_non_beasiswa_id`, `penggalangan_dana_beasiswa_id`, `donatur_id`, `dokumen_sertifikat_id`) VALUES ('REF123456', 500000, 'struk_pembayaran_url', '11:26:34', '2025-05-25', 1, 1, 1, '081234567890', 1)[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  [1m[36mPenerimaNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penerimanonbeasiswa`.* FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` (`penanggung_jawab_non_beasiswa_id`, `penerima_non_beasiswa_id`) VALUES ('231511042', '231511038')[0m
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRekeningBank Create (0.3ms)[0m  [1m[32mINSERT INTO `rekeningbank` (`nomor_rekening`, `nama_bank`, `nama_pemilik_rekening`, `penanggung_jawab_id`, `mahasiswa_id`, `penerima_non_beasiswa_id`, `donatur_id`) VALUES ('1234567890123456', 'BRI', 'Daiva Raditya Pradipa', 1, '231511038', '231511038', '081234567890')[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+Completed 422 Unprocessable Entity in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 614)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007f6346c5c7d0 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3741-9vrefa.txt>, @original_filename="sampletext.txt", @content_type="text/plain", @headers="content-disposition: form-data; name=\"file\"; filename=\"sampletext.txt\"\r\ncontent-type: text/plain\r\ncontent-length: 26\r\n">}
+Completed 422 Unprocessable Entity in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 260)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007f6346c434d8 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3741-cyjyvu.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+File Excel dimuat: ["Sheet1"]
+Memproses baris 2: nomor_induk=231511038, nama=Daffa Al Ghifari
+  [1m[36mCivitasAkademika Load (0.4ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' AND `civitasakademika`.`nomor_induk` != '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 10ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 3333)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007f6346c0c550 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3741-ndsyi9.xlsx>, @original_filename="invalid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"invalid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 16000\r\n">}
+File Excel dimuat: ["Sheet1"]
+Memproses baris 2: nomor_induk=2315110aa, nama=Daffa Al Ghifari
+Completed 422 Unprocessable Entity in 19ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 2158)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007f6347bd5180 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3741-42hr92.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 377)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/v1/civitas_akademika/importExcelCivitasAkademika" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#importExcelCivitasAkademika as JSON
+  Parameters: {"file"=>#<ActionDispatch::Http::UploadedFile:0x00007f6348f73368 @tempfile=#<Tempfile:/tmp/RackMultipart20250525-3741-5lxivu.xlsx>, @original_filename="valid_civitas.xlsx", @content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", @headers="content-disposition: form-data; name=\"file\"; filename=\"valid_civitas.xlsx\"\r\ncontent-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\ncontent-length: 15995\r\n">}
+Completed 500 Internal Server Error in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 710)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Load (0.3ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` LIMIT 1[0m
+  [1m[36mCivitasAkademika Load (0.1ms)[0m  [1m[34mSELECT `civitasakademika`.* FROM `civitasakademika`[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCivitasAkademika Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `civitasakademika` WHERE `civitasakademika`.`nomor_induk` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"000000000"}
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '000000000' LIMIT 1[0m
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 327)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511039", "nama_bank"=>"Bank Baru", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>"Pemilik Baru"}
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511039' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.2ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511039' LIMIT 1[0m
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 632)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511038", "nama_bank"=>"", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>""}
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.2ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511038' LIMIT 1[0m
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 443)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Load (0.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+Started POST "/v1/civitas_akademika/updateRekeningMahasiswa" for 127.0.0.1 at 2025-05-25 18:26:34 +0700
+Processing by V1::CivitasAkademikaController#updateRekeningMahasiswa as HTML
+  Parameters: {"nim"=>"231511038", "nama_bank"=>"Bank Baru", "nomor_rekening"=>"999888777", "nama_pemilik_rekening"=>"Pemilik Baru"}
+  [1m[36mMahasiswa Load (0.3ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mRekeningBank Load (0.2ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511038' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRekeningBank Update (0.4ms)[0m  [1m[33mUPDATE `rekeningbank` SET `rekeningbank`.`nomor_rekening` = '999888777', `rekeningbank`.`nama_bank` = 'Bank Baru', `rekeningbank`.`nama_pemilik_rekening` = 'Pemilik Baru' WHERE `rekeningbank`.`nomor_rekening` = '1234567890123456'[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 1038)
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[31mROLLBACK[0m

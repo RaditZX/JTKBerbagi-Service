@@ -63,12 +63,17 @@ Rails.application.routes.draw do
         post "/getDonasiByPenggalanganDana" => "donasi#getDonasiByPenggalanganDana"
         post "/getDonasiByStatus" => "donasi#getDonasiByStatus"
         get "/getTotalAllDonasi" => "donasi#getTotalAllDonasi"
+        get "/getDonasiByRef" => "donasi#getDonasiByRef"
         get "/getTotalNewDonasi" => "donasi#getTotalNewDonasi"
         post "/createDonasi" => "donasi#createDonasi"
         post "/getPendingDonasi" => "donasi#getPendingDonasi"
-        post "/uploadStrukPembayaran" => "donasi#uploadStrukPembayaran"
+        post "/midtransNotification" => "donasi#midtransNotification"
+        get "/uploadStrukPembayaran" => "donasi#uploadStrukPembayaran"
         post "/approvalDonasi" => "donasi#approvalDonasi"
         post "/search" => "donasi#search"
+
+        #webhook (update data di db)
+        post '/notification', to: 'donasi#notification'
       end
       resource :penggalangan_dana do
         post "/createPenggalanganDanaBeasiswa" => "penggalangan_dana#createPenggalanganDanaBeasiswa"
