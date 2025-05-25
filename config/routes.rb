@@ -14,10 +14,12 @@ Rails.application.routes.draw do
       post '/importExcelCivitasAkademika' => "civitas_akademika#importExcelCivitasAkademika"
       get '/getAllCivitasAkademika' => "civitas_akademika#getAllCivitasAkademika"
       post '/search' => "civitas_akademika#search"
+      post '/updateRekeningMahasiswa' => "civitas_akademika#updateRekeningMahasiswa"
     end
 
     resource :rekapitulasi do
       post "/getRekapitulasiBeasiswa" => "rekapitulasi#getRekapitulasiBeasiswa"
+      get "/getRekaptulasiBeasiswaAllPeriod" => "rekapitulasi#getRekapitulasiBeasiswaAllPeriod"
       post "/getBulanRekapitulasiBeasiswa" => "rekapitulasi#getBulanRekapitulasiBeasiswa"
       get "/getRekapitulasiNonBeasiswa" => "rekapitulasi#getRekapitulasiNonBeasiswa"
       post "/getApprovedDonasiByPenggalanganDana" => "rekapitulasi#getApprovedDonasiByPenggalanganDana"
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
       post "/selectPenyaluranNonBeasiswa" => "rekapitulasi#selectPenyaluranNonBeasiswa"
       get "/getAllBatchRekapitulasiBeasiswa" => "rekapitulasi#getAllBatchRekapitulasiBeasiswa"
     end
+
 
     namespace :user do
       resource :penanggung_jawab do

@@ -57,7 +57,7 @@ PenanggungJawabNonBeasiswa.create!([
 # Seeder untuk Penerima Non Beasiswa
 PenerimaNonBeasiswa.create!([
   { nomor_induk: "231511040", nama: "Dhea Dria Spralia", nomor_telepon: "089876545555" },
-  { nomor_induk: "231511039", nama: "Daiva Raditya Pradipa", nomor_telepon: "088765432109" }
+  { nomor_induk: "231511038", nama: "Daffa Al Ghifari", nomor_telepon: "088765432109" }
 ])
 
 PenggalanganDanaBeasiswa.create!(
@@ -91,10 +91,10 @@ BantuanDanaBeasiswa.create!(
   biaya_konsumsi: "1000000",
   total_pengeluaran_keluarga: 4500000,
   penilaian_esai: 85,
-  nominal_penyaluran: { tahap_1: 1000000, tahap_2: 1000000 },
+  nominal_penyaluran: [0, 0],
   dokumen_kehadiran_perkuliahan: "kehadiran_231511038.pdf",
   status_pengajuan: 1,
-  status_penyaluran: { tahap_1: "disalurkan", tahap_2: "belum" },
+  status_penyaluran: [0, 0],
   status_kehadiran_perkuliahan: 1
 )
 
@@ -133,7 +133,7 @@ Donasi.create!(
 
 PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.create!(
   penanggung_jawab_non_beasiswa_id: "231511042",
-  penerima_non_beasiswa_id: "231511039"
+  penerima_non_beasiswa_id: "231511038"
 )
 
 RekeningBank.create!(
@@ -141,7 +141,7 @@ RekeningBank.create!(
   nama_bank: "BRI",
   nama_pemilik_rekening: "Daiva Raditya Pradipa",
   penanggung_jawab_id: 1,
-  mahasiswa_id: "231511039",
-  penerima_non_beasiswa_id: "231511039",  
+  mahasiswa_id: "231511038",
+  penerima_non_beasiswa_id: "231511038",  
   donatur_id: "081234567890"
 )

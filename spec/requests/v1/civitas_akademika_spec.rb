@@ -84,3 +84,81 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
     end
   end
 end
+
+RSpec.describe "V1::CivitasAkademikaController", type: :request do
+  describe "POST /v1/civitas_akademika/updateRekeningMahasiswa" do
+    RSpec.configure do |config|
+      config.before(:suite) do
+        Rails.application.load_seed
+      end
+    end
+    let!(:mahasiswa) { Mahasiswa.find_by(nim: "231511038") }
+
+    let(:valid_params) do
+      {
+        nim: "231511038",
+        nama_bank: "Bank Baru",
+        nomor_rekening: "999888777",
+        nama_pemilik_rekening: "Pemilik Baru"
+      }
+    end
+
+    let(:missing_params_rekening_mahasiswa) do
+      {
+        nim: "231511039",
+        nama_bank: "Bank Baru",
+        nomor_rekening: "999888777",
+        nama_pemilik_rekening: "Pemilik Baru"
+      }
+    end
+
+    let(:missing_params) do
+      {
+        nim: "231511038",
+        nama_bank: "",
+        nomor_rekening: "999888777",
+        nama_pemilik_rekening: ""
+      }
+    end
+
+    context "when mahasiswa does not exist" do
+      it "returns 404 not found" do
+        post "/v1/civitas_akademika/updateRekeningMahasiswa", params: { nim: "000000000" }
+
+        expect(response).to have_http_status(:not_found)
+        expect(JSON.parse(response.body)["error"]).to include("tidak ditemukan")
+      end
+    end
+
+    context "when rekening bank does not exist" do
+      it "returns 404 not found" do
+        post "/v1/civitas_akademika/updateRekeningMahasiswa", params: missing_params_rekening_mahasiswa
+
+        expect(response).to have_http_status(:not_found)
+        expect(JSON.parse(response.body)["error"]).to include("belum terdaftar")
+      end
+    end
+
+    context "when required parameters are missing" do
+      it "returns 422 unprocessable entity" do
+       post "/v1/civitas_akademika/updateRekeningMahasiswa", params: missing_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)["error"]).to include("Parameter tidak lengkap")
+      end
+    end
+
+    context "when all parameters are valid" do
+      it "updates the rekening bank and returns success" do
+        post "/v1/civitas_akademika/updateRekeningMahasiswa", params: valid_params
+
+        expect(response).to have_http_status(:ok)
+        json = JSON.parse(response.body)
+        expect(json["message"]).to eq("Rekening bank berhasil diperbarui")
+        expect(json["rekening"]["nama_bank"]).to eq("Bank Baru")
+        expect(json["rekening"]["nomor_rekening"]).to eq("999888777")
+        expect(json["rekening"]["nama_pemilik_rekening"]).to eq("Pemilik Baru")
+      end
+    end
+  end
+end
