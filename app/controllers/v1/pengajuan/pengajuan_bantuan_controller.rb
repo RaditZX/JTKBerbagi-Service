@@ -123,7 +123,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     })
   
     if bantuan_dana_beasiswa.save && mahasiswa.save && rekening_bank.save
-      render_success_response(Constants::RESPONSE_SUCCESS, { mahasiswa: mahasiswa, bantuan_dana_beasiswa: bantuan_dana_beasiswa, rekening_bank: rekening_bank }, Constants::STATUS_CREATED)
+      render_success_response(Constants::RESPONSE_SUCCESS, { mahasiswa: mahasiswa, bantuan_dana_beasiswa: bantuan_dana_beasiswa, rekening_bank: rekening_bank }, :created)
     else
       render_error_response({ mahasiswa: mahasiswa.errors.full_messages, bantuan_dana_beasiswa: bantuan_dana_beasiswa.errors.full_messages, rekening_bank: rekening_bank.errors.full_messages })
     end
@@ -369,7 +369,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     bantuan_dana_beasiswa.assign_attributes({penilaian_esai: penilaian_esai})
 
     if bantuan_dana_beasiswa.save
-      render_success_response(Constants::RESPONSE_SUCCESS, { bantuan_dana_beasiswa: bantuan_dana_beasiswa }, Constants::STATUS_CREATED)
+      render_success_response(Constants::RESPONSE_SUCCESS, { bantuan_dana_beasiswa: bantuan_dana_beasiswa }, :ok)
     else
       render_error_response(bantuan_dana_beasiswa.errors.full_messages)
     end
@@ -413,7 +413,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     })
 
     if bantuan_dana_beasiswa.save
-      render_success_response(Constants::RESPONSE_SUCCESS, bantuan_dana_beasiswa, Constants::STATUS_OK)
+      render_success_response(Constants::RESPONSE_SUCCESS, bantuan_dana_beasiswa, :ok)
     else
       render_error_response(bantuan_dana_beasiswa: bantuan_dana_beasiswa.errors.full_messages)
     end
