@@ -18296,3 +18296,536 @@ Processing by V1::Pengajuan::PengajuanBantuanController#selectLanjutBeasiswa as 
 Completed 422 Unprocessable Entity in 4ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 974)
 
 
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:56:03 +0700
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:56:03 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.5ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (3.3ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  [1m[36mBantuanDanaBeasiswa Load (1.6ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 1 AND `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:12:in `block in getDurasiPengajuanBeasiswa'
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+  [1m[36mBantuanDanaBeasiswa Load (18.4ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 1 AND `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:12:in `block in getDurasiPengajuanBeasiswa'
+  [1m[36mBantuanDanaBeasiswa Load (1.9ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1[0m
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:485:in `block in getPengajuanBeasiswa'
+  [1m[36mBantuanDanaBeasiswa Load (1.8ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1[0m
+  [1m[36mBantuanDanaBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 AND `bantuandanabeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:485:in `block in getPengajuanBeasiswa'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:493:in `block in getPengajuanBeasiswa'
+  [1m[36mBantuanDanaBeasiswa Load (4.5ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 AND `bantuandanabeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:493:in `block in getPengajuanBeasiswa'
+  [1m[36mMahasiswa Load (1.9ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:495:in `block (2 levels) in getPengajuanBeasiswa'
+  [1m[36mMahasiswa Load (4.9ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511038' LIMIT 1[0m
+  [1m[36mMahasiswa Load (1.6ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511055' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:495:in `block (2 levels) in getPengajuanBeasiswa'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:495:in `block (2 levels) in getPengajuanBeasiswa'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  [1m[36mMahasiswa Load (1.2ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511055' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:495:in `block (2 levels) in getPengajuanBeasiswa'
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.* FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` WHERE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = '231511042' ORDER BY `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id,penerima_non_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:514:in `block in getPengajuanNonBeasiswa'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+Completed 500 Internal Server Error in 80ms (ActiveRecord: 13.4ms | Allocations: 46811)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: Unknown column 'penanggungjawabnonbeasiswa_has_penerimanonbeasiswa.penanggung_jawab_non_beasiswa_id,penerima_non_beasiswa_id' in 'order clause'):
+  
+app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:514:in `block in getPengajuanNonBeasiswa'
+app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:513:in `getPengajuanNonBeasiswa'
+app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:550:in `getPengajuanBantuan'
+  [1m[36mPenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa Load (101.8ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.* FROM `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` WHERE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = '231511042' ORDER BY `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penanggung_jawab_non_beasiswa_id` ASC, `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa`.`penerima_non_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:514:in `block in getPengajuanNonBeasiswa'
+  [1m[36mPenanggungJawabNonBeasiswa Load (1.2ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:516:in `block in getPengajuanNonBeasiswa'
+  [1m[36mPenerimaNonBeasiswa Load (1.2ms)[0m  [1m[34mSELECT `penerimanonbeasiswa`.* FROM `penerimanonbeasiswa` WHERE `penerimanonbeasiswa`.`nomor_induk` = '231511038' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:517:in `block in getPengajuanNonBeasiswa'
+  [1m[36mRekeningBank Load (1.8ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511038'[0m
+  ↳ app/controllers/application_controller.rb:33:in `render_success_response'
+  [1m[36mRekeningBank Load (1.2ms)[0m  [1m[34mSELECT `rekeningbank`.* FROM `rekeningbank` WHERE `rekeningbank`.`mahasiswa_id` = '231511055'[0m
+  ↳ app/controllers/application_controller.rb:33:in `render_success_response'
+Completed 200 OK in 314ms (Views: 7.6ms | ActiveRecord: 144.3ms | Allocations: 260347)
+
+
+Started GET "/v1/penggalangan/penggalangan_dana/getAllPenggalanganDana" for ::1 at 2025-05-26 23:56:17 +0700
+Started GET "/v1/rekapitulasi/getAllBatchRekapitulasiBeasiswa" for ::1 at 2025-05-26 23:56:17 +0700
+Processing by V1::Penggalangan::PenggalanganDanaController#getAllPenggalanganDana as JSON
+  Parameters: {"penggalangan_dana"=>{}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.8ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+Processing by V1::RekapitulasiController#getAllBatchRekapitulasiBeasiswa as JSON
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:200:in `getPenggalanganDanaBeasiswa'
+  Parameters: {"rekapitulasi"=>{}}
+Creating scope :expired. Overwriting existing method Donasi.expired.
+  [1m[36mPenggalanganDanaBeasiswa Load (3.8ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa`[0m
+  ↳ app/controllers/v1/rekapitulasi_controller.rb:97:in `getAllBatchRekapitulasiBeasiswa'
+Completed 200 OK in 16ms (Views: 0.3ms | ActiveRecord: 3.8ms | Allocations: 2963)
+
+
+  [1m[36mDonasi Load (4.4ms)[0m  [1m[34mSELECT `donasi`.* FROM `donasi` WHERE `donasi`.`status` = 1 AND `donasi`.`penggalangan_dana_beasiswa_id` = 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:378:in `getTotalDonaturInPenggalanganDana'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.7ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:221:in `getPenggalanganDanaNonBeasiswa'
+Started GET "/v1/rekapitulasi/getAllBatchRekapitulasiBeasiswa" for ::1 at 2025-05-26 23:56:17 +0700
+  [1m[36mBantuanDanaNonBeasiswa Load (1.6ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` = 1 ORDER BY `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:288:in `getDurasiPenggalanganDana'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:303:in `getDurasiPenggalanganDana'
+  [1m[36mPenanggungJawabNonBeasiswa Load (3.1ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = '231511042' LIMIT 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:303:in `getDurasiPenggalanganDana'
+Processing by V1::RekapitulasiController#getAllBatchRekapitulasiBeasiswa as JSON
+  [1m[36mBantuanDanaNonBeasiswa Update (2.0ms)[0m  [1m[33mUPDATE `bantuandananonbeasiswa` SET `bantuandananonbeasiswa`.`status_pengajuan` = 3 WHERE `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` = 1[0m
+  Parameters: {"rekapitulasi"=>{}}
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:303:in `getDurasiPenggalanganDana'
+  [1m[36mPenggalanganDanaBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa`[0m
+  ↳ app/controllers/v1/rekapitulasi_controller.rb:97:in `getAllBatchRekapitulasiBeasiswa'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 973)
+
+
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:303:in `getDurasiPenggalanganDana'
+  [1m[36mDonasi Load (1.0ms)[0m  [1m[34mSELECT `donasi`.* FROM `donasi` WHERE `donasi`.`status` = 1 AND `donasi`.`bantuan_dana_non_beasiswa_id` = 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:385:in `getTotalDonaturInPenggalanganDana'
+Completed 200 OK in 83ms (Views: 0.4ms | ActiveRecord: 30.4ms | Allocations: 26461)
+
+
+Started GET "/v1/penggalangan/penggalangan_dana/getAllPenggalanganDana" for ::1 at 2025-05-26 23:56:17 +0700
+Processing by V1::Penggalangan::PenggalanganDanaController#getAllPenggalanganDana as JSON
+  Parameters: {"penggalangan_dana"=>{}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:200:in `getPenggalanganDanaBeasiswa'
+  [1m[36mDonasi Load (1.2ms)[0m  [1m[34mSELECT `donasi`.* FROM `donasi` WHERE `donasi`.`status` = 1 AND `donasi`.`penggalangan_dana_beasiswa_id` = 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:378:in `getTotalDonaturInPenggalanganDana'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.3ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/penggalangan/penggalangan_dana_controller.rb:221:in `getPenggalanganDanaNonBeasiswa'
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 3.9ms | Allocations: 2440)
+
+
+Started POST "/v1/rekapitulasi/getBulanRekapitulasiBeasiswa" for ::1 at 2025-05-26 23:56:25 +0700
+Processing by V1::RekapitulasiController#getBulanRekapitulasiBeasiswa as JSON
+  Parameters: {"id"=>1, "rekapitulasi"=>{"id"=>1}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 ORDER BY `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/rekapitulasi_controller.rb:253:in `getBulanRekapitulasiBeasiswa'
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 1085)
+
+
+Started GET "/v1/pengajuan/pengajuan_bantuan/getTotalPenerimaBantuan" for ::1 at 2025-05-26 23:58:21 +0700
+Started POST "/v1/pengajuan/pengajuan_bantuan/getTotalCalonPengajuan" for ::1 at 2025-05-26 23:58:21 +0700
+Started GET "/v1/penggalangan/donasi/getTotalAllDonasi" for ::1 at 2025-05-26 23:58:21 +0700
+Started POST "/v1/pengajuan/pengajuan_bantuan/getTotalCalonPengajuan" for ::1 at 2025-05-26 23:58:21 +0700
+Started GET "/v1/penggalangan/donasi/getTotalNewDonasi" for ::1 at 2025-05-26 23:58:21 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#getTotalPenerimaBantuan as JSON
+  Parameters: {"pengajuan_bantuan"=>{}}
+Processing by V1::Pengajuan::PengajuanBantuanController#getTotalCalonPengajuan as JSON
+  Parameters: {"jenis"=>"NonBeasiswa", "pengajuan_bantuan"=>{"jenis"=>"NonBeasiswa"}}
+  [1m[36mBantuanDanaBeasiswa Load (3.7ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:697:in `getTotalPenerimaBantuan'
+Processing by V1::Pengajuan::PengajuanBantuanController#getTotalCalonPengajuan as JSON
+  [1m[36mBantuanDanaNonBeasiswa Load (2.2ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:697:in `getTotalPenerimaBantuan'
+  Parameters: {"jenis"=>"NonBeasiswa", "pengajuan_bantuan"=>{"jenis"=>"NonBeasiswa"}}
+  [1m[36mBantuanDanaNonBeasiswa Load (3.2ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 0[0m
+  [1m[36mBantuanDanaBeasiswa Load (2.6ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$'))[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:700:in `getTotalPenerimaBantuan'
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:691:in `getTotalCalonPengajuan'
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 4270)
+
+
+  [1m[36mBantuanDanaNonBeasiswa Load (1.6ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 3 AND `bantuandananonbeasiswa`.`status_penyaluran` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:700:in `getTotalPenerimaBantuan'
+  [1m[36mBantuanDanaNonBeasiswa Load (2.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:691:in `getTotalCalonPengajuan'
+Completed 200 OK in 27ms (Views: 0.2ms | ActiveRecord: 10.2ms | Allocations: 6326)
+
+
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 8.8ms | Allocations: 3578)
+
+
+  
+AbstractController::ActionNotFound (The action 'getTotalAllDonasi' could not be found for V1::Penggalangan::DonasiController
+Did you mean?  createDonasi
+               role
+               notification
+               authorize_request):
+  
+actionpack (6.1.7.6) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.7.6) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/v1/pengajuan/pengajuan_bantuan/getTotalPenerimaBantuan" for ::1 at 2025-05-26 23:58:21 +0700
+  
+AbstractController::ActionNotFound (The action 'getTotalNewDonasi' could not be found for V1::Penggalangan::DonasiController
+Did you mean?  createDonasi
+               role
+               notification
+               authorize_request):
+  
+actionpack (6.1.7.6) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.7.6) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Processing by V1::Pengajuan::PengajuanBantuanController#getTotalPenerimaBantuan as JSON
+  Parameters: {"pengajuan_bantuan"=>{}}
+  [1m[36mBantuanDanaBeasiswa Load (1.8ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:697:in `getTotalPenerimaBantuan'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.0ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:697:in `getTotalPenerimaBantuan'
+  [1m[36mBantuanDanaBeasiswa Load (1.7ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$'))[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:700:in `getTotalPenerimaBantuan'
+  [1m[36mBantuanDanaNonBeasiswa Load (11.3ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 3 AND `bantuandananonbeasiswa`.`status_penyaluran` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:700:in `getTotalPenerimaBantuan'
+Completed 200 OK in 25ms (Views: 0.2ms | ActiveRecord: 15.8ms | Allocations: 19283)
+
+
+Started GET "/v1/penggalangan/donasi/getTotalAllDonasi" for ::1 at 2025-05-26 23:58:21 +0700
+  
+AbstractController::ActionNotFound (The action 'getTotalAllDonasi' could not be found for V1::Penggalangan::DonasiController
+Did you mean?  createDonasi
+               role
+               notification
+               authorize_request):
+  
+actionpack (6.1.7.6) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.7.6) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/v1/penggalangan/donasi/getTotalNewDonasi" for ::1 at 2025-05-26 23:58:21 +0700
+  
+AbstractController::ActionNotFound (The action 'getTotalNewDonasi' could not be found for V1::Penggalangan::DonasiController
+Did you mean?  createDonasi
+               role
+               notification
+               authorize_request):
+  
+actionpack (6.1.7.6) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.7.6) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.7.6) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.7.6) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.7.6) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.8) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.8) lib/rack/etag.rb:27:in `call'
+rack (2.2.8) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.8) lib/rack/head.rb:12:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/http/content_security_policy.rb:19:in `call'
+rack (2.2.8) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.8) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/cookies.rb:697:in `call'
+activerecord (6.1.7.6) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.7.6) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.7.6) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.7.6) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.7.6) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.8) lib/rack/method_override.rb:24:in `call'
+rack (2.2.8) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.7.6) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.8) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.7.6) lib/action_dispatch/middleware/host_authorization.rb:148:in `call'
+rack-mini-profiler (2.3.4) lib/mini_profiler/profiler.rb:393:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+webpacker (5.4.4) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.7) lib/rack/proxy.rb:87:in `call'
+railties (6.1.7.6) lib/rails/engine.rb:539:in `call'
+puma (5.6.7) lib/puma/configuration.rb:252:in `call'
+puma (5.6.7) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.7) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.7) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.7) lib/puma/server.rb:443:in `process_client'
+puma (5.6.7) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:58:28 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.2ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:58:28 +0700
+  [1m[36mBantuanDanaNonBeasiswa Load (2.5ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+Completed 422 Unprocessable Entity in 13ms (Views: 0.3ms | ActiveRecord: 3.7ms | Allocations: 2743)
+
+
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.7ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+  [1m[36mBantuanDanaNonBeasiswa Load (1.7ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+Completed 422 Unprocessable Entity in 9ms (Views: 0.2ms | ActiveRecord: 3.5ms | Allocations: 2022)
+
+
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:59:17 +0700
+Started POST "/v1/pengajuan/pengajuan_bantuan/getPengajuanBantuan" for ::1 at 2025-05-26 23:59:17 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.2ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+  [1m[36mBantuanDanaNonBeasiswa Load (2.2ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+Processing by V1::Pengajuan::PengajuanBantuanController#getPengajuanBantuan as JSON
+Completed 422 Unprocessable Entity in 9ms (Views: 0.3ms | ActiveRecord: 3.5ms | Allocations: 2666)
+
+
+  Parameters: {"jenis"=>"Beasiswa", "is_pengajuan"=>"false", "pengajuan_bantuan"=>{"jenis"=>"Beasiswa", "is_pengajuan"=>"false"}}
+  [1m[36mPenggalanganDanaBeasiswa Load (1.1ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:6:in `getDurasiPengajuanBeasiswa'
+  [1m[36mCACHE PenggalanganDanaBeasiswa Load (0.0ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`status` = 0[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:479:in `getPengajuanBeasiswa'
+  [1m[36mBantuanDanaNonBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:509:in `getPengajuanNonBeasiswa'
+Completed 422 Unprocessable Entity in 6ms (Views: 0.1ms | ActiveRecord: 2.1ms | Allocations: 2287)
+
+
+Started POST "/v1/pengajuan/pengajuan_bantuan/selectLanjutBeasiswa" for ::1 at 2025-05-27 00:14:29 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#selectLanjutBeasiswa as */*
+  Parameters: {"id"=>115095, "pengajuan_bantuan"=>{"id"=>115095}}
+  [1m[36mBantuanDanaBeasiswa Load (1.3ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$')) AND `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 115095 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:631:in `selectLanjutBeasiswa'
+Completed 422 Unprocessable Entity in 10ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 1273)
+
+
+Started POST "/v1/pengajuan/pengajuan_bantuan/selectLanjutBeasiswa" for ::1 at 2025-05-27 00:22:16 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#selectLanjutBeasiswa as */*
+  Parameters: {"id"=>115095, "pengajuan_bantuan"=>{"id"=>115095}}
+  [1m[36mBantuanDanaBeasiswa Load (2.0ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$')) AND `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 115095 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:631:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (5.4ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:644:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (1.6ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE (penggalangan_dana_beasiswa_id < 1) ORDER BY penggalangan_dana_beasiswa_id DESC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:648:in `selectLanjutBeasiswa'
+Completed 422 Unprocessable Entity in 50ms (Views: 0.8ms | ActiveRecord: 13.5ms | Allocations: 3084)
+
+
+Started POST "/v1/pengajuan/pengajuan_bantuan/selectLanjutBeasiswa" for ::1 at 2025-05-27 00:30:05 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#selectLanjutBeasiswa as */*
+  Parameters: {"id"=>115095, "pengajuan_bantuan"=>{"id"=>115095}}
+  [1m[36mBantuanDanaBeasiswa Load (1.3ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$')) AND `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 115095 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:631:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (1.4ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:644:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (1.1ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE (penggalangan_dana_beasiswa_id < 1) ORDER BY penggalangan_dana_beasiswa_id DESC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:648:in `selectLanjutBeasiswa'
+  [1m[36mMahasiswa Load (1.0ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511055' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:672:in `selectLanjutBeasiswa'
+Completed 422 Unprocessable Entity in 46ms (Views: 0.2ms | ActiveRecord: 6.3ms | Allocations: 7334)
+
+
+Started POST "/v1/pengajuan/pengajuan_bantuan/selectLanjutBeasiswa" for ::1 at 2025-05-27 00:33:16 +0700
+Processing by V1::Pengajuan::PengajuanBantuanController#selectLanjutBeasiswa as */*
+  Parameters: {"id"=>115095, "pengajuan_bantuan"=>{"id"=>115095}}
+  [1m[36mBantuanDanaBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `bantuandanabeasiswa`.* FROM `bantuandanabeasiswa` WHERE `bantuandanabeasiswa`.`status_pengajuan` = 3 AND NOT (JSON_CONTAINS(status_penyaluran, '[0]', '$')) AND `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` = 115095 ORDER BY `bantuandanabeasiswa`.`bantuan_dana_beasiswa_id` ASC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:631:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE `penggalangandanabeasiswa`.`penggalangan_dana_beasiswa_id` = 1 LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:644:in `selectLanjutBeasiswa'
+  [1m[36mPenggalanganDanaBeasiswa Load (1.9ms)[0m  [1m[34mSELECT `penggalangandanabeasiswa`.* FROM `penggalangandanabeasiswa` WHERE (penggalangan_dana_beasiswa_id < 1) ORDER BY penggalangan_dana_beasiswa_id DESC LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:648:in `selectLanjutBeasiswa'
+  [1m[36mMahasiswa Load (0.8ms)[0m  [1m[34mSELECT `mahasiswa`.* FROM `mahasiswa` WHERE `mahasiswa`.`nim` = '231511055' LIMIT 1[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:673:in `selectLanjutBeasiswa'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:676:in `selectLanjutBeasiswa'
+  [1m[36mBantuanDanaBeasiswa Create (1.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_kos`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `penilaian_esai`, `nominal_penyaluran`, `status_pengajuan`, `status_penyaluran`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (567364, 'Lagi butuh banget untuk semester depan', 4, 'C:\\fakepath\\231511055_2B-D3_Muhammad Raihan Pratama_Pretest2.pdf', 5000000, 'C:\\fakepath\\231511055_2B-D3_Muhammad Raihan Pratama_Pretest2.pdf', 'C:\\fakepath\\231511055_2B-D3_Muhammad Raihan Pratama_Pretest2.pdf', 2, '2', '100000', '500000', '250000', 3000000, 2, '[0]', 1, '[0]', '231511055', 0)[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:676:in `selectLanjutBeasiswa'
+  [1m[36mTRANSACTION (8.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/pengajuan/pengajuan_bantuan_controller.rb:676:in `selectLanjutBeasiswa'
+Completed 200 OK in 91ms (Views: 0.5ms | ActiveRecord: 23.7ms | Allocations: 32605)
+
+
