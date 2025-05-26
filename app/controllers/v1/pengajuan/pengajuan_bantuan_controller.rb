@@ -469,36 +469,39 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
   end
 
   def getPengajuanBeasiswa(status_pengajuan)
-    durasi_pengajuan, error_message, status_penggalangan_dana_beasiswa = getDurasiPengajuanBeasiswa(return_json: false)
+    # Ambil informasi fase dari getDurasiPengajuanBeasiswa
+    _durasi_pengajuan, _info_message_from_durasi, calculated_phase = getDurasiPengajuanBeasiswa(return_json: false)
+
     penggalangan_dana_beasiswa_on_going = PenggalanganDanaBeasiswa.on_going
     array_of_bantuan_dana_beasiswa = []
+    local_fetch_error_message = nil
+
     if !penggalangan_dana_beasiswa_on_going.present?
-      error_message = "Tidak ada data Bantuan Dana Beasiswa!"
-    else 
+      local_fetch_error_message = "Tidak ada penggalangan dana beasiswa yang sedang berlangsung untuk mengambil data."
+    else
       penggalangan_dana_beasiswa_on_going.each do |data_penggalangan_dana|
-        bantuan_dana_beasiswa = data_penggalangan_dana.bantuan_dana_beasiswa
-        puts "cikan #{bantuan_dana_beasiswa}"
-        if bantuan_dana_beasiswa.present?
-          if (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD) and status_pengajuan == Enums::StatusPengajuan::NEW
-            puts "cikan"
-            bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
-              array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
-                mahasiswa: data_bantuan_dana_beasiswa.mahasiswa
+        bantuan_dana_beasiswa_records = data_penggalangan_dana.bantuan_dana_beasiswa
+
+        if bantuan_dana_beasiswa_records.present?
+          if (calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD || calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD) && status_pengajuan == Enums::StatusPengajuan::NEW
+            bantuan_dana_beasiswa_records.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana|
+              array_of_bantuan_dana_beasiswa << data_bantuan_dana.attributes.merge({
+                mahasiswa: data_bantuan_dana.mahasiswa
               })
             end
-          elsif (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) and  status_pengajuan == Enums::StatusPengajuan::APPROVED
-            bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
-              array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
-                mahasiswa: data_bantuan_dana_beasiswa.mahasiswa,
-                rekening_bank: data_bantuan_dana_beasiswa.mahasiswa.rekening_bank
+          elsif (calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD || calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) && status_pengajuan == Enums::StatusPengajuan::APPROVED
+            bantuan_dana_beasiswa_records.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana| 
+              array_of_bantuan_dana_beasiswa << data_bantuan_dana.attributes.merge({
+                mahasiswa: data_bantuan_dana.mahasiswa,
+                rekening_bank: data_bantuan_dana.mahasiswa.rekening_bank
               })
             end
-            puts "cikan"
           end
         end
       end
     end
-    return [error_message, array_of_bantuan_dana_beasiswa]
+
+    return [local_fetch_error_message, array_of_bantuan_dana_beasiswa]
   end
 
   def getPengajuanNonBeasiswa(status_pengajuan)
