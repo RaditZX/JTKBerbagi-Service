@@ -76,5 +76,5 @@ Rails.application.configure do
 
   # whitelist domain untuk development, production bisa dipisah
   # config.hosts << "jtkberbagi.ppl.foolens.my.id"
-  config.hosts << "925c-125-164-19-141.ngrok-free.app" # ngrok untuk dev/test
+  config.hosts << "1b57-180-244-139-252.ngrok-free.app" # ngrok untuk dev/test
 end

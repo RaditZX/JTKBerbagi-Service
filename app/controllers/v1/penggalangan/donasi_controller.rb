@@ -1,13 +1,11 @@
 class V1::Penggalangan::DonasiController < ApplicationController
-
   def createDonasi
-    # validasi id penggalangan_dana
+    # validasi if blank or nil
     return render_error_response("ID penggalangan dana tidak boleh kosong!") if params[:id].blank?
     return render_error_response("Nama donatur tidak boleh kosong!") if params[:nama].blank?
     return render_error_response("Nomor telepon tidak boleh kosong!") if params[:nomor_telepon].blank?
     return render_error_response("Nominal donasi tidak boleh kosong!") if params[:nominal_donasi].blank?
-    return render_error_response("Metode pembayaran tidak boleh kosong!") if params[:metode_pembayaran].blank?
-    
+
     # mencari penggalangan_dana
     penggalangan_dana_beasiswa = PenggalanganDanaBeasiswa.where(penggalangan_dana_beasiswa_id: params[:id]).first
     penggalangan_dana_non_beasiswa = BantuanDanaNonBeasiswa.pengajuan_approved.where(bantuan_dana_non_beasiswa_id: params[:id]).first
@@ -57,7 +55,6 @@ class V1::Penggalangan::DonasiController < ApplicationController
     end
   end
 
-  # Endpoint untuk menerima notifikasi dari Midtrans
   def notification
     Rails.logger.info "Headers: #{request.headers.select { |k, v| k.start_with?('HTTP_') }.inspect}"
     Rails.logger.info "Raw Body: #{request.raw_post}"
@@ -82,8 +79,6 @@ class V1::Penggalangan::DonasiController < ApplicationController
       render json: { error: "Error: #{e.message}" }, status: 500
     end
   end
-
-  private
 
   def find_or_create_donatur(params)
     donatur = Donatur.find_or_initialize_by(nomor_telepon: params[:nomor_telepon]) do |new_donatur|

@@ -46,19 +46,6 @@ class Donasi < ApplicationRecord
     Midtrans.create_snap_token(payload)
   end
 
-  private
-
-  # ambil judul donasi dari penggalangan dana beasiswa atau bantuan dana non-beasiswa
-  def judul_donation
-    if penggalangan_dana_beasiswa.present?
-      penggalangan_dana_beasiswa.judul
-    elsif bantuan_dana_non_beasiswa.present?
-      bantuan_dana_non_beasiswa.judul_galang_dana
-    else
-      'Donasi'
-    end
-  end
-
   # validasi status pembayaran dari Midtrans
   def validate_payment_status(midtrans_status)
     case midtrans_status
@@ -82,11 +69,20 @@ class Donasi < ApplicationRecord
 
   private
 
+  def judul_donation
+    if penggalangan_dana_beasiswa.present?
+      penggalangan_dana_beasiswa.judul
+    elsif bantuan_dana_non_beasiswa.present?
+      bantuan_dana_non_beasiswa.judul_galang_dana
+    else
+      'Donasi'
+    end
+  end
+
   #validasi minimal donasi
   def minimal_nominal_donasi
     if nominal_donasi.to_i < 10000
       errors.add(:nominal_donasi, "Mohon maaf, nominal donasi tidak boleh kurang dari Rp10.000!")
     end
-  end 
-
+  end
 end
