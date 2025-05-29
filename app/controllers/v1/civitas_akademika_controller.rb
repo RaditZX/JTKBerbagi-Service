@@ -100,21 +100,10 @@ class V1::CivitasAkademikaController < ApplicationController
     valid_extra_columns = extra_columns.select { |col| allowed_columns.include?(col) }
 
     suggestions = model
-                    .where("#{search_column} LIKE ?", "%#{keyword}%")
-                    .select(id_column, search_column, *valid_extra_columns)
-                    .limit(10)
+                .where("#{search_column} LIKE ?", "%#{keyword}%")
+                .limit(10)
 
-    results = suggestions.map do |record|
-      result = {
-        id: record.send(id_column),
-        label: record.send(search_column),
-        value: record.send(search_column)
-      }
-      valid_extra_columns.each do |col|
-        result[col.to_sym] = record.send(col)
-      end
-      result
-    end
+    results = suggestions.map(&:attributes)
 
     render json: results, status: :ok
   rescue => e
@@ -122,7 +111,39 @@ class V1::CivitasAkademikaController < ApplicationController
     render json: { error: "Terjadi kesalahan saat memproses permintaan autocomplete" }, status: :internal_server_error
   end
 
+  def get_civitas
+    keyword = params[:keyword].to_s.strip
+    type = params[:type].to_s.strip
 
+    # 1. Validasi Input yang Lebih Baik
+    unless ['nomor_induk', 'nama'].include?(type)
+      render json: { error: "Tipe pencarian tidak valid. Gunakan 'nomor_induk' atau 'nama'." }, status: :bad_request
+      return
+    end
+
+    if keyword.length < 2
+      render json: { error: "Keyword pencarian harus memiliki minimal 2 karakter." }, status: :bad_request
+      return
+    end
+
+    # 2. Query yang Aman dan Fleksibel
+    #    Menggunakan array untuk keamanan dari SQL Injection
+    if type == 'nomor_induk'
+      # Untuk nomor_induk, cari kecocokan persis
+      results = CivitasAkademika.where(nomor_induk: keyword)
+    else # type == 'nama'
+      # Untuk nama, cari kecocokan sebagian (case-insensitive)
+      # Ini akan menemukan keyword di mana saja dalam nama
+      sanitized_keyword = ActiveRecord::Base.sanitize_sql_like(keyword)
+      results = CivitasAkademika.where("nama ILIKE ?", "%#{sanitized_keyword}%")
+    end
+
+    # 3. Pilih kolom yang diinginkan dan render semua hasil (bukan hanya .first)
+    render json: results.select(:nomor_induk, :nama), status: :ok
+  
+  rescue StandardError => e
+    render json: { error: "Terjadi kesalahan internal: #{e.message}" }, status: :internal_server_error
+  end
 
   private
 

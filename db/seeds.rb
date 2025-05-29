@@ -23,47 +23,47 @@ PenanggungJawabNonBeasiswa.destroy_all
 
 CivitasAkademika.create!([
   # Mahasiswa
-  { nomor_induk: "MHS001", nama: "Agus Santoso" },
-  { nomor_induk: "MHS002", nama: "Siti Aminah" },
-  { nomor_induk: "MHS003", nama: "Rudy Tabootie" },
-  { nomor_induk: "MHS004", nama: "Dewi Lestari" },
-  { nomor_induk: "MHS005", nama: "Budi Hartono" },
-  { nomor_induk: "MHS006", nama: "Nur Aini" },
-  { nomor_induk: "MHS007", nama: "Ali Fikri" },
-  { nomor_induk: "MHS008", nama: "Maya Sari" },
-  { nomor_induk: "MHS009", nama: "Joko Prasetyo" },
-  { nomor_induk: "MHS010", nama: "Fitriani Zahra" },
+  { nomor_induk: "231511001", nama: "Agus Santoso" },
+  { nomor_induk: "231511002", nama: "Siti Aminah" },
+  { nomor_induk: "231511003", nama: "Rudy Tabootie" },
+  { nomor_induk: "231511004", nama: "Dewi Lestari" },
+  { nomor_induk: "231511005", nama: "Budi Hartono" },
+  { nomor_induk: "231511006", nama: "Nur Aini" },
+  { nomor_induk: "231511007", nama: "Ali Fikri" },
+  { nomor_induk: "231511008", nama: "Maya Sari" },
+  { nomor_induk: "231511009", nama: "Joko Prasetyo" },
+  { nomor_induk: "231511010", nama: "Fitriani Zahra" },
 
   # Dosen
-  { nomor_induk: "DSN001", nama: "Rina Marlina" },
-  { nomor_induk: "DSN002", nama: "Bagyo Sutoyo" },
-  { nomor_induk: "DSN003", nama: "Intan Permata" },
-  { nomor_induk: "DSN004", nama: "Rahmat Hidayat" },
-  { nomor_induk: "DSN005", nama: "Lestari Wulandari" },
-  { nomor_induk: "DSN006", nama: "Hendra Gunawan" },
-  { nomor_induk: "DSN007", nama: "Dian Anggraini" },
-  { nomor_induk: "DSN008", nama: "Samsul Bahri" },
-  { nomor_induk: "DSN009", nama: "Yuniarti Saputra" },
-  { nomor_induk: "DSN010", nama: "Teguh Santoso" }
+  { nomor_induk: "992314001", nama: "Rina Marlina" },
+  { nomor_induk: "992314002", nama: "Bagyo Sutoyo" },
+  { nomor_induk: "992314003", nama: "Intan Permata" },
+  { nomor_induk: "992314004", nama: "Rahmat Hidayat" },
+  { nomor_induk: "992314005", nama: "Lestari Wulandari" },
+  { nomor_induk: "992314006", nama: "Hendra Gunawan" },
+  { nomor_induk: "992314007", nama: "Dian Anggraini" },
+  { nomor_induk: "992314008", nama: "Samsul Bahri" },
+  { nomor_induk: "992314009", nama: "Yuniarti Saputra" },
+  { nomor_induk: "992314010", nama: "Teguh Santoso" }
 ])
 
 Mahasiswa.create!([
-  { nim: "MHS001", nama: "Agus Santoso", nomor_telepon: "089876543210" },
-  { nim: "MHS002", nama: "Siti Aminah", nomor_telepon: "088765432109" },
-  { nim: "MHS003", nama: "Rudy Tabootie", nomor_telepon: "089876545555" },
-  { nim: "MHS004", nama: "Dewi Lestari", nomor_telepon: "082134567891" },
-  { nim: "MHS005", nama: "Budi Hartono", nomor_telepon: "087812345678" },
-  { nim: "MHS006", nama: "Nur Aini", nomor_telepon: "083867845612" },
-  { nim: "MHS007", nama: "Ali Fikri", nomor_telepon: "085715367892" },
-  { nim: "MHS008", nama: "Maya Sari", nomor_telepon: "081234567899" },
-  { nim: "MHS009", nama: "Joko Prasetyo", nomor_telepon: "089998877665" },
-  { nim: "MHS010", nama: "Fitriani Zahra", nomor_telepon: "082112345678" }
+  { nim: "231511001", nama: "Agus Santoso", nomor_telepon: "089876543210" },
+  { nim: "231511002", nama: "Siti Aminah", nomor_telepon: "088765432109" },
+  { nim: "231511003", nama: "Rudy Tabootie", nomor_telepon: "089876545555" },
+  { nim: "231511004", nama: "Dewi Lestari", nomor_telepon: "082134567891" },
+  { nim: "231511005", nama: "Budi Hartono", nomor_telepon: "087812345678" },
+  { nim: "231511006", nama: "Nur Aini", nomor_telepon: "083867845612" },
+  { nim: "231511007", nama: "Ali Fikri", nomor_telepon: "085715367892" },
+  { nim: "231511008", nama: "Maya Sari", nomor_telepon: "081234567899" },
+  { nim: "231511009", nama: "Joko Prasetyo", nomor_telepon: "089998877665" },
+  { nim: "231511010", nama: "Fitriani Zahra", nomor_telepon: "082112345678" }
 ])
 
 # Seeder untuk Penanggung Jawab Non Beasiswa
 PenanggungJawabNonBeasiswa.create!([
-  { nomor_induk: "DSN001", nama: "Rina Marlina", nomor_telepon: "081998877665" },
-  { nomor_induk: "DSN002", nama: "Bagyo Sutoyo", nomor_telepon: "082287654321" }
+  { nomor_induk: "992314001", nama: "Rina Marlina", nomor_telepon: "081998877665" },
+  { nomor_induk: "992314002", nama: "Bagyo Sutoyo", nomor_telepon: "082287654321" }
 ])
 # Seeder untuk Donatur
 Donatur.create!([
@@ -81,8 +81,8 @@ PenanggungJawab.create!([
 
 # Seeder untuk Penerima Non Beasiswa
 PenerimaNonBeasiswa.create!([
-  { nomor_induk: "MHS003", nama: "Rudy Tabootie", nomor_telepon: "089876545555" },
-  { nomor_induk: "MHS002", nama: "Siti Aminah", nomor_telepon: "088765432109" }
+  { nomor_induk: "231511003", nama: "Rudy Tabootie", nomor_telepon: "089876545555" },
+  { nomor_induk: "231511002", nama: "Siti Aminah", nomor_telepon: "088765432109" }
 ])
 
 PenggalanganDanaBeasiswa.create!(
@@ -120,13 +120,13 @@ BantuanDanaBeasiswa.create!(
   [
     {
       bantuan_dana_beasiswa_id: 1,
-      mahasiswa_id: "MHS001",
+      mahasiswa_id: "231511001",
       penggalangan_dana_beasiswa_id: 1,
       alasan_butuh_bantuan: "Kesulitan finansial karena orang tua terkena PHK",
       golongan_ukt: 3,
-      kuitansi_pembayaran_ukt: "kuitansi_ukt_mhs001.pdf",
+      kuitansi_pembayaran_ukt: "kuitansi_ukt_231511001.pdf",
       gaji_orang_tua: 2500000,
-      bukti_slip_gaji_orang_tua: "slip_gaji_ayah_mhs001.pdf",
+      bukti_slip_gaji_orang_tua: "slip_gaji_ayah_231511001.pdf",
       esai: "Saya sangat membutuhkan bantuan ini untuk melanjutkan kuliah.",
       jumlah_tanggungan_keluarga: 4,
       biaya_transportasi: "500000",
@@ -136,7 +136,7 @@ BantuanDanaBeasiswa.create!(
       total_pengeluaran_keluarga: 4500000,
       penilaian_esai: 85,
       nominal_penyaluran: { tahap_1: 1000000, tahap_2: 1000000 },
-      dokumen_kehadiran_perkuliahan: "kehadiran_mhs001.pdf",
+      dokumen_kehadiran_perkuliahan: "kehadiran_231511001.pdf",
       status_pengajuan: 1,
       status_penyaluran: { tahap_1: "disalurkan", tahap_2: "belum" },
       status_kehadiran_perkuliahan: 1
@@ -148,7 +148,7 @@ BantuanDanaBeasiswa.create!(
 
 BantuanDanaNonBeasiswa.create!(
   bantuan_dana_non_beasiswa_id: 1,
-  penanggung_jawab_non_beasiswa_id: "DSN002",
+  penanggung_jawab_non_beasiswa_id: "992314002",
   judul_galang_dana: "Bantuan Darurat untuk Mahasiswa",
   waktu_galang_dana: Date.new(2025, 5, 10),
   deskripsi_galang_dana: "Dana ini akan digunakan untuk membantu mahasiswa dalam kondisi darurat.",
@@ -196,8 +196,8 @@ Donasi.create!(
 )
 
 PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.create!(
-  penanggung_jawab_non_beasiswa_id: "DSN002",
-  penerima_non_beasiswa_id: "MHS002"
+  penanggung_jawab_non_beasiswa_id: "992314002",
+  penerima_non_beasiswa_id: "231511002"
 )
 
 RekeningBank.create!(
@@ -205,7 +205,7 @@ RekeningBank.create!(
   nama_bank: "BRI",
   nama_pemilik_rekening: "Bagyo Sutoyo",
   penanggung_jawab_id: 1,
-  mahasiswa_id: "MHS002",
-  penerima_non_beasiswa_id: "MHS002",
+  mahasiswa_id: "231511002",
+  penerima_non_beasiswa_id: "231511002",
   donatur_id: "081234567890"
 )

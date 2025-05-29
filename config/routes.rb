@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get '/getAllCivitasAkademika' => "civitas_akademika#getAllCivitasAkademika"
       post '/search' => "civitas_akademika#search"
       get '/autocomplete' => "civitas_akademika#universal_autocomplete"
+      get '/getcivitas' => "civitas_akademika#getcivitas"
     end
 
     resource :rekapitulasi do
