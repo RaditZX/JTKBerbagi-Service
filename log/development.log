@@ -15462,6 +15462,107 @@ FOREIGN KEY (`penerima_non_beasiswa_id`)
   [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
   [1m[35m (2.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20231101160721)[0m
   [1m[35m (4.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+=======
+  [1m[35m (9.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (117.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS `jtk_berbagi`[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE DATABASE `jtk_berbagi` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE DATABASE `jtk_berbagi_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `bantuandanabeasiswa` CASCADE[0m
+  [1m[35m (31.1ms)[0m  [1m[35mCREATE TABLE `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id` int NOT NULL, `alasan_butuh_bantuan` varchar(500) NOT NULL, `golongan_ukt` int NOT NULL, `kuitansi_pembayaran_ukt` varchar(500) NOT NULL, `gaji_orang_tua` int NOT NULL, `bukti_slip_gaji_orang_tua` varchar(500) NOT NULL, `esai` varchar(500) NOT NULL, `jumlah_tanggungan_keluarga` int NOT NULL, `biaya_transportasi` varchar(500) NOT NULL, `biaya_internet` varchar(500) NOT NULL, `biaya_kos` varchar(500), `biaya_konsumsi` varchar(500) NOT NULL, `total_pengeluaran_keluarga` int NOT NULL, `penilaian_esai` int, `nominal_penyaluran` json, `dokumen_kehadiran_perkuliahan` varchar(500), `status_pengajuan` int NOT NULL, `status_penyaluran` json, `status_kehadiran_perkuliahan` int, `mahasiswa_id` varchar(500) NOT NULL, `penggalangan_dana_beasiswa_id` int NOT NULL, PRIMARY KEY (`bantuan_dana_beasiswa_id`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`), UNIQUE INDEX `bantuan_dana_beasiswa_id_UNIQUE` (`bantuan_dana_beasiswa_id`), INDEX `fk_BantuanDanaBeasiswa_Mahasiswa1_idx` (`mahasiswa_id`), INDEX `fk_BantuanDanaBeasiswa_PenggalanganDanaBeasiswa1_idx` (`penggalangan_dana_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.9ms)[0m  [1m[35mDROP TABLE IF EXISTS `bantuandananonbeasiswa` CASCADE[0m
+  [1m[35m (24.5ms)[0m  [1m[35mCREATE TABLE `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id` int NOT NULL, `judul_galang_dana` varchar(500) NOT NULL, `waktu_galang_dana` date NOT NULL, `deskripsi_galang_dana` varchar(500) NOT NULL, `dana_yang_dibutuhkan` int NOT NULL, `bukti_butuh_bantuan` varchar(500) NOT NULL, `kategori` varchar(500) NOT NULL, `total_nominal_terkumpul` int, `status_pengajuan` int NOT NULL, `status_penyaluran` int, `penanggung_jawab_non_beasiswa_id` varchar(500) NOT NULL, PRIMARY KEY (`bantuan_dana_non_beasiswa_id`, `penanggung_jawab_non_beasiswa_id`), UNIQUE INDEX `bantuan_dana_non_beasiswa_id_UNIQUE` (`bantuan_dana_non_beasiswa_id`), INDEX `fk_BantuanDanaNonBeasiswa_PenanggungJawabNonBeasiswa1_idx` (`penanggung_jawab_non_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `civitasakademika` CASCADE[0m
+  [1m[35m (20.0ms)[0m  [1m[35mCREATE TABLE `civitasakademika` (`nomor_induk` varchar(500) NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, UNIQUE INDEX `nomor_induk_UNIQUE` (`nomor_induk`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `dokumensertifikat` CASCADE[0m
+  [1m[35m (23.3ms)[0m  [1m[35mCREATE TABLE `dokumensertifikat` (`jenis` int NOT NULL, `donatur_id` varchar(500) NOT NULL, PRIMARY KEY (`jenis`, `donatur_id`), INDEX `fk_DokumenSertifikat _Donatur1_idx` (`donatur_id`), UNIQUE INDEX `jenis_UNIQUE` (`jenis`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.6ms)[0m  [1m[35mDROP TABLE IF EXISTS `donasi` CASCADE[0m
+  [1m[35m (31.6ms)[0m  [1m[35mCREATE TABLE `donasi` (`nomor_referensi` varchar(500) NOT NULL, `nominal_donasi` int NOT NULL, `struk_pembayaran` varchar(500), `waktu_berakhir` time NOT NULL, `tanggal_approve` date, `status` int NOT NULL, `bantuan_dana_non_beasiswa_id` int, `penggalangan_dana_beasiswa_id` int, `donatur_id` varchar(500) NOT NULL, `dokumen_sertifikat_id` int, PRIMARY KEY (`nomor_referensi`, `donatur_id`), INDEX `fk_Donasi_BantuanDanaNonBeasiswa1_idx` (`bantuan_dana_non_beasiswa_id`), INDEX `fk_Donasi_DokumenSertifikat1_idx` (`dokumen_sertifikat_id`), INDEX `fk_Donasi_Donatur1_idx` (`donatur_id`), UNIQUE INDEX `nomor_referensi_UNIQUE` (`nomor_referensi`), INDEX `fk_Donasi_PenggalanganDanaBeasiswa1_idx` (`penggalangan_dana_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `donatur` CASCADE[0m
+  [1m[35m (22.9ms)[0m  [1m[35mCREATE TABLE `donatur` (`nomor_telepon` varchar(500) NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, `password_digest` varchar(500), `status` tinyint NOT NULL, UNIQUE INDEX `nomor_telepon_UNIQUE` (`nomor_telepon`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `mahasiswa` CASCADE[0m
+  [1m[35m (21.3ms)[0m  [1m[35mCREATE TABLE `mahasiswa` (`nim` varchar(500) NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, `nomor_telepon` varchar(500) NOT NULL, UNIQUE INDEX `nim_UNIQUE` (`nim`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `penanggungjawab` CASCADE[0m
+  [1m[35m (21.2ms)[0m  [1m[35mCREATE TABLE `penanggungjawab` (`role` int NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, `username` varchar(500) NOT NULL, `password_digest` varchar(500) NOT NULL, `nomor_telepon` varchar(500) NOT NULL, UNIQUE INDEX `role_UNIQUE` (`role`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mDROP TABLE IF EXISTS `penanggungjawabnonbeasiswa` CASCADE[0m
+  [1m[35m (21.9ms)[0m  [1m[35mCREATE TABLE `penanggungjawabnonbeasiswa` (`nomor_induk` varchar(500) NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, `nomor_telepon` varchar(500) NOT NULL, UNIQUE INDEX `nomor_induk_UNIQUE` (`nomor_induk`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mDROP TABLE IF EXISTS `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` CASCADE[0m
+  [1m[35m (30.5ms)[0m  [1m[35mCREATE TABLE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` (`penanggung_jawab_non_beasiswa_id` varchar(500) NOT NULL, `penerima_non_beasiswa_id` varchar(500) NOT NULL, PRIMARY KEY (`penanggung_jawab_non_beasiswa_id`, `penerima_non_beasiswa_id`), INDEX `fk_PenanggungJawabNonBeasiswa_has_PenerimaNonBeasiswa_Penan_idx` (`penanggung_jawab_non_beasiswa_id`), INDEX `fk_PenanggungJawabNonBeasiswa_has_PenerimaNonBeasiswa_Pener_idx` (`penerima_non_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `penerimanonbeasiswa` CASCADE[0m
+  [1m[35m (35.6ms)[0m  [1m[35mCREATE TABLE `penerimanonbeasiswa` (`nomor_induk` varchar(500) NOT NULL PRIMARY KEY, `nama` varchar(500) NOT NULL, `nomor_telepon` varchar(500) NOT NULL, UNIQUE INDEX `nomor_induk_UNIQUE` (`nomor_induk`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (2.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `penggalangandanabeasiswa` CASCADE[0m
+  [1m[35m (27.4ms)[0m  [1m[35mCREATE TABLE `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id` int NOT NULL, `deskripsi` varchar(500) NOT NULL, `judul` varchar(500) NOT NULL, `waktu_dimulai` date NOT NULL, `waktu_berakhir` date NOT NULL, `kuota_beasiswa` int, `target_dana` int NOT NULL, `target_penerima` int NOT NULL, `total_nominal_terkumpul` int NOT NULL, `status` tinyint NOT NULL, `penanggung_jawab_id` int NOT NULL, PRIMARY KEY (`penggalangan_dana_beasiswa_id`, `penanggung_jawab_id`), INDEX `fk_PenggalanganDanaBeasiswa_PenanggungJawab1_idx` (`penanggung_jawab_id`), UNIQUE INDEX `penggalangan_dana_beasiswa_id_UNIQUE` (`penggalangan_dana_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS `rekeningbank` CASCADE[0m
+  [1m[35m (35.8ms)[0m  [1m[35mCREATE TABLE `rekeningbank` (`nomor_rekening` varchar(500) NOT NULL PRIMARY KEY, `nama_bank` varchar(500) NOT NULL, `nama_pemilik_rekening` varchar(500) NOT NULL, `penanggung_jawab_id` int, `mahasiswa_id` varchar(500), `penerima_non_beasiswa_id` varchar(500), `donatur_id` varchar(500), INDEX `fk_RekeningBank_Donatur1_idx` (`donatur_id`), INDEX `fk_RekeningBank_Mahasiswa1_idx` (`mahasiswa_id`), UNIQUE INDEX `nomor_rekening_UNIQUE` (`nomor_rekening`), INDEX `fk_RekeningBank_PenanggungJawab1_idx` (`penanggung_jawab_id`), INDEX `fk_RekeningBank_PenerimaNonBeasiswa1_idx` (`penerima_non_beasiswa_id`)) DEFAULT CHARSET=utf8mb3[0m
+  [1m[35m (58.3ms)[0m  [1m[35mALTER TABLE `bantuandanabeasiswa` ADD CONSTRAINT `fk_BantuanDanaBeasiswa_Mahasiswa1`
+FOREIGN KEY (`mahasiswa_id`)
+  REFERENCES `mahasiswa` (`nim`)
+[0m
+  [1m[35m (53.9ms)[0m  [1m[35mALTER TABLE `bantuandanabeasiswa` ADD CONSTRAINT `fk_BantuanDanaBeasiswa_PenggalanganDanaBeasiswa1`
+FOREIGN KEY (`penggalangan_dana_beasiswa_id`)
+  REFERENCES `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`)
+[0m
+  [1m[35m (86.8ms)[0m  [1m[35mALTER TABLE `bantuandananonbeasiswa` ADD CONSTRAINT `fk_BantuanDanaNonBeasiswa_PenanggungJawabNonBeasiswa1`
+FOREIGN KEY (`penanggung_jawab_non_beasiswa_id`)
+  REFERENCES `penanggungjawabnonbeasiswa` (`nomor_induk`)
+[0m
+  [1m[35m (70.1ms)[0m  [1m[35mALTER TABLE `dokumensertifikat` ADD CONSTRAINT `fk_DokumenSertifikat_Donatur1`
+FOREIGN KEY (`donatur_id`)
+  REFERENCES `donatur` (`nomor_telepon`)
+[0m
+  [1m[35m (65.4ms)[0m  [1m[35mALTER TABLE `donasi` ADD CONSTRAINT `fk_Donasi_BantuanDanaNonBeasiswa1`
+FOREIGN KEY (`bantuan_dana_non_beasiswa_id`)
+  REFERENCES `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`)
+[0m
+  [1m[35m (55.2ms)[0m  [1m[35mALTER TABLE `donasi` ADD CONSTRAINT `fk_Donasi_DokumenSertifikat1`
+FOREIGN KEY (`dokumen_sertifikat_id`)
+  REFERENCES `dokumensertifikat` (`jenis`)
+[0m
+  [1m[35m (74.1ms)[0m  [1m[35mALTER TABLE `donasi` ADD CONSTRAINT `fk_Donasi_Donatur1`
+FOREIGN KEY (`donatur_id`)
+  REFERENCES `donatur` (`nomor_telepon`)
+[0m
+  [1m[35m (96.9ms)[0m  [1m[35mALTER TABLE `donasi` ADD CONSTRAINT `fk_Donasi_PenggalanganDanaBeasiswa1`
+FOREIGN KEY (`penggalangan_dana_beasiswa_id`)
+  REFERENCES `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`)
+[0m
+  [1m[35m (47.6ms)[0m  [1m[35mALTER TABLE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` ADD CONSTRAINT `fk_PenanggungJawabNonBeasiswa_has_PenerimaNonBeasiswa_Penangg1`
+FOREIGN KEY (`penanggung_jawab_non_beasiswa_id`)
+  REFERENCES `penanggungjawabnonbeasiswa` (`nomor_induk`)
+[0m
+  [1m[35m (49.5ms)[0m  [1m[35mALTER TABLE `penanggungjawabnonbeasiswa_has_penerimanonbeasiswa` ADD CONSTRAINT `fk_PenanggungJawabNonBeasiswa_has_PenerimaNonBeasiswa_Penerim1`
+FOREIGN KEY (`penerima_non_beasiswa_id`)
+  REFERENCES `penerimanonbeasiswa` (`nomor_induk`)
+[0m
+  [1m[35m (49.9ms)[0m  [1m[35mALTER TABLE `penggalangandanabeasiswa` ADD CONSTRAINT `fk_PenggalanganDanaBeasiswa_PenanggungJawab1`
+FOREIGN KEY (`penanggung_jawab_id`)
+  REFERENCES `penanggungjawab` (`role`)
+[0m
+  [1m[35m (122.4ms)[0m  [1m[35mALTER TABLE `rekeningbank` ADD CONSTRAINT `fk_RekeningBank_Donatur1`
+FOREIGN KEY (`donatur_id`)
+  REFERENCES `donatur` (`nomor_telepon`)
+[0m
+  [1m[35m (85.2ms)[0m  [1m[35mALTER TABLE `rekeningbank` ADD CONSTRAINT `fk_RekeningBank_Mahasiswa1`
+FOREIGN KEY (`mahasiswa_id`)
+  REFERENCES `mahasiswa` (`nim`)
+[0m
+  [1m[35m (75.1ms)[0m  [1m[35mALTER TABLE `rekeningbank` ADD CONSTRAINT `fk_RekeningBank_PenanggungJawab1`
+FOREIGN KEY (`penanggung_jawab_id`)
+  REFERENCES `penanggungjawab` (`role`)
+[0m
+  [1m[35m (122.1ms)[0m  [1m[35mALTER TABLE `rekeningbank` ADD CONSTRAINT `fk_RekeningBank_PenerimaNonBeasiswa1`
+FOREIGN KEY (`penerima_non_beasiswa_id`)
+  REFERENCES `penerimanonbeasiswa` (`nomor_induk`)
+[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20231101160721)[0m
+  [1m[35m (6.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+>>>>>>> NW/mod/notifikasiWhatsapp
 (20231003174726),
 (20231003175119),
 (20231003175304),
