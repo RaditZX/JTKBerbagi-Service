@@ -27,6 +27,7 @@ CivitasAkademika.create!([
   { nomor_induk: "231511040", nama: "Dhea Dria Spralia"},
   { nomor_induk: "231511041", nama: "Dhira Ramadini" },
   { nomor_induk: "231511042", nama: "Bagyo Sutoyo" },
+  { nomor_induk: "231511055", nama: "Muhammad Raihan Pratama" },
 ])
 
 # Seeder untuk Donatur
@@ -40,6 +41,7 @@ Mahasiswa.create!([
   { nim: "231511038", nama: "Daffa Al Ghifari", nomor_telepon: "089876543210" },
   { nim: "231511039", nama: "Daiva Raditya Pradipa", nomor_telepon: "088765432109" },
   { nim: "231511040", nama: "Dhea Dria Spralia", nomor_telepon: "089876545555" },
+  { nim: "231511055", nama: "Muhammad Raihan Pratama", nomor_telepon: "081281126668" },
 ])
 
 # Seeder untuk Penanggung Jawab
