@@ -39,3 +39,9 @@ yarn-debug.log*
 
 # Ignore client and server midtrans config
 /config/initializers/midtrans.rb
+
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

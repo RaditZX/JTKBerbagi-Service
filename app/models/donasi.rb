@@ -9,7 +9,6 @@ class Donasi < ApplicationRecord
 
   validate :minimal_nominal_donasi
 
-  # Midtrans-related statuses
   enum payment_status: {
     pending: 0,
     processing: 1,
@@ -41,22 +40,23 @@ class Donasi < ApplicationRecord
         }
       ]
     }
-
-    # buat snap token
     Midtrans.create_snap_token(payload)
   end
 
-  # validasi status pembayaran dari Midtrans
   def validate_payment_status(midtrans_status)
     case midtrans_status
     when 'pending'
       update(payment_status: :pending)
+      result = NotifikasiDonasiService.kirim_notifikasi(self)
+      Rails.logger.error("Notification failed for PENDING status: #{result[:error]}") unless result[:success]
     when 'settlement'
       update(
         payment_status: :success, 
         status: Enums::StatusDonasi::DONE,
         tanggal_approve: DateTime.now
       )
+      result = NotifikasiDonasiService.kirim_notifikasi(self)
+      Rails.logger.error("Notification failed for DONE status: #{result[:error]}") unless result[:success]
     when 'deny'
       update(payment_status: :failed)
     when 'expire'
@@ -64,10 +64,10 @@ class Donasi < ApplicationRecord
         payment_status: :expired, 
         status: Enums::StatusDonasi::EXPIRED
       )
+      result = NotifikasiDonasiService.kirim_notifikasi(self)
+      Rails.logger.error("Notification failed for EXPIRED status: #{result[:error]}") unless result[:success]
     end
   end
-
-  private
 
   def judul_donation
     if penggalangan_dana_beasiswa.present?
@@ -79,7 +79,8 @@ class Donasi < ApplicationRecord
     end
   end
 
-  #validasi minimal donasi
+  private
+
   def minimal_nominal_donasi
     if nominal_donasi.to_i < 10000
       errors.add(:nominal_donasi, "Mohon maaf, nominal donasi tidak boleh kurang dari Rp10.000!")
