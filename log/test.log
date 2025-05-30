@@ -213,3 +213,29 @@
   [1m[36mBantuanDanaBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Tidak mampu', 3, 'kuitansi123.pdf', 2500000, 'slip_gaji123.pdf', 'Saya butuh beasiswa untuk melanjutkan studi.', 4, '500000', '200000', '1000000', 3700000, 0, '12345678', 2)[0m
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
   [1m[36mTRANSACTION (11.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (6.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (6.0ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('PJ001', 'Romli', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (1.4ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `status_penyaluran`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-05-30', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 3, 1, 'PJ001')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (0.3ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('PJ001', 'Romli', '+6285872060952')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.2ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `status_penyaluran`, `penanggung_jawab_non_beasiswa_id`) VALUES (908, 'Bantuan Bencana Alam', '2025-05-30', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 3, 1, 'PJ001')[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[31mROLLBACK[0m
