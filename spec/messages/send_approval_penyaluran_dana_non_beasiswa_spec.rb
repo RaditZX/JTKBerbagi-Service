@@ -6,7 +6,7 @@ RSpec.describe SendApprovalPenyaluranDanaNonBeasiswa do
       PenanggungJawabNonBeasiswa.create!(
         nomor_induk: "PJ001",
         nama: "Romli",
-        nomor_telepon: "+6285872060952"
+        nomor_telepon: "+6288905126629"
       )
     end
 
@@ -26,13 +26,13 @@ RSpec.describe SendApprovalPenyaluranDanaNonBeasiswa do
     end
 
     it "mengirim notifikasi WhatsApp ke penanggung jawab jika penyaluran berhasil" do
-    #   sender = instance_double(TwilioWhatsappSender)
-    #   expect(TwilioWhatsappSender).to receive(:new).with(
-    #     to: penanggung_jawab.nomor_telepon,
-    #     body: a_string_including("Halo #{penanggung_jawab.nama}")
-    #   ).and_return(sender)
+      sender = instance_double(TwilioWhatsappSender)
+      expect(TwilioWhatsappSender).to receive(:new).with(
+        to: penanggung_jawab.nomor_telepon,
+        body: a_string_including("Halo #{penanggung_jawab.nama}")
+      ).and_return(sender)
 
-    #   expect(sender).to receive(:call)
+      expect(sender).to receive(:call)
 
       result = described_class.new(bantuan_dana: bantuan_dana).call
       expect(result[:success]).to eq(true)

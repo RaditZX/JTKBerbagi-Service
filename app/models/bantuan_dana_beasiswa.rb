@@ -17,9 +17,8 @@ class BantuanDanaBeasiswa < ApplicationRecord
   validates :biaya_internet, presence: true
   validates :total_pengeluaran_keluarga, presence: true
 
-  scope :pengajuan_baru, -> { where(status_pengajuan: Enums::StatusPengajuan::NEW)}
-  scope :pengajuan_approved, -> { where(status_pengajuan: Enums::StatusPengajuan::APPROVED)}
-  scope :pengajuan_done, -> { where(status_pengajuan: Enums::StatusPengajuan::DONE).where.not("JSON_CONTAINS(status_penyaluran, ?, '$')", [Enums::StatusPenyaluran::PENDING].to_json)}
-  scope :rekapitulasi, -> { where("status_pengajuan = #{Enums::StatusPengajuan::APPROVED} or status_pengajuan = #{Enums::StatusPengajuan::DONE} ")}
-
+  scope :pengajuan_baru, -> { where(status_pengajuan: Enums::StatusPengajuan::NEW) }
+  scope :pengajuan_approved, -> { where(status_pengajuan: Enums::StatusPengajuan::APPROVED) }
+  scope :pengajuan_done, -> { where(status_pengajuan: Enums::StatusPengajuan::DONE).where.not("JSON_CONTAINS(status_penyaluran, ?, '$')", [Enums::StatusPenyaluran::PENDING].to_json) }
+  scope :rekapitulasi, -> { where("status_pengajuan = #{Enums::StatusPengajuan::APPROVED} or status_pengajuan = #{Enums::StatusPengajuan::DONE} ") }
 end
