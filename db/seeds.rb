@@ -70,7 +70,7 @@ Mahasiswa.create!([
   { nim: "231511007", nama: "Ali Fikri", nomor_telepon: "085715367892" },
   { nim: "231511008", nama: "Maya Sari", nomor_telepon: "081234567899" },
   { nim: "231511009", nama: "Joko Prasetyo", nomor_telepon: "089998877665" },
-  { nim: "231511010", nama: "Fitriani Zahra", nomor_telepon: "082112345678" }
+  { nim: "231511010", nama: "Fitriani Zahra", nomor_telepon: "082112345678" },
   { nim: "231511038", nama: "Daffa Al Ghifari", nomor_telepon: "089876543210" },
   { nim: "231511039", nama: "Daiva Raditya Pradipa", nomor_telepon: "088765432109" },
   { nim: "231511040", nama: "Dhea Dria Spralia", nomor_telepon: "089876545555" },
@@ -96,7 +96,7 @@ Rails.logger.info "PenanggungJawab roles created: #{penanggung_jawab_roles}"
 Rails.logger.info "Seeding PenanggungJawabNonBeasiswa..."
 PenanggungJawabNonBeasiswa.create!([
   { nomor_induk: "992314001", nama: "Rina Marlina", nomor_telepon: "081998877665" },
-  { nomor_induk: "992314002", nama: "Bagyo Sutoyo", nomor_telepon: "082287654321" }
+  { nomor_induk: "992314002", nama: "Bagyo Sutoyo", nomor_telepon: "082287654321" },
   { nomor_induk: "231511041", nama: "Dhira Ramadini", nomor_telepon: "081998877664" },
   { nomor_induk: "231511055", nama: "Muhammad Raihan Pratama", nomor_telepon: "081281126668" }
 ])
@@ -310,7 +310,7 @@ Rails.logger.info "Seeding BantuanDanaNonBeasiswa..."
 bantuan_dana_non_beasiswa_records = BantuanDanaNonBeasiswa.create!([
   {
     bantuan_dana_non_beasiswa_id: 1,
-    penanggung_jawab_non_beasiswa_id: "231511042",
+    penanggung_jawab_non_beasiswa_id: "231511041",
     judul_galang_dana: "Bantuan Darurat untuk Mahasiswa",
     waktu_galang_dana: Date.new(2025, 5, 10),
     deskripsi_galang_dana: "Dana ini akan digunakan untuk membantu mahasiswa dalam kondisi darurat.",
@@ -349,7 +349,7 @@ bantuan_dana_non_beasiswa_records = BantuanDanaNonBeasiswa.create!([
   },
   {
     bantuan_dana_non_beasiswa_id: 4,
-    penanggung_jawab_non_beasiswa_id: "231511042",
+    penanggung_jawab_non_beasiswa_id: "231511055",
     judul_galang_dana: "Bantuan Bencana Mahasiswa",
     waktu_galang_dana: Date.new(2025, 8, 1),
     deskripsi_galang_dana: "Dana untuk membantu mahasiswa terdampak bencana alam.",
@@ -383,7 +383,7 @@ PenerimaNonBeasiswa.create!([
 PenggalanganDanaBeasiswa.create!(
   [
     {
-      penggalangan_dana_beasiswa_id: 1,
+      penggalangan_dana_beasiswa_id: 6,
       penanggung_jawab_id: 1,
       deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
       judul: "Beasiswa Peduli Pendidikan 2025",
@@ -396,7 +396,7 @@ PenggalanganDanaBeasiswa.create!(
       status: 1
     },
     {
-      penggalangan_dana_beasiswa_id: 2,
+      penggalangan_dana_beasiswa_id: 7,
       penanggung_jawab_id: 1,
       deskripsi: "Bantuan dana UKT untuk mahasiswa terdampak ekonomi",
       judul: "Beasiswa Peduli Pendidikan 2025",
@@ -414,7 +414,7 @@ PenggalanganDanaBeasiswa.create!(
 BantuanDanaBeasiswa.create!(
   [
     {
-      bantuan_dana_beasiswa_id: 1,
+      bantuan_dana_beasiswa_id: 6,
       mahasiswa_id: "231511001",
       penggalangan_dana_beasiswa_id: 1,
       alasan_butuh_bantuan: "Kesulitan finansial karena orang tua terkena PHK",
@@ -442,7 +442,7 @@ BantuanDanaBeasiswa.create!(
 )
 
 BantuanDanaNonBeasiswa.create!(
-  bantuan_dana_non_beasiswa_id: 1,
+  bantuan_dana_non_beasiswa_id: 6,
   penanggung_jawab_non_beasiswa_id: "992314002",
   judul_galang_dana: "Bantuan Darurat untuk Mahasiswa",
   waktu_galang_dana: Date.new(2025, 5, 10),
@@ -456,7 +456,7 @@ BantuanDanaNonBeasiswa.create!(
 )
 
 DokumenSertifikat.create!(
-  jenis: 1,
+  jenis: 6,
   donatur_id: "081234567890"
 )
 
@@ -473,7 +473,7 @@ Donasi.create!(
       bantuan_dana_non_beasiswa_id: 1,
       penggalangan_dana_beasiswa_id: 1,
       donatur_id: "081234567890",
-      dokumen_sertifikat_id: 1
+      dokumen_sertifikat_id: 6
     },
     {
       nomor_referensi: "REF1234562",
@@ -485,7 +485,7 @@ Donasi.create!(
       bantuan_dana_non_beasiswa_id: 1,
       penggalangan_dana_beasiswa_id: 1,
       donatur_id: "081234567890",
-      dokumen_sertifikat_id: 1
+      dokumen_sertifikat_id: 6
     },
   ]
 )
@@ -496,7 +496,7 @@ PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.create!(
 )
 
 RekeningBank.create!(
-  nomor_rekening: "1234567890123456",
+  nomor_rekening: "1234567890123499",
   nama_bank: "BRI",
   nama_pemilik_rekening: "Bagyo Sutoyo",
   penanggung_jawab_id: 1,
@@ -590,10 +590,10 @@ Donasi.create!([
 # Seeder untuk PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa (5 entries, composite primary key)
 Rails.logger.info "Seeding PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa..."
 PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.create!([
-  { penanggung_jawab_non_beasiswa_id: "231511042", penerima_non_beasiswa_id: "231511038" },
+  { penanggung_jawab_non_beasiswa_id: "231511041", penerima_non_beasiswa_id: "231511038" },
   { penanggung_jawab_non_beasiswa_id: "231511041", penerima_non_beasiswa_id: "231511039" },
   { penanggung_jawab_non_beasiswa_id: "231511055", penerima_non_beasiswa_id: "231511040" },
-  { penanggung_jawab_non_beasiswa_id: "231511042", penerima_non_beasiswa_id: "231511041" },
+  { penanggung_jawab_non_beasiswa_id: "231511055", penerima_non_beasiswa_id: "231511041" },
   { penanggung_jawab_non_beasiswa_id: "231511041", penerima_non_beasiswa_id: "231511055" }
 ])
 

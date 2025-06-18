@@ -78,50 +78,6 @@ def updateRekeningMahasiswa
     end
   end
 
-  private
-
-  def getAllCivitasAkademika
-    civitas_akademika = CivitasAkademika.all.to_a
-    if civitas_akademika.empty?
-      render json: {
-        response_code: Constants::ERROR_CODE_VALIDATION,
-        response_message: "Data Civitas Akademika tidak ditemukan!"
-      }, status: :unprocessable_entity
-    else
-      render json: {
-        response_code: Constants::RESPONSE_SUCCESS,
-        response_message: "Berhasil",
-        data: civitas_akademika
-      }, status: :ok
-    end
-  end
-
-  def search
-    civitas_akademika = CivitasAkademika.all
-    if civitas_akademika.empty?
-      render json: {
-        response_code: Constants::ERROR_CODE_VALIDATION,
-        response_message: "Data Civitas Akademika tidak ditemukan!"
-      }, status: :unprocessable_entity
-    else
-      searched_civitas_akademika = civitas_akademika.select do |data|
-        data.attributes.values.grep(/^#{Regexp.escape(params[:keyword] || '')}/i).any?
-      end
-      if searched_civitas_akademika.empty?
-        render json: {
-          response_code: Constants::ERROR_CODE_VALIDATION,
-          response_message: "Tidak ada Civitas Akademika yang ditemukan untuk kata kunci: #{params[:keyword]}!"
-        }, status: :unprocessable_entity
-      else
-        render json: {
-          response_code: Constants::RESPONSE_SUCCESS,
-          response_message: "Berhasil",
-          data: searched_civitas_akademika
-        }, status: :ok
-      end
-    end
-  end
-
   def universal_autocomplete
     keyword = params[:term]
     table = params[:table]&.downcase
@@ -208,6 +164,50 @@ def updateRekeningMahasiswa
   
   rescue StandardError => e
     render json: { error: "Terjadi kesalahan internal: #{e.message}" }, status: :internal_server_error
+  end
+
+  private
+
+  def getAllCivitasAkademika
+    civitas_akademika = CivitasAkademika.all.to_a
+    if civitas_akademika.empty?
+      render json: {
+        response_code: Constants::ERROR_CODE_VALIDATION,
+        response_message: "Data Civitas Akademika tidak ditemukan!"
+      }, status: :unprocessable_entity
+    else
+      render json: {
+        response_code: Constants::RESPONSE_SUCCESS,
+        response_message: "Berhasil",
+        data: civitas_akademika
+      }, status: :ok
+    end
+  end
+
+  def search
+    civitas_akademika = CivitasAkademika.all
+    if civitas_akademika.empty?
+      render json: {
+        response_code: Constants::ERROR_CODE_VALIDATION,
+        response_message: "Data Civitas Akademika tidak ditemukan!"
+      }, status: :unprocessable_entity
+    else
+      searched_civitas_akademika = civitas_akademika.select do |data|
+        data.attributes.values.grep(/^#{Regexp.escape(params[:keyword] || '')}/i).any?
+      end
+      if searched_civitas_akademika.empty?
+        render json: {
+          response_code: Constants::ERROR_CODE_VALIDATION,
+          response_message: "Tidak ada Civitas Akademika yang ditemukan untuk kata kunci: #{params[:keyword]}!"
+        }, status: :unprocessable_entity
+      else
+        render json: {
+          response_code: Constants::RESPONSE_SUCCESS,
+          response_message: "Berhasil",
+          data: searched_civitas_akademika
+        }, status: :ok
+      end
+    end
   end
 
   private
