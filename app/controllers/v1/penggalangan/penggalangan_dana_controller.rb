@@ -94,21 +94,16 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
       end
     end
 
-    puts "A"
     
     if is_penerima_non_beasiswa_on_going == 1
-      puts "B"
       return render_error_response("Penggalangan Dana Sedang Berlangsung!")
     end
-    if is_civitas_pengaju.present? && is_civitas_penerima.present?
-      puts "BB"
+    if !is_civitas_pengaju.present? && !is_civitas_penerima.present?
       return render_error_response("NIM/NIP Penanggung Jawab dan Penerima Tidak terdaftar di dalam sistem!")
     elsif params[:nomor_induk_penanggung_jawab] == params[:nomor_induk_penerima]
-      puts "BBB"
       return render_error_response("Penanggung Jawab harus berbeda!")
     end
 
-    puts "AA"
     
     penerima_non_beasiswa_registered = PenerimaNonBeasiswa.where(nomor_induk: params[:nomor_induk_penerima]).first
     penanggung_jawab_non_beasiswa_registered = PenanggungJawabNonBeasiswa.where(nomor_induk: params[:nomor_induk_penanggung_jawab]).first
@@ -132,20 +127,26 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
     else
       penanggung_jawab_non_beasiswa = penanggung_jawab_non_beasiswa_registered
     end
-    puts "AAAA"
     waktu_galang_dana = DateTime.parse(params[:waktu_galang_dana])
     if (waktu_galang_dana - DateTime.now).to_i + 1 < 1
       return render_error_response("Tanggal harus lebih dari hari sekarang!")
     end
     
-    puts "AAAAA"
-    penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered = PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.where(penanggung_jawab_non_beasiswa_id: params[:nomor_induk_penanggung_jawab]).first
-    penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered = PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.where(penerima_non_beasiswa_id: params[:nomor_induk_penerima]).first
+    penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered =
+      PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa
+        .where(penanggung_jawab_non_beasiswa_id: params[:nomor_induk_penanggung_jawab])
+        .order(:penanggung_jawab_non_beasiswa_id, :penerima_non_beasiswa_id)
+        .first
+
+    penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered = 
+      PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa
+        .where(penerima_non_beasiswa_id: params[:nomor_induk_penerima])
+        .order(:penerima_non_beasiswa_id, :penerima_non_beasiswa_id)
+        .first
     if !penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered.present? and penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered.present?
       if penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered.penanggung_jawab_non_beasiswa_id != params[:nomor_induk_penanggung_jawab]
         penerima_non_beasiswa.penanggung_jawab_non_beasiswa << penanggung_jawab_non_beasiswa
       end
-      puts "AAAAAA"
     elsif !penerimanonbeasiswa_has_penanggungjawabnonbeasiswa_registered.present? and penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered.present?
       if penanggungjawabnonbeasiswa_has_penerimanonbeasiswa_registered.penerima_non_beasiswa_id != params[:nomor_induk_penerima]
         penanggung_jawab_non_beasiswa.penerima_non_beasiswa << penerima_non_beasiswa
@@ -154,7 +155,6 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
       penanggung_jawab_non_beasiswa.penerima_non_beasiswa << penerima_non_beasiswa
     end
     
-    puts "AAAAAAA"
     rekening_bank_owned = RekeningBank.where(nomor_rekening: params[:nomor_rekening]).first
     rekening_bank_registered = RekeningBank.where(penerima_non_beasiswa_id: params[:nomor_induk_penerima]).first
     if rekening_bank_registered.present?
@@ -167,7 +167,6 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
         penerima_non_beasiswa: penerima_non_beasiswa
       })
     end
-    puts "AAAAAAAA"
     
     bantuan_dana_non_beasiswa = BantuanDanaNonBeasiswa.new(bantuan_dana_non_beasiswa_params)
     
@@ -179,7 +178,6 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
       penanggung_jawab_non_beasiswa: penanggung_jawab_non_beasiswa,
       status_pengajuan: Enums::StatusPengajuan::APPROVED
     })
-    puts "AAAAAAAA"
     
     if bantuan_dana_non_beasiswa.save && penerima_non_beasiswa.save && penanggung_jawab_non_beasiswa.save && rekening_bank.save
       render_success_response(Constants::RESPONSE_SUCCESS,{ penerima_non_beasiswa: penerima_non_beasiswa, penanggung_jawab_non_beasiswa: penanggung_jawab_non_beasiswa, rekening_bank: rekening_bank, bantuan_dana_non_beasiswa: bantuan_dana_non_beasiswa}, Constants::STATUS_CREATED)
@@ -191,7 +189,6 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
         bantuan_dana_non_beasiswa: bantuan_dana_non_beasiswa.errors.full_messages
       })
     end
-    puts "AAAAAAAAA"
   end
 
   def getPenggalanganDanaBeasiswa
