@@ -60,7 +60,6 @@ class V1::CivitasAkademikaController < ApplicationController
     keyword = params[:term]
     table = params[:table]&.downcase
     search_column = params[:column]
-    extra_columns = params[:extra_columns] || []
 
     if keyword.blank? || keyword.length < 2 || table.blank? || search_column.blank?
       render json: [], status: :ok
@@ -97,7 +96,7 @@ class V1::CivitasAkademikaController < ApplicationController
       return
     end
 
-    valid_extra_columns = extra_columns.select { |col| allowed_columns.include?(col) }
+    # valid_extra_columns = extra_columns.select { |col| allowed_columns.include?(col) }
 
     suggestions = model
                 .where("#{search_column} LIKE ?", "%#{keyword}%")
