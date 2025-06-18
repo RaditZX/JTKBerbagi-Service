@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2023_11_01_160721) do
   create_table "dokumensertifikat", primary_key: ["jenis", "donatur_id"], charset: "utf8mb3", force: :cascade do |t|
     t.integer "jenis", null: false
     t.string "donatur_id", limit: 500, null: false
-    t.index ["donatur_id"], name: "fk_DokumenSertifikat_Donatur1_idx"
+    t.index ["donatur_id"], name: "fk_DokumenSertifikat _Donatur1_idx"
     t.index ["jenis"], name: "jenis_UNIQUE", unique: true
   end
 
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2023_11_01_160721) do
     t.string "deskripsi", limit: 500, null: false
     t.string "judul", limit: 500, null: false
     t.date "waktu_dimulai", null: false
-    t.date "waktu_berakhir", null: false
+    t.datetime "waktu_berakhir", null: false
     t.integer "kuota_beasiswa"
     t.integer "target_dana", null: false
     t.integer "target_penerima", null: false

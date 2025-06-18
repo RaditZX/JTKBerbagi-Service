@@ -22,7 +22,7 @@ class V1::Penggalangan::PenggalanganDanaController < ApplicationController
     waktu_berakhir = next_month - 1
     penanggung_jawab = PenanggungJawab.penanggung_jawab_jtk_berbagi
     if status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::NULL
-      if date_now.day.to_i > 32
+      if date_now.day.to_i > 7
         return render_error_response("Gagal membuat penggalangan dana Beasiswa karena sudah minggu ke #{week_number} di Bulan #{date_now.strftime("%B")}!")
       else
         penggalangan_dana_beasiswa_new = PenggalanganDanaBeasiswa.new(

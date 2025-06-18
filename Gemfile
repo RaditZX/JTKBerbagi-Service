@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.4'
+ruby '3.1.7'
 
+group :test do
+  gem 'factory_bot_rails'
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.6'
 # Use mysql as the database for Active Record
@@ -69,4 +72,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'composite_primary_keys'
+
+# Midtrans
+gem 'httparty'
+gem 'veritrans'
+gem 'twilio-ruby'
 

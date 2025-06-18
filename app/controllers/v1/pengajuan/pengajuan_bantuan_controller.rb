@@ -123,6 +123,11 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     })
   
     if bantuan_dana_beasiswa.save && mahasiswa.save && rekening_bank.save
+      render_success_response(Constants::RESPONSE_SUCCESS, { mahasiswa: mahasiswa, bantuan_dana_beasiswa: bantuan_dana_beasiswa, rekening_bank: rekening_bank }, :created)
+      SendPengajuanBeasiswaNotification.new(
+        mahasiswa: mahasiswa,
+        bantuan_dana: bantuan_dana_beasiswa
+      ).call
       render_success_response(Constants::RESPONSE_SUCCESS, { mahasiswa: mahasiswa, bantuan_dana_beasiswa: bantuan_dana_beasiswa, rekening_bank: rekening_bank }, Constants::STATUS_CREATED)
     else
       render_error_response({ mahasiswa: mahasiswa.errors.full_messages, bantuan_dana_beasiswa: bantuan_dana_beasiswa.errors.full_messages, rekening_bank: rekening_bank.errors.full_messages })
@@ -369,7 +374,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     bantuan_dana_beasiswa.assign_attributes({penilaian_esai: penilaian_esai})
 
     if bantuan_dana_beasiswa.save
-      render_success_response(Constants::RESPONSE_SUCCESS, { bantuan_dana_beasiswa: bantuan_dana_beasiswa }, Constants::STATUS_CREATED)
+      render_success_response(Constants::RESPONSE_SUCCESS, { bantuan_dana_beasiswa: bantuan_dana_beasiswa }, :ok)
     else
       render_error_response(bantuan_dana_beasiswa.errors.full_messages)
     end
@@ -413,7 +418,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     })
 
     if bantuan_dana_beasiswa.save
-      render_success_response(Constants::RESPONSE_SUCCESS, bantuan_dana_beasiswa, Constants::STATUS_OK)
+      render_success_response(Constants::RESPONSE_SUCCESS, bantuan_dana_beasiswa, :ok)
     else
       render_error_response(bantuan_dana_beasiswa: bantuan_dana_beasiswa.errors.full_messages)
     end
@@ -469,36 +474,39 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
   end
 
   def getPengajuanBeasiswa(status_pengajuan)
-    durasi_pengajuan, error_message, status_penggalangan_dana_beasiswa = getDurasiPengajuanBeasiswa(return_json: false)
+    # Ambil informasi fase dari getDurasiPengajuanBeasiswa
+    _durasi_pengajuan, _info_message_from_durasi, calculated_phase = getDurasiPengajuanBeasiswa(return_json: false)
+
     penggalangan_dana_beasiswa_on_going = PenggalanganDanaBeasiswa.on_going
     array_of_bantuan_dana_beasiswa = []
+    local_fetch_error_message = nil
+
     if !penggalangan_dana_beasiswa_on_going.present?
-      error_message = "Tidak ada data Bantuan Dana Beasiswa!"
-    else 
+      local_fetch_error_message = "Tidak ada penggalangan dana beasiswa yang sedang berlangsung untuk mengambil data."
+    else
       penggalangan_dana_beasiswa_on_going.each do |data_penggalangan_dana|
-        bantuan_dana_beasiswa = data_penggalangan_dana.bantuan_dana_beasiswa
-        puts "cikan #{bantuan_dana_beasiswa}"
-        if bantuan_dana_beasiswa.present?
-          if (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD) and status_pengajuan == Enums::StatusPengajuan::NEW
-            puts "cikan"
-            bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
-              array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
-                mahasiswa: data_bantuan_dana_beasiswa.mahasiswa
+        bantuan_dana_beasiswa_records = data_penggalangan_dana.bantuan_dana_beasiswa
+
+        if bantuan_dana_beasiswa_records.present?
+          if (calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD || calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::SUBMITION_PERIOD) && status_pengajuan == Enums::StatusPengajuan::NEW
+            bantuan_dana_beasiswa_records.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana|
+              array_of_bantuan_dana_beasiswa << data_bantuan_dana.attributes.merge({
+                mahasiswa: data_bantuan_dana.mahasiswa
               })
             end
-          elsif (status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD or status_penggalangan_dana_beasiswa == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) and  status_pengajuan == Enums::StatusPengajuan::APPROVED
-            bantuan_dana_beasiswa.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana_beasiswa|
-              array_of_bantuan_dana_beasiswa << data_bantuan_dana_beasiswa.attributes.merge({
-                mahasiswa: data_bantuan_dana_beasiswa.mahasiswa,
-                rekening_bank: data_bantuan_dana_beasiswa.mahasiswa.rekening_bank
+          elsif (calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::DISTRIBUTION_PERIOD || calculated_phase == Enums::StatusPenggalanganDanaBeasiswa::APPROVAL_PERIOD) && status_pengajuan == Enums::StatusPengajuan::APPROVED
+            bantuan_dana_beasiswa_records.where(status_pengajuan: status_pengajuan).each do |data_bantuan_dana| 
+              array_of_bantuan_dana_beasiswa << data_bantuan_dana.attributes.merge({
+                mahasiswa: data_bantuan_dana.mahasiswa,
+                rekening_bank: data_bantuan_dana.mahasiswa.rekening_bank
               })
             end
-            puts "cikan"
           end
         end
       end
     end
-    return [error_message, array_of_bantuan_dana_beasiswa]
+
+    return [local_fetch_error_message, array_of_bantuan_dana_beasiswa]
   end
 
   def getPengajuanNonBeasiswa(status_pengajuan)
@@ -655,6 +663,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
       golongan_ukt: bantuan_dana_beasiswa_existing.golongan_ukt,
       kuitansi_pembayaran_ukt: bantuan_dana_beasiswa_existing.kuitansi_pembayaran_ukt,
       gaji_orang_tua: bantuan_dana_beasiswa_existing.gaji_orang_tua,
+      bukti_slip_gaji_orang_tua: bantuan_dana_beasiswa_existing.bukti_slip_gaji_orang_tua,
       esai: bantuan_dana_beasiswa_existing.esai,
       jumlah_tanggungan_keluarga: bantuan_dana_beasiswa_existing.jumlah_tanggungan_keluarga,
       biaya_transportasi: bantuan_dana_beasiswa_existing.jumlah_tanggungan_keluarga,

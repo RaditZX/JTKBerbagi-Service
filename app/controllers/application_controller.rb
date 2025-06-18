@@ -38,7 +38,6 @@ class ApplicationController < ActionController::API
   end
 
   def render_error_response(message)
-    Rails.logger.error("Validation Error: #{message}")
     render json: {
       response_code: Constants::ERROR_CODE_VALIDATION,
       response_message: message
