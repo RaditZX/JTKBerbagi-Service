@@ -12,13 +12,21 @@ class V1::RekapitulasiController < ApplicationController
       return render_error_response("Batch Rekapitulasi Beasiswa tidak dapat ditemukan!")
     end
     bantuan_dana_beasiswa = BantuanDanaBeasiswa.rekapitulasi.where(penggalangan_dana_beasiswa_id: params[:id])
+    puts bantuan_dana_beasiswa.inspect
     array_of_penerima_beasiswa = []
     bantuan_dana_beasiswa.each do |data|
-      array_of_penerima_beasiswa << data.attributes.merge({
-        mahasiswa: data.mahasiswa,
-        rekening_bank: data.mahasiswa.rekening_bank.first,
-      })
+    mahasiswa = Mahasiswa.where(nim: data.mahasiswa_id).first
+    rekening = data.mahasiswa&.rekening_bank&.first
+
+    array_of_penerima_beasiswa << {
+      mahasiswa: mahasiswa,
+      rekening_bank: rekening,
+      nominal_penyaluran: data.nominal_penyaluran,
+      status_penyaluran: data.status_penyaluran,
+      bantuan_dana_beasiswa_id: data.bantuan_dana_beasiswa_id,
+    }
     end
+ 
 
     list_month = getBulanRekapitulasiBeasiswa(penggalangan_dana_beasiswa.penggalangan_dana_beasiswa_id, return_json: false)
     
@@ -36,10 +44,10 @@ class V1::RekapitulasiController < ApplicationController
       new_rekapitulasi_dana = rekapitulasi_dana_by_month.except!(:month)   
     end
 
-    filtered_penerima_beasiswa = array_of_penerima_beasiswa.select do |item|
-      list_month.index(params[:month]) > 5  &&
-      item["status_penyaluran"][list_month.index(params[:month]) - 6].present?
-    end
+    # filtered_penerima_beasiswa = array_of_penerima_beasiswa.select do |item|
+    #   list_month.index(params[:month]) > 5  &&
+    #   item["status_penyaluran"][list_month.index(params[:month]) - 6].present?
+    # end
 
     rekapitulasi_donasi = getApprovedDonasiByPenggalanganDana(penggalangan_dana_beasiswa.penggalangan_dana_beasiswa_id, return_json:false)
     selected_rekapitulasi_donasi = rekapitulasi_donasi.select do |item|
@@ -48,39 +56,41 @@ class V1::RekapitulasiController < ApplicationController
 
     rekapitulasi_beasiswa = [
       batch: penggalangan_dana_beasiswa.penggalangan_dana_beasiswa_id, 
-      penerima_beasiswa: filtered_penerima_beasiswa, 
+      penerima_beasiswa: array_of_penerima_beasiswa, 
       rekapitulasi_dana: new_rekapitulasi_dana,
       rekapitulasi_donasi: selected_rekapitulasi_donasi
     ]
     render_success_response(Constants::RESPONSE_SUCCESS, rekapitulasi_beasiswa.first, Constants::STATUS_OK)
   end
 
+  
   def calculate_rekapitulasi(penggalangan_dana_beasiswa, params_month)
-    months = getBulanRekapitulasiBeasiswa(penggalangan_dana_beasiswa, return_json: false)
-    saldo_awal = 0
-    result = []
-  
-    months.each_with_index do |month, index|
-      total_pemasukan = getTotalPemasukan(penggalangan_dana_beasiswa, month)
-      total_pengeluaran = index > 5 ? getTotalPengeluaran(penggalangan_dana_beasiswa, index) : 0
-      saldo_akhir = saldo_awal + total_pemasukan - total_pengeluaran
-  
-      month_result = {
-        month: month,
-        saldo_awal: saldo_awal,
-        total_pemasukan: total_pemasukan,
-        total_pengeluaran: total_pengeluaran,
-        saldo_akhir: saldo_akhir
-      }
-  
-      result << month_result
-      saldo_awal = saldo_akhir
-  
-      break if month == params_month
-    end
-  
-    return result
+      months = getBulanRekapitulasiBeasiswa(penggalangan_dana_beasiswa, return_json: false)
+      saldo_awal = 0
+      result = []
+
+      months.each_with_index do |month, index|
+        total_pemasukan = getTotalPemasukan(penggalangan_dana_beasiswa, month)
+        total_pengeluaran = index > 5 ? getTotalPengeluaran(penggalangan_dana_beasiswa, index) : 0
+        saldo_akhir = saldo_awal + total_pemasukan - total_pengeluaran
+
+        month_result = {
+          month: month,
+          saldo_awal: saldo_awal,
+          total_pemasukan: total_pemasukan,
+          total_pengeluaran: total_pengeluaran,
+          saldo_akhir: saldo_akhir
+        }
+
+        result << month_result
+        saldo_awal = saldo_akhir
+
+        break if month == params_month
+      end
+
+      result
   end
+
 
   def getAllBatchRekapitulasiBeasiswa
     batch_beasiswa = PenggalanganDanaBeasiswa.all
@@ -123,7 +133,7 @@ class V1::RekapitulasiController < ApplicationController
       return render_error_response("Bulan Penyaluran tidak boleh kosong!")
     end
 
-    unless [1, 2, 3, 4, 5, 6].include?(params[:bulan_penyaluran])
+    unless [1, 2, 3, 4, 5, 6].include?(params[:bulan_penyaluran].to_i)
       return render_error_response("Bulan Penyaluran hanya dapat 1, 2, 3, 4, 5, 6")
     end
 
@@ -134,7 +144,6 @@ class V1::RekapitulasiController < ApplicationController
     list_bulan_rekap = getBulanRekapitulasiBeasiswa(bantuan_dana_beasiswa.penggalangan_dana_beasiswa_id, return_json:false)
     index_bulan = list_bulan_rekap.index(DateTime.now.strftime('%B'))
     puts params[:bulan_penyaluran] 
-    puts"khhjk" 
     puts index_bulan
     if params[:bulan_penyaluran] != index_bulan - 5
       return render_error_response("Bulan Penyaluran yang diinputkan berbeda dengan bulan sekarang!")

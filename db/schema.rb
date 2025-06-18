@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2023_11_01_160721) do
     t.string "deskripsi", limit: 500, null: false
     t.string "judul", limit: 500, null: false
     t.date "waktu_dimulai", null: false
-    t.date "waktu_berakhir", null: false
+    t.datetime "waktu_berakhir", null: false
     t.integer "kuota_beasiswa"
     t.integer "target_dana", null: false
     t.integer "target_penerima", null: false

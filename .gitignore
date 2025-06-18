@@ -28,6 +28,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/database.yml
+/config/database.yml:Zone.Identifier
 
 /public/packs
 /public/packs-test
@@ -36,3 +37,11 @@
 yarn-debug.log*
 .yarn-integrity
 
+# Ignore client and server midtrans config
+/config/initializers/midtrans.rb
+
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

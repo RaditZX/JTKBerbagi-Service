@@ -1,10 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.4'
-group :development, :test do
-  gem 'rspec-rails'
-end
+ruby '3.1.7'
 
 group :test do
   gem 'factory_bot_rails'
@@ -75,4 +72,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'composite_primary_keys'
+
+# Midtrans
+gem 'httparty'
+gem 'veritrans'
+gem 'twilio-ruby'
 

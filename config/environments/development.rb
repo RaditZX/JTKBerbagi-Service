@@ -74,5 +74,7 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-
+  # whitelist domain untuk development, production bisa dipisah
+  # config.hosts << "jtkberbagi.ppl.foolens.my.id"
+  config.hosts << "1b57-180-244-139-252.ngrok-free.app" # ngrok untuk dev/test
 end
