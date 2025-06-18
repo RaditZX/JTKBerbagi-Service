@@ -125,6 +125,8 @@ def updateRekeningMahasiswa
 
   def import_data(file)
     errors = []
+    records = []
+
     begin
       unless ActiveRecord::Base.connection.table_exists?('civitasakademika')
         errors << "Tabel database 'civitasakademika' tidak ada"
@@ -133,13 +135,15 @@ def updateRekeningMahasiswa
 
       xls = Roo::Excelx.new(file.path)
       Rails.logger.info "File Excel dimuat: #{xls.sheets}"
+
+      nomor_induk_dari_excel = []
+      row_data = []
       xls.each_row_streaming(offset: 1).with_index(2) do |row, row_index|
         nomor_induk = row[0]&.value&.to_s
         nama = row[1]&.value&.to_s
-        Rails.logger.info "Memproses baris #{row_index}: nomor_induk=#{nomor_induk}, nama=#{nama}"
 
         if nomor_induk.blank?
-          errors << "Baris #{row_index}: nnomor_induk kosong"
+          errors << "Baris #{row_index}: nomor_induk kosong"
           next
         end
         unless nomor_induk.match?(/\A\d+\z/)
@@ -151,15 +155,26 @@ def updateRekeningMahasiswa
           next
         end
 
-        begin
-          civitas = CivitasAkademika.find_or_initialize_by(nomor_induk: nomor_induk)
-          civitas.nama = nama
-          civitas.save!
-        rescue ActiveRecord::RecordInvalid => e
-          errors << "Baris #{row_index}: #{e.message}"
+        nomor_induk_dari_excel << nomor_induk
+        row_data << { nomor_induk: nomor_induk, nama: nama, row_index: row_index }
+      end
+
+      existing = CivitasAkademika.where(nomor_induk: nomor_induk_dari_excel).index_by(&:nomor_induk)
+
+      row_data.each do |data|
+        record = existing[data[:nomor_induk]] || CivitasAkademika.new(nomor_induk: data[:nomor_induk])
+        record.nama = data[:nama]
+
+        if record.valid?
+          records << record
+        else
+          errors << "Baris #{data[:row_index]}: #{record.errors.full_messages.join(', ')}"
         end
       end
-    rescue StandardError => e
+
+      CivitasAkademika.import records, on_duplicate_key_update: [:nama], validate: false if records.any?
+
+    rescue => e
       errors << "Gagal memproses file Excel: #{e.message}"
     end
     errors
