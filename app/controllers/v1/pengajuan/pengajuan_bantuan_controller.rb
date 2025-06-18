@@ -655,6 +655,7 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
       golongan_ukt: bantuan_dana_beasiswa_existing.golongan_ukt,
       kuitansi_pembayaran_ukt: bantuan_dana_beasiswa_existing.kuitansi_pembayaran_ukt,
       gaji_orang_tua: bantuan_dana_beasiswa_existing.gaji_orang_tua,
+      bukti_slip_gaji_orang_tua: bantuan_dana_beasiswa_existing.bukti_slip_gaji_orang_tua,
       esai: bantuan_dana_beasiswa_existing.esai,
       jumlah_tanggungan_keluarga: bantuan_dana_beasiswa_existing.jumlah_tanggungan_keluarga,
       biaya_transportasi: bantuan_dana_beasiswa_existing.jumlah_tanggungan_keluarga,
