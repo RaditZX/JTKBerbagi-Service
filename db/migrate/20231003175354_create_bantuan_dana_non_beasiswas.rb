@@ -1,6 +1,6 @@
 class CreateBantuanDanaNonBeasiswas < ActiveRecord::Migration[6.1]
   def change
-    create_table :BantuanDanaNonBeasiswa do |t|
+    create_table :bantuandananonbeasiswa do |t|
       t.integer :bantuan_dana_non_beasiswa_id, null: false
       t.string :judul_galang_dana, limit: 500, null: false
       t.date :waktu_galang_dana, null: false

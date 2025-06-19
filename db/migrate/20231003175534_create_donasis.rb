@@ -1,6 +1,6 @@
 class CreateDonasis < ActiveRecord::Migration[6.1]
   def change
-    create_table :Donasi, primary_key: ["nomor_referensi", "donatur_id"] do |t|
+    create_table :donasi, primary_key: ["nomor_referensi", "donatur_id"] do |t|
       t.string :nomor_referensi, null: false
       t.string :donatur_id, null: false
       t.integer :nominal_donasi, null: false

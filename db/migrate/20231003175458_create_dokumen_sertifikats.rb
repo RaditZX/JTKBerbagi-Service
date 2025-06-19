@@ -1,6 +1,6 @@
 class CreateDokumenSertifikats < ActiveRecord::Migration[6.1]
   def change
-    create_table :DokumenSertifikat, primary_key: ["jenis", "donatur_id"] do |t|
+    create_table :dokumensertifikat, primary_key: ["jenis", "donatur_id"] do |t|
       t.integer :jenis, null: false
       t.string :donatur_id, limit: 500, null: false
 

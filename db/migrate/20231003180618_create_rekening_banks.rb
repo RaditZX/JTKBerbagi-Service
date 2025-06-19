@@ -1,6 +1,6 @@
 class CreateRekeningBanks < ActiveRecord::Migration[6.0]
   def change
-    create_table :RekeningBank, id: false, options: "CHARSET=utf8mb3" do |t|
+    create_table :rekeningbank, id: false, options: "CHARSET=utf8mb3" do |t|
       t.string :nomor_rekening, limit: 500, null: false, primary_key: true
       t.string :nama_bank, limit: 500, null: false
       t.string :nama_pemilik_rekening, limit: 500, null: false

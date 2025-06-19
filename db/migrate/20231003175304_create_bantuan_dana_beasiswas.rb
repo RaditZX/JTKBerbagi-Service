@@ -1,6 +1,6 @@
 class CreateBantuanDanaBeasiswas < ActiveRecord::Migration[6.1]
   def change
-    create_table :BantuanDanaBeasiswa, id: false do |t|
+    create_table :bantuandanabeasiswa, id: false do |t|
       t.integer :bantuan_dana_beasiswa_id, null: false, primary_key: true 
       t.string  :alasan_butuh_bantuan, limit: 500, null: false
       t.integer :golongan_ukt, null: false
@@ -24,8 +24,8 @@ class CreateBantuanDanaBeasiswas < ActiveRecord::Migration[6.1]
       t.string :mahasiswa_id, null: false
       t.integer :penggalangan_dana_beasiswa_id, null: false
       
-      t.foreign_key :Mahasiswa, column: :mahasiswa_id, primary_key: :nim
-      t.foreign_key :PenggalanganDanaBeasiswa, column: :penggalangan_dana_beasiswa_id, primary_key: :penggalangan_dana_beasiswa_id
+      t.foreign_key :mahasiswa, column: :mahasiswa_id, primary_key: :nim
+      t.foreign_key :penggalangandanabeasiswa, column: :penggalangan_dana_beasiswa_id, primary_key: :penggalangan_dana_beasiswa_id
       
       t.timestamps
     end
