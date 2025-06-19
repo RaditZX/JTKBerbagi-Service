@@ -1,5 +1,6 @@
+
 class V1::CivitasAkademikaController < ApplicationController
-def importExcelCivitasAkademika
+def import_excel_civitas_akademika
   unless params[:file].present?
     return render json: {
       response_code: Constants::ERROR_CODE_VALIDATION,
@@ -77,9 +78,97 @@ def updateRekeningMahasiswa
     end
   end
 
+  def universal_autocomplete
+    keyword = params[:term]
+    table = params[:table]&.downcase
+    search_column = params[:column]
+
+    if keyword.blank? || keyword.length < 2 || table.blank? || search_column.blank?
+      render json: [], status: :ok
+      return
+    end
+
+    # Whitelist lengkap: nama tabel => { model: ModelClass, id_column: "nama_kolom_id", allowed_columns: ["nama", "telepon", ...] }
+    allowed_tables = {
+      "mahasiswa" => {
+        model: Mahasiswa,
+        id_column: "nim",
+        allowed_columns: ["nim", "nama", "nomor_telepon"]
+      },
+      "civitas_akademika" => {
+        model: CivitasAkademika,
+        id_column: "nomor_induk",
+        allowed_columns: ["nomor_induk", "nama"]
+      },
+      # Tambahkan tabel lain di sini
+    }
+
+    config = allowed_tables[table]
+    unless config
+      render json: { error: "Tabel tidak dikenali" }, status: :unprocessable_entity
+      return
+    end
+
+    model = config[:model]
+    id_column = config[:id_column]
+    allowed_columns = config[:allowed_columns]
+
+    unless allowed_columns.include?(search_column)
+      render json: { error: "Kolom tidak diizinkan" }, status: :unprocessable_entity
+      return
+    end
+
+    # valid_extra_columns = extra_columns.select { |col| allowed_columns.include?(col) }
+
+    suggestions = model
+                .where("#{search_column} LIKE ?", "%#{keyword}%")
+                .limit(10)
+
+    results = suggestions.map(&:attributes)
+
+    render json: results, status: :ok
+  rescue => e
+    Rails.logger.error "Universal Autocomplete error: #{e.message}"
+    render json: { error: "Terjadi kesalahan saat memproses permintaan autocomplete" }, status: :internal_server_error
+  end
+
+  def get_civitas
+    keyword = params[:keyword].to_s.strip
+    type = params[:type].to_s.strip
+
+    # 1. Validasi Input yang Lebih Baik
+    unless ['nomor_induk', 'nama'].include?(type)
+      render json: { error: "Tipe pencarian tidak valid. Gunakan 'nomor_induk' atau 'nama'." }, status: :bad_request
+      return
+    end
+
+    if keyword.length < 2
+      render json: { error: "Keyword pencarian harus memiliki minimal 2 karakter." }, status: :bad_request
+      return
+    end
+
+    # 2. Query yang Aman dan Fleksibel
+    #    Menggunakan array untuk keamanan dari SQL Injection
+    if type == 'nomor_induk'
+      # Untuk nomor_induk, cari kecocokan persis
+      results = CivitasAkademika.where(nomor_induk: keyword)
+    else # type == 'nama'
+      # Untuk nama, cari kecocokan sebagian (case-insensitive)
+      # Ini akan menemukan keyword di mana saja dalam nama
+      sanitized_keyword = ActiveRecord::Base.sanitize_sql_like(keyword)
+      results = CivitasAkademika.where("nama ILIKE ?", "%#{sanitized_keyword}%")
+    end
+
+    # 3. Pilih kolom yang diinginkan dan render semua hasil (bukan hanya .first)
+    render json: results.select(:nomor_induk, :nama), status: :ok
+  
+  rescue StandardError => e
+    render json: { error: "Terjadi kesalahan internal: #{e.message}" }, status: :internal_server_error
+  end
+
   private
 
-  def getAllCivitasAkademika
+  def get_all_civitas_akademika
     civitas_akademika = CivitasAkademika.all.to_a
     if civitas_akademika.empty?
       render json: {
@@ -125,6 +214,8 @@ def updateRekeningMahasiswa
 
   def import_data(file)
     errors = []
+    records = []
+
     begin
       unless ActiveRecord::Base.connection.table_exists?('civitasakademika')
         errors << "Tabel database 'civitasakademika' tidak ada"
@@ -133,13 +224,15 @@ def updateRekeningMahasiswa
 
       xls = Roo::Excelx.new(file.path)
       Rails.logger.info "File Excel dimuat: #{xls.sheets}"
+
+      nomor_induk_dari_excel = []
+      row_data = []
       xls.each_row_streaming(offset: 1).with_index(2) do |row, row_index|
         nomor_induk = row[0]&.value&.to_s
         nama = row[1]&.value&.to_s
-        Rails.logger.info "Memproses baris #{row_index}: nomor_induk=#{nomor_induk}, nama=#{nama}"
 
         if nomor_induk.blank?
-          errors << "Baris #{row_index}: nnomor_induk kosong"
+          errors << "Baris #{row_index}: nomor_induk kosong"
           next
         end
         unless nomor_induk.match?(/\A\d+\z/)
@@ -151,15 +244,26 @@ def updateRekeningMahasiswa
           next
         end
 
-        begin
-          civitas = CivitasAkademika.find_or_initialize_by(nomor_induk: nomor_induk)
-          civitas.nama = nama
-          civitas.save!
-        rescue ActiveRecord::RecordInvalid => e
-          errors << "Baris #{row_index}: #{e.message}"
+        nomor_induk_dari_excel << nomor_induk
+        row_data << { nomor_induk: nomor_induk, nama: nama, row_index: row_index }
+      end
+
+      existing = CivitasAkademika.where(nomor_induk: nomor_induk_dari_excel).index_by(&:nomor_induk)
+
+      row_data.each do |data|
+        record = existing[data[:nomor_induk]] || CivitasAkademika.new(nomor_induk: data[:nomor_induk])
+        record.nama = data[:nama]
+
+        if record.valid?
+          records << record
+        else
+          errors << "Baris #{data[:row_index]}: #{record.errors.full_messages.join(', ')}"
         end
       end
-    rescue StandardError => e
+
+      CivitasAkademika.import records, on_duplicate_key_update: [:nama], validate: false if records.any?
+
+    rescue => e
       errors << "Gagal memproses file Excel: #{e.message}"
     end
     errors
