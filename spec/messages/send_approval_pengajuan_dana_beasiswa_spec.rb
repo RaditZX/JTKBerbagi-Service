@@ -19,7 +19,7 @@ RSpec.describe SendApprovalPengajuanDanaBeasiswa do
         role: Enums::RolePenanggungJawab::JTK_BERBAGI,
         username: "andi_jtk",
         password: "password123",
-        nomor_telepon: "+6281234567890"
+        nomor_telepon: "+6288905126629"
       )
     end
 
@@ -78,6 +78,22 @@ RSpec.describe SendApprovalPengajuanDanaBeasiswa do
       end
 
       expect(result[:success]).to eq(true)
+    end
+
+    it "mengirim notifikasi WhatsApp ke mahasiswa jika pengajuan ditolak" do
+    # Update status menjadi REJECTED
+    bantuan_dana_beasiswa.update(status_pengajuan: Enums::StatusPengajuan::REJECTED)
+    
+    sender = instance_double(TwilioWhatsappSender)
+    expect(TwilioWhatsappSender).to receive(:new).with(
+        to: mahasiswa.nomor_telepon,
+        body: a_string_including("Halo #{mahasiswa.nama}") & a_string_including("Ditolak")
+    ).and_return(sender)
+
+    expect(sender).to receive(:call).and_return({ success: true })
+
+    result = described_class.new(bantuan_dana_beasiswa: bantuan_dana_beasiswa).call
+    expect(result[:success]).to eq(true)
     end
 
     it "tidak mengirim notifikasi jika pengajuan belum diproses" do

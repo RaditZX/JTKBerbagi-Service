@@ -42,18 +42,35 @@ RSpec.describe SendApprovalPengajuanDanaNonBeasiswa do
     end
 
     it "mengirim notifikasi WhatsApp ke penanggung jawab jika pengajuan ditolak" do
-      bantuan_dana_non_beasiswa.update(status_pengajuan: Enums::StatusPengajuan::DONE)
-      sender = instance_double(TwilioWhatsappSender)
-      expect(TwilioWhatsappSender).to receive(:new).with(
+    # PERBAIKAN: Gunakan REJECTED bukan DONE
+    bantuan_dana_non_beasiswa.update(status_pengajuan: Enums::StatusPengajuan::REJECTED)
+    
+    sender = instance_double(TwilioWhatsappSender)
+    expect(TwilioWhatsappSender).to receive(:new).with(
         to: penanggung_jawab.nomor_telepon,
         body: a_string_including("Halo #{penanggung_jawab.nama}") & a_string_including("Ditolak")
-      ).and_return(sender)
+    ).and_return(sender)
 
-      expect(sender).to receive(:call).and_return({ success: true })
+    expect(sender).to receive(:call).and_return({ success: true })
 
-      result = described_class.new(bantuan_dana_non_beasiswa: bantuan_dana_non_beasiswa).call
-      expect(result[:success]).to eq(true)
+    result = described_class.new(bantuan_dana_non_beasiswa: bantuan_dana_non_beasiswa).call
+    expect(result[:success]).to eq(true)
     end
+
+    it "mengirim notifikasi WhatsApp ke penanggung jawab jika pengajuan selesai" do
+  bantuan_dana_non_beasiswa.update(status_pengajuan: Enums::StatusPengajuan::DONE)
+  
+  sender = instance_double(TwilioWhatsappSender)
+  expect(TwilioWhatsappSender).to receive(:new).with(
+    to: penanggung_jawab.nomor_telepon,
+    body: a_string_including("Halo #{penanggung_jawab.nama}") & a_string_including("Selesai")
+  ).and_return(sender)
+
+  expect(sender).to receive(:call).and_return({ success: true })
+
+  result = described_class.new(bantuan_dana_non_beasiswa: bantuan_dana_non_beasiswa).call
+  expect(result[:success]).to eq(true)
+end
 
     it "tidak mengirim notifikasi jika pengajuan belum diproses" do
       bantuan_dana_non_beasiswa.update(status_pengajuan: Enums::StatusPengajuan::NEW)

@@ -8,7 +8,22 @@ class SendApprovalPengajuanDanaNonBeasiswa
     return { success: false, error: "Bantuan dana non-beasiswa tidak ditemukan" } if @bantuan_dana_non_beasiswa.nil?
     return { success: false, error: "Penanggung jawab tidak ditemukan" } if @penanggung_jawab.nil?
 
-    return { success: false, error: "Proses seleksi belum selesai" } unless @bantuan_dana_non_beasiswa.status_pengajuan.in?([Enums::StatusPengajuan::APPROVED, Enums::StatusPengajuan::DONE])
+    # PERBAIKAN 1: Tambahkan REJECTED ke dalam kondisi pengecek
+    unless @bantuan_dana_non_beasiswa.status_pengajuan.in?([
+      Enums::StatusPengajuan::APPROVED, 
+      Enums::StatusPengajuan::REJECTED,  # ← TAMBAHAN INI
+      Enums::StatusPengajuan::DONE
+    ])
+      return { success: false, error: "Proses seleksi belum selesai" }
+    end
+
+    # PERBAIKAN 2: Gunakan case statement untuk menentukan status text
+    status_text = case @bantuan_dana_non_beasiswa.status_pengajuan
+                  when Enums::StatusPengajuan::APPROVED then "Diterima"
+                  when Enums::StatusPengajuan::REJECTED then "Ditolak"
+                  when Enums::StatusPengajuan::DONE then "Selesai"
+                  else "Unknown"
+                  end
 
     message = <<~TEXT
       [Notifikasi Pengajuan Dana Non-Beasiswa]
@@ -19,7 +34,7 @@ class SendApprovalPengajuanDanaNonBeasiswa
       - Nama Pengaju: #{@penanggung_jawab.nama} (Penanggung Jawab)
       - Nomor Telepon: #{@penanggung_jawab.nomor_telepon}
       - Jenis Pengajuan: Non-Beasiswa
-      - Status Pengajuan: #{@bantuan_dana_non_beasiswa.status_pengajuan == Enums::StatusPengajuan::APPROVED ? "Diterima" : "Ditolak"}
+      - Status Pengajuan: #{status_text}
 
       Terima kasih atas peran Anda dalam program JTK Berbagi 🙏
     TEXT

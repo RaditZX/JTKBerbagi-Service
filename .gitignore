@@ -44,3 +44,9 @@ node_modules/
 # Ignore environment variables file.
 .env
 
+my-app/node_modules/
+my-app/.cache/
+tmp/
+tmp/cache/
+*.cache
+compiled/

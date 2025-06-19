@@ -18,7 +18,7 @@ ActiveRecord::Base.transaction do
       role: Enums::RolePenanggungJawab::JTK_BERBAGI,
       username: "andi_jtk",
       password: "password123",
-      nomor_telepon: "+6281234567890"
+      nomor_telepon: "+6288905126629"
     )
 
     # Bikin PenggalanganDanaBeasiswa
@@ -51,14 +51,14 @@ ActiveRecord::Base.transaction do
       biaya_konsumsi: 300_000,
       biaya_internet: 100_000,
       total_pengeluaran_keluarga: 1_000_000,
-      status_pengajuan: Enums::StatusPengajuan::APPROVED
+      status_pengajuan: Enums::StatusPengajuan::REJECTED
     )
 
     # Kirim pesan
     result = SendApprovalPengajuanDanaBeasiswa.new(bantuan_dana_beasiswa: bantuan_dana_beasiswa).call
 
     if result[:success]
-      puts "Pesan berhasil dikirim ke +6281234567890 pada #{Time.now.strftime('%Y-%m-%d %H:%M:%S %Z')}!"
+      puts "Pesan berhasil dikirim ke +6288905126629 pada #{Time.now.strftime('%Y-%m-%d %H:%M:%S %Z')}!"
     else
       puts "Gagal mengirim pesan: #{result[:error]}"
     end
