@@ -8,12 +8,12 @@ class CreatePenggalanganDanaBeasiswas < ActiveRecord::Migration[6.1]
       t.date :waktu_berakhir
       t.integer :kuota_beasiswa
       t.bigint :target_dana
-      t.integer :target_jumlah_penerima
+      t.integer :target_penerima
       t.integer :total_nominal_terkumpul
       t.decimal :status
 
-      t.integer :penanggung_jawabs_role, null: false
-      t.foreign_key :penanggungjawab, column: :penanggung_jawabs_role, primary_key: :role
+      t.integer :penanggung_jawab_id, null: false
+      t.foreign_key :penanggungjawab, column: :penanggung_jawab_id, primary_key: :role
 
       t.timestamps
     end

@@ -28,6 +28,8 @@
       post "/selectPenyaluranBeasiswa" => "rekapitulasi#selectPenyaluranBeasiswa"
       post "/selectPenyaluranNonBeasiswa" => "rekapitulasi#selectPenyaluranNonBeasiswa"
       get "/getAllBatchRekapitulasiBeasiswa" => "rekapitulasi#getAllBatchRekapitulasiBeasiswa"
+      post "/evaluasipenyaluranbeasiswa" => "rekapitulasi#evaluasi_penyaluran_beasiswa" # POST endpoint
+      get "/evaluasipenyaluranbeasiswa" => "rekapitulasi#get_evaluasi_penyaluran_beasiswa" # GET endpoint
     end
 
 

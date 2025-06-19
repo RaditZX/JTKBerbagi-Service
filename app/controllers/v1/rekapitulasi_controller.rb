@@ -1,6 +1,74 @@
 class V1::RekapitulasiController < ApplicationController
   # before_action :
 
+  def evaluasi_penyaluran_beasiswa
+  begin
+    puts "Received params: #{params.inspect}"
+    if params[:mahasiswa_id].blank?
+      return render_error_response("mahasiswa_id tidak boleh kosong!")
+    end
+    if params[:bantuan_dana_beasiswa_id].blank?
+      return render_error_response("bantuan_dana_beasiswa_id tidak boleh kosong!")
+    end
+    if params[:alasan].blank?
+      return render_error_response("alasan tidak boleh kosong!")
+    end
+    if params[:dokumen_evaluasi].blank?
+      return render_error_response("dokumen_evaluasi tidak boleh kosong!")
+    end
+    if params[:tanggal_evaluasi].blank?
+      return render_error_response("tanggal_evaluasi tidak boleh kosong!")
+    end
+
+    mahasiswa = Mahasiswa.find_by(nim: params[:mahasiswa_id])
+    unless mahasiswa
+      return render_error_response("Mahasiswa dengan NIM tersebut tidak ditemukan!")
+    end
+
+    bantuan_dana = BantuanDanaBeasiswa.find_by(bantuan_dana_beasiswa_id: params[:bantuan_dana_beasiswa_id])
+    unless bantuan_dana
+      return render_error_response("Bantuan Dana Beasiswa tidak ditemukan!")
+    end
+
+    # Simpan file
+    file = params[:dokumen_evaluasi]
+    file_path = Rails.root.join('public', 'uploads', file.original_filename)
+    FileUtils.mkdir_p(File.dirname(file_path)) unless File.directory?(File.dirname(file_path))
+    File.open(file_path, 'wb') do |f|
+      f.write(file.read)
+    end
+
+    # Gunakan nilai default jika status_penyaluran tidak ada
+    status_penyaluran = ActiveRecord::Type::Boolean.new.cast(params[:status_penyaluran]) || false
+
+    evaluasi = EvaluasiPenyaluranBeasiswa.new(
+      evaluasi_penyaluran_beasiswa_id: SecureRandom.random_number(1000000),
+      mahasiswa_id: params[:mahasiswa_id],
+      bantuan_dana_beasiswa_id: params[:bantuan_dana_beasiswa_id],
+      alasan: params[:alasan],
+      dokumen_evaluasi: "/uploads/#{file.original_filename}",
+      tanggal_evaluasi: params[:tanggal_evaluasi],
+      status_penyaluran: status_penyaluran
+    )
+
+    if evaluasi.save
+      render_success_response(Constants::RESPONSE_SUCCESS, evaluasi, Constants::STATUS_OK)
+    else
+      render_error_response(evaluasi.errors.full_messages)
+    end
+  rescue StandardError => e
+    puts "Exception: #{e.message}"
+    render_error_response("Terjadi kesalahan internal: #{e.message}", :internal_server_error)
+  end
+end
+
+  def get_evaluasi_penyaluran_beasiswa
+    # Opsional: Tambahkan filter berdasarkan penggalangan_dana_beasiswa_id jika diperlukan
+    evaluasi_list = EvaluasiPenyaluran.all
+    render_success_response(Constants::RESPONSE_SUCCESS, evaluasi_list, Constants::STATUS_OK)
+  end
+
+
   def getRekapitulasiBeasiswa
     if params[:id].blank?
       return render_error_response("Id tidak boleh kosong!")

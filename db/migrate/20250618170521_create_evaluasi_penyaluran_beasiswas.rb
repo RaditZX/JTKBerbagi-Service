@@ -16,10 +16,10 @@ class CreateEvaluasiPenyaluranBeasiswas < ActiveRecord::Migration[6.1]
     execute "ALTER TABLE evaluasi_penyaluran_beasiswas ADD PRIMARY KEY (evaluasi_penyaluran_beasiswa_id);"
 
     # Tambahkan foreign key constraints setelah tabel dibuat
-    add_foreign_key :evaluasi_penyaluran_beasiswas, :mahasiswa, column: :mahasiswa_id, primary_key: :nim,
-                    name: "fk_evaluasi_penyaluran_beasiswas_mahasiswa"
     add_foreign_key :evaluasi_penyaluran_beasiswas, :bantuandanabeasiswa, column: :bantuan_dana_beasiswa_id,
                     primary_key: :bantuan_dana_beasiswa_id,
                     name: "fk_evaluasi_penyaluran_beasiswas_bantuan_dana_beasiswa"
+    add_foreign_key :evaluasi_penyaluran_beasiswas, :mahasiswa, column: :mahasiswa_id, primary_key: :nim,
+                    name: "fk_evaluasi_penyaluran_beasiswas_mahasiswa"
   end
 end

@@ -1,6 +1,6 @@
 class CreatePenanggungJawabNonBeasiswaHasPenerimaNonBeasiswas < ActiveRecord::Migration[6.1]
   def change
-    create_table :penanggungjawabnonbeasiswahaspenerimanonbeasiswa do |t|
+    create_table :penanggungjawabnonbeasiswa_has_penerimanonbeasiswa do |t|
       t.string :penanggung_jawab_non_beasiswa_id, limit: 500, null: false
       t.string :penerima_non_beasiswa_id, limit: 500, null: false
 

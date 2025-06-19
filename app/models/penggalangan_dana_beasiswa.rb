@@ -4,8 +4,7 @@ class PenggalanganDanaBeasiswa < ApplicationRecord
   
   has_many :bantuan_dana_beasiswa, class_name: "BantuanDanaBeasiswa"
   has_many :donasi, class_name: "Donasi"
-  belongs_to :penanggung_jawab, class_name: "PenanggungJawab"
-
+  belongs_to :penanggungjawab, class_name: "PenanggungJawab", foreign_key: 'penanggung_jawab_id', primary_key: 'role'
   validates :judul, presence: true
   validates :deskripsi, presence: true
   validates :target_dana, presence: true

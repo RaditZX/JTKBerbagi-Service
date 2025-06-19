@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2025_06_18_170521) do
     t.index ["nomor_induk"], name: "nomor_induk_UNIQUE", unique: true
   end
 
-  create_table "penanggungjawabnonbeasiswahaspenerimanonbeasiswa", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "penanggungjawabnonbeasiswa_has_penerimanonbeasiswa", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "penanggung_jawab_non_beasiswa_id", limit: 500, null: false
     t.string "penerima_non_beasiswa_id", limit: 500, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -157,13 +157,13 @@ ActiveRecord::Schema.define(version: 2025_06_18_170521) do
     t.date "waktu_berakhir"
     t.integer "kuota_beasiswa"
     t.bigint "target_dana"
-    t.integer "target_jumlah_penerima"
+    t.integer "target_penerima"
     t.integer "total_nominal_terkumpul"
     t.decimal "status", precision: 10
-    t.integer "penanggung_jawabs_role", null: false
+    t.integer "penanggung_jawab_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["penanggung_jawabs_role"], name: "fk_rails_2d8a541be5"
+    t.index ["penanggung_jawab_id"], name: "fk_rails_dd6061e26f"
   end
 
   create_table "rekeningbank", primary_key: "nomor_rekening", id: { type: :string, limit: 500 }, charset: "utf8mb3", force: :cascade do |t|
@@ -184,5 +184,5 @@ ActiveRecord::Schema.define(version: 2025_06_18_170521) do
   add_foreign_key "bantuandanabeasiswa", "penggalangandanabeasiswa", column: "penggalangan_dana_beasiswa_id", primary_key: "penggalangan_dana_beasiswa_id"
   add_foreign_key "evaluasi_penyaluran_beasiswas", "bantuandanabeasiswa", column: "bantuan_dana_beasiswa_id", primary_key: "bantuan_dana_beasiswa_id", name: "fk_evaluasi_penyaluran_beasiswas_bantuan_dana_beasiswa"
   add_foreign_key "evaluasi_penyaluran_beasiswas", "mahasiswa", primary_key: "nim", name: "fk_evaluasi_penyaluran_beasiswas_mahasiswa"
-  add_foreign_key "penggalangandanabeasiswa", "penanggungjawab", column: "penanggung_jawabs_role", primary_key: "role"
+  add_foreign_key "penggalangandanabeasiswa", "penanggungjawab", column: "penanggung_jawab_id", primary_key: "role"
 end
