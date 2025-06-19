@@ -4,7 +4,8 @@ class Mahasiswa < ApplicationRecord
   
   has_many :bantuan_dana_beasiswa, class_name: "BantuanDanaBeasiswa"
   has_many :rekening_bank, class_name: "RekeningBank"
-  has_many :evaluasi_penyaluran_beasiswas, foreign_key: :nim, primary_key: :nim
+  has_many :evaluasi_penyaluran_beasiswas, foreign_key: :mahasiswa_id, primary_key: :nim
+  
 
   validates :nim, presence: true
   validates :nama, presence: true
