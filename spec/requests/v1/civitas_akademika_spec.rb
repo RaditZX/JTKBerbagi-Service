@@ -89,7 +89,7 @@ RSpec.describe V1::CivitasAkademikaController, type: :request do
     end
   end
 
-  describe '#getAllCivitasAkademika (private method)' do
+  describe '#get_all_civitas_akademika (private method)' do
     let(:render_args) { [] }
 
     before do
@@ -98,7 +98,7 @@ RSpec.describe V1::CivitasAkademikaController, type: :request do
 
     context 'when no data exists' do
       it 'renders no data found message' do
-        controller_instance.send(:getAllCivitasAkademika)
+        controller_instance.send(:get_all_civitas_akademika)
         expect(render_args).to include(
           hash_including(
             json: {
@@ -118,7 +118,7 @@ RSpec.describe V1::CivitasAkademikaController, type: :request do
       end
 
       it 'renders success with data' do
-        controller_instance.send(:getAllCivitasAkademika)
+        controller_instance.send(:get_all_civitas_akademika)
         expect(render_args).to include(
           hash_including(
             json: {
