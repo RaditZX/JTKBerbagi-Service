@@ -10,6 +10,9 @@ class TwilioWhatsappSender
     puts "Kirim ke #{@to}" # Tambahkan log ke stdout
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
+
+    puts "TWILIO_ACCOUNT_SID: #{account_sid.inspect}" # Tambahkan log
+    puts "TWILIO_AUTH_TOKEN: #{auth_token.inspect}"
     
     @client = Twilio::REST::Client.new(account_sid, auth_token)
 

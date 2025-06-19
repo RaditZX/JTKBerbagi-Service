@@ -78,3 +78,7 @@ gem 'composite_primary_keys'
 
 gem 'twilio-ruby'
 
+group :development, :test do
+  gem 'dotenv-rails'
+end
+
