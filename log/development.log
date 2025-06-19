@@ -677,3 +677,175 @@ FOREIGN KEY (`penerima_non_beasiswa_id`)
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[36mRekeningBank Create (0.2ms)[0m  [1m[32mINSERT INTO `rekeningbank` (`nomor_rekening`, `nama_bank`, `nama_pemilik_rekening`, `penanggung_jawab_id`, `mahasiswa_id`, `penerima_non_beasiswa_id`, `donatur_id`) VALUES ('1234567890123456', 'BRI', 'Daiva Raditya Pradipa', 1, '231511039', '231511039', '081234567890')[0m
   [1m[36mTRANSACTION (6.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4048634500194662280', 0)[0m
+  [1m[35m (9.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('4048634500194662280')[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2025-06-18 22:26:52 +0700
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/alyag/.local/share/mise/installs/ruby/3.1.4/lib/ruby/gems/3.1.0/gems/railties-6.1.7.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/alyag/.local/share/mise/installs/ruby/3.1.4/lib/ruby/gems/3.1.0/gems/railties-6.1.7.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 55.7ms | Allocations: 582)
+Completed 200 OK in 165ms (Views: 102.0ms | ActiveRecord: 0.0ms | Allocations: 3105)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT GET_LOCK('4048634500194662280', 0)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('4048634500194662280')[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (2.5ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('PJ001', 'Romli', '+6288905126629')[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (3.2ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Create (1.0ms)[0m  [1m[32mINSERT INTO `penanggungjawabnonbeasiswa` (`nomor_induk`, `nama`, `nomor_telepon`) VALUES ('PJ001', 'Romli', '+6288905126629')[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.7ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (7906612, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.7ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (1.3ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.3ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.8ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mBantuanDanaNonBeasiswa Destroy (2.8ms)[0m  [1m[31mDELETE FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`bantuan_dana_non_beasiswa_id` = 0[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.7ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+  [1m[36mTRANSACTION (21.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.7ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (406, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.6ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.6ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (9.2ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6281234567890')[0m
+  [1m[36mPenanggungJawab Create (2.3ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$.d1DgMbm2xpXpVd0/u4HfeSAZNE05ZBUcWMV6./bsm8WeCtgHVvXC', '+6281234567890')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (2.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (23, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (3.5ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (11, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 23)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.9ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$XGsDfIf/dFvZddNvrzS.feVWE8DF7ukZyBUZCJSKIyyon7qxoL/ja', '+6281234567890')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (1.1ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (26189149, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 0)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$0e48Xs2BZoi2rGyylRqEnuDfVjVGrD9bGsYcsjGuW.ccUK7F5UBCi', '+6281234567890')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (834, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (42, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 834)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$d9Gbnbsm2E1OT0RlSd3CvelNcjfps9qWWXOUVF.kwamspF4/j3EmC', '+6281234567890')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (83326, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (1.0ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 83326)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$gEGAIOwklrIUaINcZvQMiuZc0xnkf/kfqPy5QJ1HAJhrpgKFhX4Gu', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (5, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 0)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$1dXHGhzIphi8TJjMbrbwouMWN2NZtgTGgjr6pENOKfuPWgUeflVDu', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (288, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 288)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$vTQasIJ6otmtQoLduF./auJ8ULlmeWkjZZX1HxpRxcw5.cjFkRE16', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (564, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (1097, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 564)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$rwxE1WKbiQV1ndH5d2UIZ.7p9R8975mXxEMliVmNcIVNTy0VbtzYK', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (1.5ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 0)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.8ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.9ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.5ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$3bnl6pJbUb.6pA8ZPD.84ehdXpPWp.7NXN4yn0c5ljloEKzJqfaf6', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (9, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 0)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$AeTIqKan5i7Y7YEzIfnsH.QmFDmL2OL8/oQZ3Bi8Az8Da1zM/tVaO', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (1.3ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (1, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+[Skrip] Error: Mysql2::Error: Duplicate entry '1' for key 'penggalangandanabeasiswa.penggalangan_dana_beasiswa_id_UNIQUE'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.6ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.9ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$ct6Pbwo9i0j8d8x7E9K6be8.qaMETBRHcZFI5exJ9l6S5WIkC6Csu', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 0)[0m
+[Twilio] Error: TWILIO_ACCOUNT_SID tidak diset di environment
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.7ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$OXKR6/M6J6s0abmSEzYAa.wdt.E1cKKy/opKcRXsEgTua3CS8yJfW', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (1.0ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (58879871, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (0.8ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 1, '12345678', 58879871)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.6ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.7ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 1 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.9ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (7, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 1, 'PJ001')[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMahasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `mahasiswa` (`nim`, `nama`, `nomor_telepon`) VALUES ('12345678', 'Budi', '+6288905126629')[0m
+  [1m[36mPenanggungJawab Create (0.6ms)[0m  [1m[32mINSERT INTO `penanggungjawab` (`role`, `nama`, `username`, `password_digest`, `nomor_telepon`) VALUES (0, 'Pak Andi', 'andi_jtk', '$2a$12$jyhJwNDUJbdhYJHaEjSLXuQfMWlRpk9ynuVMiR/2fB9zKUytqsZ/S', '+6288905126629')[0m
+  [1m[36mPenggalanganDanaBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `penggalangandanabeasiswa` (`penggalangan_dana_beasiswa_id`, `deskripsi`, `judul`, `waktu_dimulai`, `waktu_berakhir`, `target_dana`, `target_penerima`, `total_nominal_terkumpul`, `status`, `penanggung_jawab_id`) VALUES (0, 'Beasiswa untuk mahasiswa berprestasi', 'Program Beasiswa JTK 2025', '2025-06-19', '2025-07-19', 100000000, 10, 0, 0, 0)[0m
+  [1m[36mBantuanDanaBeasiswa Create (1.0ms)[0m  [1m[32mINSERT INTO `bantuandanabeasiswa` (`bantuan_dana_beasiswa_id`, `alasan_butuh_bantuan`, `golongan_ukt`, `kuitansi_pembayaran_ukt`, `gaji_orang_tua`, `bukti_slip_gaji_orang_tua`, `esai`, `jumlah_tanggungan_keluarga`, `biaya_transportasi`, `biaya_internet`, `biaya_konsumsi`, `total_pengeluaran_keluarga`, `status_pengajuan`, `mahasiswa_id`, `penggalangan_dana_beasiswa_id`) VALUES (0, 'Butuh biaya kuliah', 1, 'kuitansi.pdf', 5000000, 'slip.pdf', 'Esai motivasi', 4, '200000', '100000', '300000', 1000000, 2, '12345678', 0)[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPenanggungJawabNonBeasiswa Load (0.5ms)[0m  [1m[34mSELECT `penanggungjawabnonbeasiswa`.* FROM `penanggungjawabnonbeasiswa` WHERE `penanggungjawabnonbeasiswa`.`nomor_induk` = 'PJ001' LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Load (0.6ms)[0m  [1m[34mSELECT `bantuandananonbeasiswa`.* FROM `bantuandananonbeasiswa` WHERE `bantuandananonbeasiswa`.`penanggung_jawab_non_beasiswa_id` = 'PJ001' AND `bantuandananonbeasiswa`.`status_pengajuan` = 2 LIMIT 1[0m
+  [1m[36mBantuanDanaNonBeasiswa Create (0.7ms)[0m  [1m[32mINSERT INTO `bantuandananonbeasiswa` (`bantuan_dana_non_beasiswa_id`, `judul_galang_dana`, `waktu_galang_dana`, `deskripsi_galang_dana`, `dana_yang_dibutuhkan`, `bukti_butuh_bantuan`, `kategori`, `status_pengajuan`, `penanggung_jawab_non_beasiswa_id`) VALUES (0, 'Bantuan Bencana Alam', '2025-06-19', 'Bantuan untuk korban banjir', 5000000, 'bukti.png', 'Bencana', 2, 'PJ001')[0m
+[Skrip] Error: ActiveRecord::Rollback
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[31mROLLBACK[0m
