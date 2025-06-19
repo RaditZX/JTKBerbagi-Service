@@ -716,6 +716,38 @@ class V1::Pengajuan::PengajuanBantuanController < ApplicationController
     )
   end
 
+  def deletePengajuanNonBeasiswa
+    if params[:id].blank?
+      return render_error_response("id tidak boleh kosong!")
+    end
+
+    bantuan_dana_non_beasiswa = BantuanDanaNonBeasiswa.where(bantuan_dana_non_beasiswa_id: params[:id]).first
+
+    if !bantuan_dana_non_beasiswa.present?
+      return render_error_response("Pengajuan Bantuan Dana Non Beasiswa tidak dapat ditemukan!")
+    end
+
+    penanggung_jawab_penerima = PenanggungJawabNonBeasiswaHasPenerimaNonBeasiswa.where(
+      penanggung_jawab_non_beasiswa_id: bantuan_dana_non_beasiswa.penanggung_jawab_non_beasiswa_id
+    ).first
+
+    begin
+      # Hapus data terkait di tabel donasi
+      Donasi.where(bantuan_dana_non_beasiswa_id: params[:id]).destroy_all
+
+      # Hapus penanggung jawab penerima jika ada
+      penanggung_jawab_penerima.destroy if penanggung_jawab_penerima.present?
+      
+      if bantuan_dana_non_beasiswa.destroy
+        render_success_response(Constants::RESPONSE_SUCCESS, { message: "Pengajuan berhasil dihapus" }, Constants::STATUS_OK)
+      else
+        render_error_response(bantuan_dana_non_beasiswa.errors.full_messages)
+      end
+    rescue StandardError => e
+      render_error_response("Gagal menghapus pengajuan: #{e.message}")
+    end
+  end
+
   private
   #form pengaju
   def rekening_bank_params
