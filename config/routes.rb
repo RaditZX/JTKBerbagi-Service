@@ -57,7 +57,7 @@ Rails.application.routes.draw do
         post "/createKehadiranPerkuliahan" => "pengajuan_bantuan#createKehadiranPerkuliahan"
         get "/getTotalPenerimaBantuan" => "pengajuan_bantuan#getTotalPenerimaBantuan"
         get "/getKuotaBeasiswa" => "pengajuan_bantuan#getKuotaBeasiswa"
-
+        delete "/deletePengajuanNonBeasiswa" => "pengajuan_bantuan#deletePengajuanNonBeasiswa"
       end
     end
     namespace :penggalangan do
