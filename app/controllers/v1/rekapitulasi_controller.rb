@@ -64,7 +64,7 @@ end
 
   def get_evaluasi_penyaluran_beasiswa
     # Opsional: Tambahkan filter berdasarkan penggalangan_dana_beasiswa_id jika diperlukan
-    evaluasi_list = EvaluasiPenyaluran.all
+    evaluasi_list = EvaluasiPenyaluranBeasiswa.all
     render_success_response(Constants::RESPONSE_SUCCESS, evaluasi_list, Constants::STATUS_OK)
   end
 
