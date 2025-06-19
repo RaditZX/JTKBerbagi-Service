@@ -1,6 +1,6 @@
 
 class V1::CivitasAkademikaController < ApplicationController
-def importExcelCivitasAkademika
+def import_excel_civitas_akademika
   unless params[:file].present?
     return render json: {
       response_code: Constants::ERROR_CODE_VALIDATION,
@@ -168,7 +168,7 @@ def updateRekeningMahasiswa
 
   private
 
-  def getAllCivitasAkademika
+  def get_all_civitas_akademika
     civitas_akademika = CivitasAkademika.all.to_a
     if civitas_akademika.empty?
       render json: {

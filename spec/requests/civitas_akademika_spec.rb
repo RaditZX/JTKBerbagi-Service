@@ -1,11 +1,13 @@
 require 'swagger_helper'
+CIVITAS_AKADEMIKA = "Civitas Akademika"
+CONTENT_TYPE = "application/json"
 
 describe 'Civitas Akademika API' do
   path '/v1/civitas_akademika/importExcelCivitasAkademika' do
     post 'Import Excel Civitas Akademika' do
-      tags 'Civitas Akademika'
+      tags CIVITAS_AKADEMIKA
       consumes 'multipart/form-data'
-      produces 'application/json'
+      produces CONTENT_TYPE
       parameter in: :formData, name: :file, type: :file
       response '200', 'Successfull' do
         schema type: :object
@@ -32,9 +34,9 @@ describe 'Civitas Akademika API' do
 
   path '/v1/civitas_akademika/getAllCivitasAkademika' do
     get 'Get All Data Civitas Akademika' do
-      tags 'Civitas Akademika'
-      consumes 'application/json'
-      produces 'application/json'
+      tags CIVITAS_AKADEMIKA
+      consumes CONTENT_TYPE
+      produces CONTENT_TYPE
       response '200', 'Success' do
         schema type: :object
         run_test!
@@ -60,9 +62,9 @@ describe 'Civitas Akademika API' do
   
   path '/v1/civitas_akademika/search' do
     post 'Search Attributes in Civitas Akademika' do
-      tags 'Civitas Akademika'
-      consumes 'application/json'
-      produces 'application/json'
+      tags CIVITAS_AKADEMIKA
+      consumes CONTENT_TYPE
+      produces CONTENT_TYPE
       parameter name: :body, in: :body, schema: {
         type: :object,
         properties: {

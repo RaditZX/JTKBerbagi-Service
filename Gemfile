@@ -73,8 +73,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'composite_primary_keys'
 
+gem 'activerecord-import'
 # Midtrans
 gem 'httparty'
 gem 'veritrans'
 gem 'twilio-ruby'
-

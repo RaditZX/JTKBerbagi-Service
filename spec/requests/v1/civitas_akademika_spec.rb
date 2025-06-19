@@ -10,7 +10,8 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_message"]).to eq("No file uploaded!")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to eq('Tidak ada file yang diunggah!')
       end
     end
 
@@ -26,7 +27,8 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_message"]).to eq("File must be an Excel file (.xlsx)!")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to eq('File harus berupa file Excel (.xlsx)!')
       end
     end
 
@@ -42,7 +44,8 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
 
         expect(response).to have_http_status(:created)
         json = JSON.parse(response.body)
-        expect(json["response_message"]).to eq("Data imported successfully!")
+        expect(json['response_code']).to eq(201)
+        expect(json['response_message']).to eq('Data berhasil diimpor!')
       end
     end
 
@@ -58,7 +61,8 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
 
         expect(response).to have_http_status(:unprocessable_entity)
         json = JSON.parse(response.body)
-        expect(json["response_message"]).to include("Import failed with errors")
+        expect(json['response_code']).to eq(422)
+        expect(json['response_message']).to include("Tabel database 'civitasakademika' tidak ada")
       end
     end
 
@@ -79,7 +83,55 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
 
         expect(response).to have_http_status(:internal_server_error)
         json = JSON.parse(response.body)
-        expect(json["response_message"]).to include("Server error: Something went wrong")
+        expect(json['response_code']).to eq(500)
+        expect(json['response_message']).to include('Kesalahan server: Terjadi kesalahan')
+      end
+    end
+  end
+
+  describe '#get_all_civitas_akademika (private method)' do
+    let(:render_args) { [] }
+
+    before do
+      allow(controller_instance).to receive(:render) { |args| render_args << args }
+    end
+
+    context 'when no data exists' do
+      it 'renders no data found message' do
+        controller_instance.send(:get_all_civitas_akademika)
+        expect(render_args).to include(
+          hash_including(
+            json: {
+              response_code: 422,
+              response_message: 'Data Civitas Akademika tidak ditemukan!'
+            },
+            status: :unprocessable_entity
+          )
+        )
+      end
+    end
+
+    context 'when data exists' do
+      before do
+        CivitasAkademika.create!(nomor_induk: '231511038', nama: 'Daffa Al Ghifari')
+        CivitasAkademika.create!(nomor_induk: '231511039', nama: 'Daiva Raditya Pradipa')
+      end
+
+      it 'renders success with data' do
+        controller_instance.send(:get_all_civitas_akademika)
+        expect(render_args).to include(
+          hash_including(
+            json: {
+              response_code: 200,
+              response_message: 'Berhasil',
+              data: an_instance_of(Array)
+            },
+            status: :ok
+          )
+        )
+        json = render_args.find { |args| args[:json][:response_message] == 'Berhasil' }[:json]
+        expect(json[:data].size).to eq(2)
+        expect(json[:data].map { |d| d['nomor_induk'] }).to include('231511038', '231511039')
       end
     end
   end
@@ -93,7 +145,7 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
       end
     end
     let!(:mahasiswa) { Mahasiswa.find_by(nim: "231511038") }
-
+    
     let(:valid_params) do
       {
         nim: "231511038",
@@ -124,7 +176,6 @@ RSpec.describe "V1::CivitasAkademikaController", type: :request do
     context "when mahasiswa does not exist" do
       it "returns 404 not found" do
         post "/v1/civitas_akademika/updateRekeningMahasiswa", params: { nim: "000000000" }
-
         expect(response).to have_http_status(:not_found)
         expect(JSON.parse(response.body)["error"]).to include("tidak ditemukan")
       end

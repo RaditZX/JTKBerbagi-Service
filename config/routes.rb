@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     end
     
     resource :civitas_akademika do
-      post '/importExcelCivitasAkademika' => "civitas_akademika#importExcelCivitasAkademika"
-      get '/getAllCivitasAkademika' => "civitas_akademika#getAllCivitasAkademika"
+      post '/importExcelCivitasAkademika' => "civitas_akademika#import_excel_civitas_akademika"
+      get '/getAllCivitasAkademika' => "civitas_akademika#get_all_civitas_akademika"
       post '/search' => "civitas_akademika#search"
       get '/autocomplete' => "civitas_akademika#universal_autocomplete"
       get '/getcivitas' => "civitas_akademika#getcivitas"
